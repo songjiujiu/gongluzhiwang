@@ -82,7 +82,6 @@ class RoadKingApp {
         if(item.axis){
           item.used=true;
           if(item.axis==='x')this.changeLane(Math.sign(dx));
-          else if(dy<0)this.game.pulse();
         }
       }
     });
@@ -212,7 +211,7 @@ class RoadKingApp {
     this.txt('越开越快',29,287,26,C.white,'bold');this.txt('越躲越险',29,327,26,C.white,'bold');this.line(30,355,65,355,C.orange,3);this.txt('下一公里，',29,385,16,'#d2ded4');this.txt('由你的反应决定。',29,409,16,'#d2ded4');
     if(this.art.hero){this.groundShadow(355,439,130,21);c.drawImage(this.art.hero,158,215,388,259);}else this.car(398,412,1.65,C.cyan,true,false);
     this.rr(24,458,492,91,17,'rgba(23,51,63,.96)','#476069');this.txt('个人最高分',43,482,14,C.mute);this.txt(Math.round(this.best.score),43,519,37,C.cyan,'bold');this.txt('最远 '+distance(this.best.distance),493,486,17,C.white,'bold','right');this.txt('最长 '+duration(this.best.elapsed),493,518,16,C.mute,'normal','right');
-    const tips=[['01','自动提速','越开越快，提前观察远处车流。'],['02','左右滑动','每次滑动换一条车道，连续滑动闪避。'],['03','上滑气浪','向上滑动释放气浪，推开近前车辆。']];
+    const tips=[['01','自动提速','越开越快，提前观察远处车流。'],['02','左右滑动','每次滑动换一条车道，连续滑动闪避。'],['03','点击气浪','点击气浪技能，推开近前车辆。']];
     tips.forEach((tip,i)=>{const y=581+i*58;this.rr(29,y-9,30,29,8,'#263e48');this.txt(tip[0],44,y+6,13,C.orange,'bold','center');this.txt(tip[1],78,y,19,C.white,'bold');this.txt(tip[2],78,y+26,16,C.mute);});
     this.button(24,775,492,76,'开始挑战  →',()=>this.start(),{primary:true,size:28});this.txt('车流越来越密 · 活得越久，得分越高',270,878,16,C.white,'normal','center');
     this.button(24,904,148,35,this.muted?'音效：关':'音效：开',()=>this.toggleSound(),{size:14,radius:9});this.txt('单局无尽 · 随时再来一局',515,922,14,C.mute,'normal','right');
@@ -227,7 +226,7 @@ class RoadKingApp {
     if(playing&&g.elapsed<7){this.rr(111,276,318,42,12,'rgba(10,27,38,.88)');this.txt('← 左右滑动，连续闪避 →',270,297,18,C.white,'bold','center');}
     const controls=c.createLinearGradient(0,766,0,H);controls.addColorStop(0,'#163747');controls.addColorStop(1,'#0b202e');c.fillStyle=controls;c.fillRect(0,766,W,194);this.line(0,766,W,766,'#769082');
     this.txt('←',99,814,39,C.cyan,'bold','center');this.txt('滑动驾驶',270,807,26,C.white,'bold','center');this.txt('→',441,814,39,C.cyan,'bold','center');this.txt('左滑 / 右滑 · 每次换一条车道',270,840,16,C.mute,'normal','center');
-    this.txt(g.pulseCooldown>0?'↑ 气浪 '+Math.ceil(g.pulseCooldown)+'s':'↑ 上滑释放气浪',270,884,22,g.pulseCooldown>0?C.mute:C.cyan,'bold','center');
+    this.button(130,862,280,48,g.pulseCooldown>0?'气浪冷却 '+Math.ceil(g.pulseCooldown)+'s':'释放气浪 ✦',()=>g.pulse(),{key:'气浪技能',disabled:!playing||g.pulseCooldown>0,primary:true,size:22});
     this.txt('自动提速 · 提前观察车流',270,925,16,C.mute,'normal','center');
   }
   scrim(){this.ctx.fillStyle='rgba(3,12,19,.83)';this.ctx.fillRect(0,0,W,H);this.buttons=[];}
@@ -240,7 +239,7 @@ class RoadKingApp {
     this.txt('本局得分',270,354,16,C.mute,'normal','center');this.txt(Math.round(g.score),270,405,62,C.cyan,'bold','center');this.txt('最高分 '+Math.round(this.best.score),270,455,17,this.newBest?C.orange:C.mute,'bold','center');
     const stats=[['行驶距离',distance(g.distance)],['存活时间',duration(g.elapsed)],['最高时速',Math.round(g.maxSpeed||g.speed)+' km/h'],['成功躲避',number(g.dodged)+' 次']];
     stats.forEach((stat,i)=>{const x=i%2===0?150:390,y=i<2?507:591;this.txt(stat[0],x,y,15,C.mute,'normal','center');this.txt(stat[1],x,y+34,27,C.white,'bold','center');});
-    this.button(50,672,440,66,'再挑战一次  →',()=>this.start(),{primary:true,size:25});this.button(50,757,440,51,'返回首页',()=>{this.releaseHolds();this.game.menu();},{size:19});this.txt('提前左右滑动，上滑气浪解围。',270,872,17,C.mute,'normal','center');
+    this.button(50,672,440,66,'再挑战一次  →',()=>this.start(),{primary:true,size:25});this.button(50,757,440,51,'返回首页',()=>{this.releaseHolds();this.game.menu();},{size:19});this.txt('提前左右滑动，点击气浪解围。',270,872,17,C.mute,'normal','center');
   }
 }
 module.exports=RoadKingApp;
