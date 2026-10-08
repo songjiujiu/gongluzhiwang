@@ -16,7 +16,7 @@ fs.mkdirSync(out, { recursive: true });
     // Deterministic simulation while exercising the real Canvas and browser input handlers.
     await page.addInitScript(() => { window.requestAnimationFrame = () => 1; });
     const ready = async () => {
-      await page.waitForFunction(() => window.roadKingReady === true);
+      await page.waitForFunction(() => window.roadKingReady === true, null, { polling: 50 });
       await page.evaluate(() => roadKingApp.draw());
     };
     const snapshot = async name => {
@@ -37,8 +37,7 @@ fs.mkdirSync(out, { recursive: true });
     };
     const advance = async seconds => page.evaluate(seconds => {
       for (let remaining = seconds; remaining > 1e-8; remaining -= .05) {
-        roadKingApp.game.update(Math.min(.05, remaining));
-        roadKingApp.flushLane();
+        roadKingApp.update(Math.min(.05, remaining));
       }
       roadKingApp.clock += seconds;
       roadKingApp.draw();
@@ -72,8 +71,16 @@ fs.mkdirSync(out, { recursive: true });
     checks.roadSwipe = true;
     await page.mouse.move(swipe.x + swipe.dx, swipe.y); await page.mouse.down();
     await page.mouse.move(swipe.x - swipe.dx, swipe.y); await page.mouse.up();
+    await advance(.5); assert.equal((await state()).lane, 0);
+    await page.mouse.move(swipe.x, swipe.y); await page.mouse.down();
+    await page.mouse.move(swipe.x - swipe.dx, swipe.y); await page.mouse.up();
     await advance(.5); assert.equal((await state()).lane, -1);
-    checks.fastTwoLaneSwipe = true;
+    checks.oneLanePerSwipe = true;
+    await page.mouse.move(swipe.x, swipe.y); await page.mouse.down();
+    await page.mouse.move(swipe.x, swipe.y + swipe.dx); await page.mouse.up();
+    assert.equal((await state()).brake, true);
+    await advance(.9); assert.equal((await state()).brake, false);
+    checks.swipeBrakeAutoRelease = true;
     await page.keyboard.down('Space'); await advance(4);
     const depleted = await state();
     assert.equal(depleted.brakeEnergy, 0);
@@ -81,8 +88,12 @@ fs.mkdirSync(out, { recursive: true });
     await page.keyboard.up('Space'); await advance(2);
     assert.ok((await state()).brakeEnergy > 0);
     checks.brakeEnergy = true;
-    await click('气浪'); assert.ok((await state()).pulseCooldown > 0);
+    await page.mouse.move(swipe.x, swipe.y); await page.mouse.down();
+    await page.mouse.move(swipe.x, swipe.y - swipe.dx); await page.mouse.up();
+    assert.ok((await state()).pulseCooldown > 0);
     checks.pulse = true;
+    assert.equal(await page.evaluate(() => roadKingApp.buttons.length), 1);
+    checks.noDrivingButtons = true;
     await snapshot('gameplay');
     await page.keyboard.press('Escape');
     const beforePause = await state(); await advance(20);

@@ -29,7 +29,7 @@ files.extend(root / p for p in (
 ))
 files.extend(p for p in (root / 'research/blender-preview').glob('*') if p.suffix in ('.json', '.png'))
 assert all(p.is_file() for p in files), 'Missing delivery input'
-archive = target / '公路之王_Blender美术版.zip'
+archive = target / '公路之王_滑动操作版.zip'
 with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as z:
     for p in sorted(set(files)):
         z.write(p, p.relative_to(root).as_posix())
@@ -53,9 +53,10 @@ report = {
     'files':names,
     'zipIntegrity':'passed',
     'platform':'Douyin native Canvas 2D with Blender prerendered PNG assets',
-    'verification':'19 Node tests; Blender model/render outputs and shared-code browser asset/input checks. See research/blender-preview and README for scope.',
+    'verification':'25 Node tests; Blender model/render outputs and shared-code browser asset/input checks. See research/blender-preview and README for scope.',
     'notVerified':['Blender art version in Douyin IDE simulator','Android/iOS phone','live upload and publication','phone performance','audio listening'],
 }
 (target / 'delivery-manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps({k:v for k,v in report.items() if k!='files'},ensure_ascii=False))
 print('Files:',len(names))
+
