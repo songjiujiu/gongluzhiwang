@@ -224,8 +224,8 @@ class RoadKingApp {
     for(let i=0;i<6;i++)this.rr(382+i*22,161,16,6,3,i<difficulty.tier?danger?C.orange:C.cyan:'#3a515b');
     if(playing&&g.messageTimer>0&&g.message){const message=String(g.message);this.rr(20,199,500,42,12,'rgba(10,27,38,.93)');this.txt(message,270,220,message.length>27?13:16,C.white,'bold','center');}
     if(playing&&g.elapsed<7){this.rr(111,276,318,42,12,'rgba(10,27,38,.88)');this.txt('← 左右滑动，连续闪避 →',270,297,18,C.white,'bold','center');}
-    const controls=c.createLinearGradient(0,766,0,H);controls.addColorStop(0,'#163747');controls.addColorStop(1,'#0b202e');c.fillStyle=controls;c.fillRect(0,766,W,194);this.line(0,766,W,766,'#769082');
-    this.txt('←',99,814,39,C.cyan,'bold','center');this.txt('滑动驾驶',270,807,26,C.white,'bold','center');this.txt('→',441,814,39,C.cyan,'bold','center');this.txt('左滑 / 右滑 · 每次换一条车道',270,840,16,C.mute,'normal','center');
+    const controls=c.createLinearGradient(0,844,0,H);controls.addColorStop(0,'#163747');controls.addColorStop(1,'#0b202e');c.fillStyle=controls;c.fillRect(0,844,W,116);this.line(0,844,W,844,'#769082');
+    this.txt('←',99,875,34,C.cyan,'bold','center');this.txt('滑动驾驶',270,872,24,C.white,'bold','center');this.txt('→',441,875,34,C.cyan,'bold','center');this.txt('左滑 / 右滑 · 每次换一条车道',270,901,16,C.mute,'normal','center');
     if(playing){
       const x=473,y=664,r=45,cooling=g.pulseCooldown>0;
       c.save();c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fillStyle=cooling?'rgba(20,43,53,.42)':'rgba(24,65,68,.48)';c.fill();c.strokeStyle=cooling?'rgba(205,232,224,.32)':'rgba(151,255,221,.72)';c.lineWidth=2;c.stroke();
@@ -233,7 +233,7 @@ class RoadKingApp {
       this.txt(cooling?Math.ceil(g.pulseCooldown)+'s':'✦',x,y-9,cooling?23:30,cooling?C.white:C.cyan,'bold','center');this.txt('气浪',x,y+21,15,C.white,'bold','center');c.restore();
       this.buttons.push({x:x-r,y:y-r,w:r*2,h:r*2,circle:true,key:'气浪技能',disabled:cooling,action:()=>g.pulse()});
     }
-    this.txt('自动提速 · 提前观察车流',270,925,16,C.mute,'normal','center');
+    this.txt('自动提速 · 提前观察车流',270,934,15,C.mute,'normal','center');
   }
   scrim(){this.ctx.fillStyle='rgba(3,12,19,.83)';this.ctx.fillRect(0,0,W,H);this.buttons=[];}
   drawPause(){

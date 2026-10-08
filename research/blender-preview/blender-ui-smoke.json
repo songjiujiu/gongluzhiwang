@@ -64,12 +64,6 @@
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
             "complete": true
           },
-          "car-orange": {
-            "width": 256,
-            "height": 384,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
-            "complete": true
-          },
           "car-silver": {
             "width": 256,
             "height": 384,
@@ -80,6 +74,12 @@
             "width": 256,
             "height": 384,
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
+            "complete": true
+          },
+          "car-orange": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
             "complete": true
           },
           "barrier": {
@@ -262,10 +262,10 @@
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
             "complete": true
           },
-          "car-orange": {
+          "car-silver": {
             "width": 256,
             "height": 384,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
             "complete": true
           },
           "car-blue": {
@@ -274,28 +274,28 @@
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
             "complete": true
           },
-          "car-silver": {
-            "width": 256,
-            "height": 384,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
-            "complete": true
-          },
           "barrier": {
             "width": 384,
             "height": 256,
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/barrier.png",
             "complete": true
           },
-          "tree": {
+          "car-orange": {
             "width": 256,
             "height": 384,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/tree.png",
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
             "complete": true
           },
           "rock": {
             "width": 256,
             "height": 192,
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/rock.png",
+            "complete": true
+          },
+          "tree": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/tree.png",
             "complete": true
           },
           "hero": {
@@ -459,16 +459,16 @@
         "car-player"
       ],
       "images": {
-        "car-blue": {
-          "width": 256,
-          "height": 384,
-          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
-          "complete": true
-        },
         "car-silver": {
           "width": 256,
           "height": 384,
           "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
+          "complete": true
+        },
+        "car-blue": {
+          "width": 256,
+          "height": 384,
+          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
           "complete": true
         },
         "car-orange": {
