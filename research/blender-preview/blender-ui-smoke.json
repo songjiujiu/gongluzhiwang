@@ -1,0 +1,589 @@
+{
+  "date": "2026-10-08",
+  "kind": "Actual Blender-rendered PNG sprites composited by browser Canvas; not real-time 3D, a Douyin simulator, or a phone test",
+  "source": "http://127.0.0.1:4179/",
+  "renderInputs": [
+    {
+      "name": "car-player",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-player.png",
+      "size": 114793,
+      "sha256": "f33a05bc832d5422f8987a3b55ab391210fef433716a877fa591ee1ab32afde4"
+    },
+    {
+      "name": "car-silver",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-silver.png",
+      "size": 106680,
+      "sha256": "b9422265e3dcf315d0cf13ccd981bea5e3e554d308919c94a129a57443e452cf"
+    },
+    {
+      "name": "car-blue",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-blue.png",
+      "size": 112656,
+      "sha256": "a3b73ab22fdd056b4ccd40f667913b7fbb79c9dd370822e0783f5f2e877b6a9f"
+    },
+    {
+      "name": "car-orange",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-orange.png",
+      "size": 113068,
+      "sha256": "c716e78a337139c3eed812ef7c18de9666b1a85379888878e0ea9a6f89d0cfe3"
+    },
+    {
+      "name": "barrier",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\barrier.png",
+      "size": 73637,
+      "sha256": "e6baa9164b41ddba841309404c138240f2c066b115e8bc438c7d9b9a942f8103"
+    },
+    {
+      "name": "tree",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\tree.png",
+      "size": 70303,
+      "sha256": "a09d464da04e9066208ed6939c7b40cd85bb32352f236c67dc8821bab5f09354"
+    },
+    {
+      "name": "rock",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\rock.png",
+      "size": 40645,
+      "sha256": "d4c0881495d191a90319465255602ce516dec07de75be89a569c5e8ccb141830"
+    },
+    {
+      "name": "hero",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\hero.png",
+      "size": 372883,
+      "sha256": "88ab0c80b40b34f72e779354c0526959acffd49c8047a35c1136c4ee5d9c52c9"
+    }
+  ],
+  "viewports": {
+    "390x844": {
+      "assets": {
+        "loaded": 8,
+        "errors": [],
+        "images": {
+          "car-player": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
+            "complete": true
+          },
+          "car-silver": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
+            "complete": true
+          },
+          "car-blue": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
+            "complete": true
+          },
+          "barrier": {
+            "width": 384,
+            "height": 256,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/barrier.png",
+            "complete": true
+          },
+          "car-orange": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
+            "complete": true
+          },
+          "tree": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/tree.png",
+            "complete": true
+          },
+          "rock": {
+            "width": 256,
+            "height": 192,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/rock.png",
+            "complete": true
+          },
+          "hero": {
+            "width": 768,
+            "height": 512,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/hero.png",
+            "complete": true
+          }
+        }
+      },
+      "screenshots": [
+        "menu-390x844.png",
+        "gameplay-390x844.png",
+        "high-speed-155-390x844.png",
+        "high-speed-390x844.png",
+        "result-390x844.png"
+      ],
+      "normalRun": {
+        "elapsed": 12.000000000000036,
+        "speed": 96.01291851514671,
+        "health": 100,
+        "tier": 1,
+        "waves": 3,
+        "dodged": 2,
+        "mode": "playing",
+        "visibleTraffic": [
+          {
+            "kind": "car",
+            "threat": false,
+            "z": 42.14039787233716,
+            "lane": 1
+          }
+        ]
+      },
+      "lateRun": {
+        "elapsed": 155.000000000001,
+        "speed": 203.45885469641226,
+        "health": 100,
+        "tier": 6,
+        "waves": 76,
+        "dodged": 123,
+        "mode": "playing",
+        "visibleTraffic": [
+          {
+            "kind": "barrier",
+            "threat": false,
+            "z": 3.113691667515869,
+            "lane": -1
+          },
+          {
+            "kind": "barrier",
+            "threat": false,
+            "z": 10.113691667515848,
+            "lane": 0
+          },
+          {
+            "kind": "car",
+            "threat": true,
+            "z": 65.98170462577653,
+            "lane": -1
+          },
+          {
+            "kind": "car",
+            "threat": false,
+            "z": 72.98170462577652,
+            "lane": 0
+          },
+          {
+            "kind": "car",
+            "threat": true,
+            "z": 117.52435071158156,
+            "lane": -1
+          },
+          {
+            "kind": "car",
+            "threat": false,
+            "z": 124.52435071158155,
+            "lane": 0
+          }
+        ]
+      },
+      "mixedHazards": {
+        "elapsed": 155.050000000001,
+        "speed": 203.47328641919745,
+        "health": 100,
+        "tier": 6,
+        "waves": 76,
+        "dodged": 123,
+        "mode": "playing",
+        "visibleTraffic": [
+          {
+            "kind": "barrier",
+            "threat": false,
+            "z": 0.9941782673158954,
+            "lane": -1
+          },
+          {
+            "kind": "barrier",
+            "threat": false,
+            "z": 7.994178267315874,
+            "lane": 0
+          },
+          {
+            "kind": "car",
+            "threat": true,
+            "z": 64.18713914224323,
+            "lane": -1
+          },
+          {
+            "kind": "car",
+            "threat": false,
+            "z": 71.18713914224321,
+            "lane": 0
+          },
+          {
+            "kind": "car",
+            "threat": true,
+            "z": 115.73069147804826,
+            "lane": -1
+          },
+          {
+            "kind": "car",
+            "threat": false,
+            "z": 122.73069147804824,
+            "lane": 0
+          }
+        ]
+      },
+      "result": {
+        "mode": "result",
+        "elapsed": 174.70000000000547,
+        "health": 0,
+        "score": 17265,
+        "collisions": 4
+      },
+      "drawCalls": {
+        "tree.png": 144,
+        "rock.png": 144,
+        "car-blue.png": 7,
+        "barrier.png": 15,
+        "car-orange.png": 11,
+        "car-silver.png": 17,
+        "hero.png": 3,
+        "car-player.png": 9
+      },
+      "buttonsInsideViewport": true,
+      "issues": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "failedRequests": [],
+        "badResponses": []
+      }
+    },
+    "320x568": {
+      "assets": {
+        "loaded": 8,
+        "errors": [],
+        "images": {
+          "car-orange": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
+            "complete": true
+          },
+          "car-player": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
+            "complete": true
+          },
+          "car-silver": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
+            "complete": true
+          },
+          "car-blue": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
+            "complete": true
+          },
+          "tree": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/tree.png",
+            "complete": true
+          },
+          "barrier": {
+            "width": 384,
+            "height": 256,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/barrier.png",
+            "complete": true
+          },
+          "hero": {
+            "width": 768,
+            "height": 512,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/hero.png",
+            "complete": true
+          },
+          "rock": {
+            "width": 256,
+            "height": 192,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/rock.png",
+            "complete": true
+          }
+        }
+      },
+      "screenshots": [
+        "menu-320x568.png",
+        "gameplay-320x568.png",
+        "high-speed-155-320x568.png",
+        "high-speed-320x568.png",
+        "result-320x568.png"
+      ],
+      "normalRun": {
+        "elapsed": 12.000000000000036,
+        "speed": 96.01291851514671,
+        "health": 100,
+        "tier": 1,
+        "waves": 3,
+        "dodged": 2,
+        "mode": "playing",
+        "visibleTraffic": [
+          {
+            "kind": "car",
+            "threat": false,
+            "z": 42.14039787233716,
+            "lane": 1
+          }
+        ]
+      },
+      "lateRun": {
+        "elapsed": 155.000000000001,
+        "speed": 203.45885469641226,
+        "health": 100,
+        "tier": 6,
+        "waves": 76,
+        "dodged": 123,
+        "mode": "playing",
+        "visibleTraffic": [
+          {
+            "kind": "barrier",
+            "threat": false,
+            "z": 3.113691667515869,
+            "lane": -1
+          },
+          {
+            "kind": "barrier",
+            "threat": false,
+            "z": 10.113691667515848,
+            "lane": 0
+          },
+          {
+            "kind": "car",
+            "threat": true,
+            "z": 65.98170462577653,
+            "lane": -1
+          },
+          {
+            "kind": "car",
+            "threat": false,
+            "z": 72.98170462577652,
+            "lane": 0
+          },
+          {
+            "kind": "car",
+            "threat": true,
+            "z": 117.52435071158156,
+            "lane": -1
+          },
+          {
+            "kind": "car",
+            "threat": false,
+            "z": 124.52435071158155,
+            "lane": 0
+          }
+        ]
+      },
+      "mixedHazards": {
+        "elapsed": 155.050000000001,
+        "speed": 203.47328641919745,
+        "health": 100,
+        "tier": 6,
+        "waves": 76,
+        "dodged": 123,
+        "mode": "playing",
+        "visibleTraffic": [
+          {
+            "kind": "barrier",
+            "threat": false,
+            "z": 0.9941782673158954,
+            "lane": -1
+          },
+          {
+            "kind": "barrier",
+            "threat": false,
+            "z": 7.994178267315874,
+            "lane": 0
+          },
+          {
+            "kind": "car",
+            "threat": true,
+            "z": 64.18713914224323,
+            "lane": -1
+          },
+          {
+            "kind": "car",
+            "threat": false,
+            "z": 71.18713914224321,
+            "lane": 0
+          },
+          {
+            "kind": "car",
+            "threat": true,
+            "z": 115.73069147804826,
+            "lane": -1
+          },
+          {
+            "kind": "car",
+            "threat": false,
+            "z": 122.73069147804824,
+            "lane": 0
+          }
+        ]
+      },
+      "result": {
+        "mode": "result",
+        "elapsed": 174.70000000000547,
+        "health": 0,
+        "score": 17265,
+        "collisions": 4
+      },
+      "drawCalls": {
+        "tree.png": 144,
+        "rock.png": 144,
+        "car-blue.png": 7,
+        "barrier.png": 15,
+        "car-orange.png": 11,
+        "car-silver.png": 17,
+        "hero.png": 3,
+        "car-player.png": 9
+      },
+      "buttonsInsideViewport": true,
+      "issues": {
+        "pageErrors": [],
+        "consoleErrors": [],
+        "failedRequests": [],
+        "badResponses": []
+      }
+    }
+  },
+  "passed": true,
+  "missingAssetFallback": {
+    "injectedFailure": "car-player.png returns HTTP 404",
+    "assets": {
+      "loaded": 7,
+      "errors": [
+        "car-player"
+      ],
+      "images": {
+        "car-silver": {
+          "width": 256,
+          "height": 384,
+          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
+          "complete": true
+        },
+        "car-blue": {
+          "width": 256,
+          "height": 384,
+          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
+          "complete": true
+        },
+        "car-orange": {
+          "width": 256,
+          "height": 384,
+          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
+          "complete": true
+        },
+        "tree": {
+          "width": 256,
+          "height": 384,
+          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/tree.png",
+          "complete": true
+        },
+        "rock": {
+          "width": 256,
+          "height": 192,
+          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/rock.png",
+          "complete": true
+        },
+        "barrier": {
+          "width": 384,
+          "height": 256,
+          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/barrier.png",
+          "complete": true
+        },
+        "hero": {
+          "width": 768,
+          "height": 512,
+          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/hero.png",
+          "complete": true
+        }
+      }
+    },
+    "run": {
+      "elapsed": 12.000000000000036,
+      "speed": 96.01291851514671,
+      "health": 100,
+      "tier": 1,
+      "waves": 3,
+      "dodged": 2,
+      "mode": "playing",
+      "visibleTraffic": [
+        {
+          "kind": "car",
+          "threat": false,
+          "z": 42.14039787233716,
+          "lane": 1
+        }
+      ]
+    },
+    "screenshot": "fallback-missing-player-390x844.png",
+    "issues": {
+      "pageErrors": [],
+      "consoleErrors": [
+        "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      ],
+      "failedRequests": [],
+      "badResponses": [
+        {
+          "url": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
+          "status": 404
+        }
+      ]
+    },
+    "expectedNetworkError": "Only the deliberately missing car-player.png request may fail; gameplay continues using vector fallback."
+  },
+  "renderInputsAtFinish": [
+    {
+      "name": "car-player",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-player.png",
+      "size": 114793,
+      "sha256": "f33a05bc832d5422f8987a3b55ab391210fef433716a877fa591ee1ab32afde4"
+    },
+    {
+      "name": "car-silver",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-silver.png",
+      "size": 106680,
+      "sha256": "b9422265e3dcf315d0cf13ccd981bea5e3e554d308919c94a129a57443e452cf"
+    },
+    {
+      "name": "car-blue",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-blue.png",
+      "size": 112656,
+      "sha256": "a3b73ab22fdd056b4ccd40f667913b7fbb79c9dd370822e0783f5f2e877b6a9f"
+    },
+    {
+      "name": "car-orange",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-orange.png",
+      "size": 113068,
+      "sha256": "c716e78a337139c3eed812ef7c18de9666b1a85379888878e0ea9a6f89d0cfe3"
+    },
+    {
+      "name": "barrier",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\barrier.png",
+      "size": 73637,
+      "sha256": "e6baa9164b41ddba841309404c138240f2c066b115e8bc438c7d9b9a942f8103"
+    },
+    {
+      "name": "tree",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\tree.png",
+      "size": 70303,
+      "sha256": "a09d464da04e9066208ed6939c7b40cd85bb32352f236c67dc8821bab5f09354"
+    },
+    {
+      "name": "rock",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\rock.png",
+      "size": 40645,
+      "sha256": "d4c0881495d191a90319465255602ce516dec07de75be89a569c5e8ccb141830"
+    },
+    {
+      "name": "hero",
+      "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\hero.png",
+      "size": 372883,
+      "sha256": "88ab0c80b40b34f72e779354c0526959acffd49c8047a35c1136c4ee5d9c52c9"
+    }
+  ]
+}

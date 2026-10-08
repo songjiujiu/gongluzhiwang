@@ -1,0 +1,32 @@
+# Local delivery archives and operating-system metadata
+/deliverables/*.zip
+/__MACOSX/
+.DS_Store
+Thumbs.db
+
+# Blender recovery files and render logs
+*.blend1
+*.blend2
+*.log
+__pycache__/
+*.pyc
+
+# Historical Unity prototype and generated caches
+/RoadKingUnity/
+node_modules/
+
+# Historical research remains local; current visual verification is tracked
+/research/*
+!/research/blender-preview/
+!/research/endless-preview/
+
+# Generated planning previews and temporary analysis outputs
+/docs/_qa*/
+/docs/*.docx
+/docs/*.pdf
+/docs/*.png
+/docs/*.json
+
+# Editor and local build settings
+.vscode/
+.idea/

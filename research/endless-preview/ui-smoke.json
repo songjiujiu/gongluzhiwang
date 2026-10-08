@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-08",
+  "kind": "Shared-source browser Canvas and input verification; not a Douyin simulator or phone test",
+  "viewports": [
+    "390x844",
+    "320x568"
+  ],
+  "errors": [],
+  "checks": {
+    "keyboardLaneChange": true,
+    "roadSwipe": true,
+    "fastTwoLaneSwipe": true,
+    "brakeEnergy": true,
+    "pulse": true,
+    "pauseFrozen": true,
+    "backgroundReleasesInput": true,
+    "naturalResult": {
+      "mode": "result",
+      "score": 898,
+      "elapsed": 30.350000000000296,
+      "distance": 835.5097556193291,
+      "health": 0,
+      "best": {
+        "score": 898,
+        "distance": 835.5097556193291,
+        "elapsed": 30.350000000000296
+      }
+    },
+    "retry": true,
+    "persistence": true,
+    "lateRun": {
+      "elapsed": 155.000000000001,
+      "speed": 203.45885469641226,
+      "health": 100,
+      "tier": 6,
+      "waves": 76,
+      "dodged": 121,
+      "mode": "playing"
+    },
+    "compactViewport": true
+  },
+  "passed": true
+}

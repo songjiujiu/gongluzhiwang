@@ -1,0 +1,15 @@
+{
+    "setting": {
+        "urlCheck": true,
+        "es6": true,
+        "postcss": true,
+        "minified": true,
+        "newFeature": true,
+        "autoCompile": true,
+        "compileHotReLoad": true,
+        "nativeCompile": true
+    },
+    "appid": "tt9b11edac056834d607",
+    "projectname": "公路之王",
+    "douyinProjectType": "native"
+}

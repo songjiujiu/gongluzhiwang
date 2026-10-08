@@ -1,0 +1,203 @@
+{
+  "generator": "Blender 5.2 / Cycles CPU / original procedural meshes",
+  "style": "Coastal arcade / warm key, cool fill, metallic lacquer",
+  "coordinates": {
+    "forward": "+Y",
+    "up": "+Z",
+    "spriteView": "orthographic rear elevated, no yaw"
+  },
+  "assets": {
+    "car-player": {
+      "canvas": [
+        256,
+        384
+      ],
+      "groundAnchor": [
+        0.5,
+        0.92
+      ],
+      "forward": "+Y",
+      "contentProjection": [
+        0.0867,
+        0.08,
+        0.9133,
+        0.92
+      ],
+      "file": "car-player.png",
+      "alphaBounds": [
+        21,
+        29,
+        235,
+        354
+      ]
+    },
+    "car-silver": {
+      "canvas": [
+        256,
+        384
+      ],
+      "groundAnchor": [
+        0.5,
+        0.92
+      ],
+      "forward": "+Y",
+      "contentProjection": [
+        0.08,
+        0.0818,
+        0.92,
+        0.92
+      ],
+      "file": "car-silver.png",
+      "alphaBounds": [
+        19,
+        30,
+        237,
+        354
+      ]
+    },
+    "car-blue": {
+      "canvas": [
+        256,
+        384
+      ],
+      "groundAnchor": [
+        0.5,
+        0.92
+      ],
+      "forward": "+Y",
+      "contentProjection": [
+        0.0867,
+        0.08,
+        0.9133,
+        0.92
+      ],
+      "file": "car-blue.png",
+      "alphaBounds": [
+        21,
+        29,
+        235,
+        354
+      ]
+    },
+    "car-orange": {
+      "canvas": [
+        256,
+        384
+      ],
+      "groundAnchor": [
+        0.5,
+        0.92
+      ],
+      "forward": "+Y",
+      "contentProjection": [
+        0.0867,
+        0.08,
+        0.9133,
+        0.92
+      ],
+      "file": "car-orange.png",
+      "alphaBounds": [
+        21,
+        29,
+        235,
+        354
+      ]
+    },
+    "barrier": {
+      "canvas": [
+        384,
+        256
+      ],
+      "groundAnchor": [
+        0.5,
+        0.92
+      ],
+      "forward": "+Y",
+      "contentProjection": [
+        0.08,
+        0.3586,
+        0.92,
+        0.92
+      ],
+      "file": "barrier.png",
+      "alphaBounds": [
+        29,
+        91,
+        355,
+        237
+      ]
+    },
+    "tree": {
+      "canvas": [
+        256,
+        384
+      ],
+      "groundAnchor": [
+        0.5,
+        0.92
+      ],
+      "forward": "+Y",
+      "contentProjection": [
+        0.08,
+        0.3358,
+        0.92,
+        0.92
+      ],
+      "file": "tree.png",
+      "alphaBounds": [
+        19,
+        128,
+        237,
+        354
+      ]
+    },
+    "rock": {
+      "canvas": [
+        256,
+        192
+      ],
+      "groundAnchor": [
+        0.5,
+        0.92
+      ],
+      "forward": "+Y",
+      "contentProjection": [
+        0.08,
+        0.2283,
+        0.92,
+        0.92
+      ],
+      "file": "rock.png",
+      "alphaBounds": [
+        19,
+        43,
+        236,
+        177
+      ]
+    },
+    "hero": {
+      "canvas": [
+        768,
+        512
+      ],
+      "groundAnchor": [
+        0.5,
+        0.92
+      ],
+      "forward": "+Y",
+      "contentProjection": [
+        0.1243,
+        0.1,
+        0.8757,
+        0.92
+      ],
+      "file": "hero.png",
+      "alphaBounds": [
+        94,
+        50,
+        673,
+        472
+      ]
+    }
+  }
+}
