@@ -12,7 +12,6 @@ class RoadKingApp {
     this.scale=Math.min(p.width/W,(p.height-p.top-p.bottom)/H);
     this.ox=(p.width-W*this.scale)/2;this.oy=p.top+(p.height-p.top-p.bottom-H*this.scale)/2;
     this.buttons=[];this.touchMap={};this.keyboard={};this.queuedLane=null;this.clock=0;this.shake=0;this.newBest=false;
-    this.gestureBrake=0;
     // Blender renders are optional at startup: a missing image keeps its vector fallback.
     this.art={};this.artLoaded=0;this.artErrors=[];
     const assets=['car-player','car-silver','car-blue','car-orange','barrier','tree','rock','hero'];
@@ -36,14 +35,14 @@ class RoadKingApp {
     }
   }
   start(){this.releaseHolds();this.newBest=false;this.game.start(0);}
-  releaseHolds(){this.touchMap={};this.keyboard={};this.queuedLane=null;this.gestureBrake=0;if(this.p.clearKeys)this.p.clearKeys();this.game.setBrake(false);this.game.setThrottle(false);}
+  releaseHolds(){this.touchMap={};this.keyboard={};this.queuedLane=null;if(this.p.clearKeys)this.p.clearKeys();this.game.setThrottle(false);}
   update(dt){
     if(!Number.isFinite(dt)||dt<=0)return;
     let remaining=dt;
     while(remaining>1e-8&&this.game.mode==='playing'){
-      const step=Math.min(remaining,.05,this.gestureBrake>1e-8?this.gestureBrake:Infinity);
+      const step=Math.min(remaining,.05);
       this.game.update(step);this.flushLane();
-      this.gestureBrake=Math.max(0,this.gestureBrake-step);this.updateHolds();remaining-=step;
+      this.updateHolds();remaining-=step;
     }
   }
   changeLane(direction){
@@ -59,7 +58,7 @@ class RoadKingApp {
     if(direction)this.game.changeLane(direction);
     if(this.game.lane===this.queuedLane)this.queuedLane=null;
   }
-  setKeyboardHolds(brake,throttle){this.keyboard={brake,throttle};this.updateHolds();}
+  setKeyboardHolds(throttle){this.keyboard={throttle};this.updateHolds();}
   point(t){return{x:((t.clientX==null?t.x:t.clientX)-this.ox)/this.scale,y:((t.clientY==null?t.y:t.clientY)-this.oy)/this.scale};}
   inside(p,b){return p.x>=b.x&&p.x<=b.x+b.w&&p.y>=b.y&&p.y<=b.y+b.h;}
   touchStart(e){
@@ -83,14 +82,13 @@ class RoadKingApp {
         if(item.axis){
           item.used=true;
           if(item.axis==='x')this.changeLane(Math.sign(dx));
-          else if(dy>0){this.gestureBrake=.85;this.updateHolds();}
-          else this.game.pulse();
+          else if(dy<0)this.game.pulse();
         }
       }
     });
   }
   touchEnd(e){(e.changedTouches||[]).forEach(t=>{delete this.touchMap[t.identifier==null?0:t.identifier];});this.updateHolds();}
-  updateHolds(){this.game.setBrake(!!this.keyboard.brake||this.gestureBrake>1e-8);this.game.setThrottle(!!this.keyboard.throttle);}
+  updateHolds(){this.game.setThrottle(!!this.keyboard.throttle);}
   toggleSound(){this.muted=!this.muted;this.p.write('roadking.muted.v1',this.muted);if(this.muted)this.p.stopSound();}
 
   rr(x,y,w,h,r,fill,stroke){
@@ -166,7 +164,6 @@ class RoadKingApp {
       else if(car.kind==='barrier')this.barrier(a.x,a.y,a.p,car.hit);else this.car(a.x,a.y,a.p,car.threat?C.orange:car.id%2?'#b7c3b7':'#608b98',false,car.hit);
       if(!menu&&car.warningTimer>0&&car.signalDirection){const y=a.y-137*a.p;this.rr(a.x-37,y,74,28,8,C.orange,'#ffe0a2');this.txt(car.signalDirection<0?'← 变线':'变线 →',a.x,y+14,15,C.ink,'bold','center');}
     });
-    if(!menu&&g.braking){const a=this.projection(0,g.playerX);this.line(a.x-24,740,a.x-26,757,C.orange,4);this.line(a.x+24,740,a.x+26,757,C.orange,4);}
     const haze=c.createLinearGradient(0,224,0,330);haze.addColorStop(0,'rgba(255,229,185,.28)');haze.addColorStop(1,'rgba(255,229,185,0)');c.fillStyle=haze;c.fillRect(0,224,W,106);
   }
   scenery(name,x,y,w,h){
@@ -190,7 +187,6 @@ class RoadKingApp {
       if(player)c.rotate(Math.max(-.065,Math.min(.065,(this.game.lane-this.game.playerX)*.09)));
       this.groundShadow(-7*p,-23*p,44*p,24*p);
       c.drawImage(img,-w*.5,-h*.92,w,h);
-      if(player&&this.game.braking){c.fillStyle='rgba(255,92,59,.65)';c.beginPath();c.ellipse(-23*p,-16*p,7*p,3*p,0,0,Math.PI*2);c.ellipse(23*p,-16*p,7*p,3*p,0,0,Math.PI*2);c.fill();}
       c.restore();return;
     }
     const c=this.ctx,w=53*p,h=93*p;c.save();c.translate(x,y);if(hit)c.globalAlpha=.48;
@@ -216,7 +212,7 @@ class RoadKingApp {
     this.txt('越开越快',29,287,26,C.white,'bold');this.txt('越躲越险',29,327,26,C.white,'bold');this.line(30,355,65,355,C.orange,3);this.txt('下一公里，',29,385,16,'#d2ded4');this.txt('由你的反应决定。',29,409,16,'#d2ded4');
     if(this.art.hero){this.groundShadow(355,439,130,21);c.drawImage(this.art.hero,158,215,388,259);}else this.car(398,412,1.65,C.cyan,true,false);
     this.rr(24,458,492,91,17,'rgba(23,51,63,.96)','#476069');this.txt('个人最高分',43,482,14,C.mute);this.txt(Math.round(this.best.score),43,519,37,C.cyan,'bold');this.txt('最远 '+distance(this.best.distance),493,486,17,C.white,'bold','right');this.txt('最长 '+duration(this.best.elapsed),493,518,16,C.mute,'normal','right');
-    const tips=[['01','自动提速','越开越快，提前观察远处车流。'],['02','左右滑动','每次滑动换一条车道，连续滑动闪避。'],['03','上下滑动','下滑短时刹车，上滑释放气浪。']];
+    const tips=[['01','自动提速','越开越快，提前观察远处车流。'],['02','左右滑动','每次滑动换一条车道，连续滑动闪避。'],['03','上滑气浪','向上滑动释放气浪，推开近前车辆。']];
     tips.forEach((tip,i)=>{const y=581+i*58;this.rr(29,y-9,30,29,8,'#263e48');this.txt(tip[0],44,y+6,13,C.orange,'bold','center');this.txt(tip[1],78,y,19,C.white,'bold');this.txt(tip[2],78,y+26,16,C.mute);});
     this.button(24,775,492,76,'开始挑战  →',()=>this.start(),{primary:true,size:28});this.txt('车流越来越密 · 活得越久，得分越高',270,878,16,C.white,'normal','center');
     this.button(24,904,148,35,this.muted?'音效：关':'音效：开',()=>this.toggleSound(),{size:14,radius:9});this.txt('单局无尽 · 随时再来一局',515,922,14,C.mute,'normal','right');
@@ -231,9 +227,8 @@ class RoadKingApp {
     if(playing&&g.elapsed<7){this.rr(111,276,318,42,12,'rgba(10,27,38,.88)');this.txt('← 左右滑动，连续闪避 →',270,297,18,C.white,'bold','center');}
     const controls=c.createLinearGradient(0,766,0,H);controls.addColorStop(0,'#163747');controls.addColorStop(1,'#0b202e');c.fillStyle=controls;c.fillRect(0,766,W,194);this.line(0,766,W,766,'#769082');
     this.txt('←',99,814,39,C.cyan,'bold','center');this.txt('滑动驾驶',270,807,26,C.white,'bold','center');this.txt('→',441,814,39,C.cyan,'bold','center');this.txt('左滑 / 右滑 · 每次换一条车道',270,840,16,C.mute,'normal','center');
-    this.txt(this.gestureBrake>0?'↓ 正在刹车':'↓ 下滑刹车',139,877,20,this.gestureBrake>0?C.orange:C.white,'bold','center');this.txt(g.pulseCooldown>0?'↑ 气浪 '+Math.ceil(g.pulseCooldown)+'s':'↑ 上滑气浪',401,877,20,g.pulseCooldown>0?C.mute:C.cyan,'bold','center');
-    const energy=g.brakeEnergy==null?100:g.brakeEnergy;this.txt('刹车能量',24,910,14,C.mute);this.txt(Math.round(energy)+'%',253,910,14,C.cyan,'bold','right');this.rr(24,929,229,6,3,'#304952');if(energy>0)this.rr(24,929,Math.max(1,229*energy/100),6,3,C.cyan);
-    this.txt('自动提速 · 无需按键',401,918,16,C.mute,'normal','center');
+    this.txt(g.pulseCooldown>0?'↑ 气浪 '+Math.ceil(g.pulseCooldown)+'s':'↑ 上滑释放气浪',270,884,22,g.pulseCooldown>0?C.mute:C.cyan,'bold','center');
+    this.txt('自动提速 · 提前观察车流',270,925,16,C.mute,'normal','center');
   }
   scrim(){this.ctx.fillStyle='rgba(3,12,19,.83)';this.ctx.fillRect(0,0,W,H);this.buttons=[];}
   drawPause(){
@@ -245,7 +240,7 @@ class RoadKingApp {
     this.txt('本局得分',270,354,16,C.mute,'normal','center');this.txt(Math.round(g.score),270,405,62,C.cyan,'bold','center');this.txt('最高分 '+Math.round(this.best.score),270,455,17,this.newBest?C.orange:C.mute,'bold','center');
     const stats=[['行驶距离',distance(g.distance)],['存活时间',duration(g.elapsed)],['最高时速',Math.round(g.maxSpeed||g.speed)+' km/h'],['成功躲避',number(g.dodged)+' 次']];
     stats.forEach((stat,i)=>{const x=i%2===0?150:390,y=i<2?507:591;this.txt(stat[0],x,y,15,C.mute,'normal','center');this.txt(stat[1],x,y+34,27,C.white,'bold','center');});
-    this.button(50,672,440,66,'再挑战一次  →',()=>this.start(),{primary:true,size:25});this.button(50,757,440,51,'返回首页',()=>{this.releaseHolds();this.game.menu();},{size:19});this.txt('提前左右滑动，下滑刹车，上滑解围。',270,872,17,C.mute,'normal','center');
+    this.button(50,672,440,66,'再挑战一次  →',()=>this.start(),{primary:true,size:25});this.button(50,757,440,51,'返回首页',()=>{this.releaseHolds();this.game.menu();},{size:19});this.txt('提前左右滑动，上滑气浪解围。',270,872,17,C.mute,'normal','center');
   }
 }
 module.exports=RoadKingApp;

@@ -125,7 +125,7 @@ test('a run settles once on the fourth hit and retry resets all challenge resour
   const events = [];
   const game = fresh(137, (type, data) => events.push({ type, data }));
   noSpawns(game);
-  game.update(80); game.pulse(); game.setSignal(1); game.setBrake(true); game.update(0.5);
+  game.update(80); game.pulse(); game.setSignal(1); game.update(0.5);
   for (let i = 0; i < 4; i++) { game.invulnerability = 0; car(game); game._updateTraffic(0.001); }
   game.update(0.01);
   assert.equal(game.mode, 'result');
@@ -140,9 +140,7 @@ test('a run settles once on the fourth hit and retry resets all challenge resour
     assert.equal(game[name], 0, name);
   assert.equal(game.level, 0);
   assert.equal(game.health, 100);
-  assert.equal(game.brakeEnergy, 100);
-  assert.equal(game.brakeLocked, false);
-  assert.equal(game.braking, false);
+  assert.equal(game.braking, undefined);
   assert.equal(game.lane, 0);
   assert.equal(game.playerX, 0);
   assert.equal(game.mode, 'playing');
@@ -151,10 +149,10 @@ test('a run settles once on the fourth hit and retry resets all challenge resour
   assert.ok(game.difficulty.cruiseSpeed < 85);
 });
 
-test('pause freezes clocks, cars and brake energy; resume and menu obey mode guards', () => {
+test('pause freezes clocks and cars; resume and menu obey mode guards', () => {
   const game = fresh(); noSpawns(game);
   car(game, 1, 15);
-  game.setSignal(-1); game.pulse(); game.setBrake(true); game.update(0.5);
+  game.setSignal(-1); game.pulse(); game.update(0.5);
   game.setThrottle(true); game.pause();
   const before = JSON.stringify(game);
   game.update(25);
@@ -163,7 +161,6 @@ test('pause freezes clocks, cars and brake energy; resume and menu obey mode gua
   assert.equal(game.pulse(), false);
   assert.equal(game.setSignal(1), false);
   assert.equal(game.throttle, false);
-  assert.equal(game.brake, false);
   assert.equal(game.resume(), true);
   game.update(0.1);
   assert.ok(game.elapsed > 0.5);
@@ -209,29 +206,10 @@ test('pulse has a ten-second cooldown and affects only cars in its visible range
   assert.equal(game.pulsesUsed, 2);
 });
 
-test('holding brake spends a finite reserve; release restores it and throttle is secondary', () => {
-  const game = fresh(); noSpawns(game);
-  game.update(120);
-  const cruising = game.speed;
-  game.setThrottle(true); game.update(1);
-  assert.ok(game.speed > cruising);
-  game.setBrake(true); game.update(1);
-  assert.ok(game.speed < cruising);
-  assert.ok(game.brakeEnergy < 100 && game.brakeEnergy > 0);
-  assert.equal(game.braking, true);
-  game.update(14);
-  assert.equal(game.brakeEnergy, 0);
-  assert.equal(game.brakeLocked, true);
-  assert.equal(game.braking, false);
-  assert.ok(game.speed >= game.difficulty.cruiseSpeed - 5, 'an exhausted held brake cannot hold low speed');
-  game.update(10);
-  assert.equal(game.brakeEnergy, 0, 'holding after exhaustion cannot recharge');
-  game.setBrake(false); game.setThrottle(false); game.update(15);
-  assert.equal(game.brakeLocked, false);
-  assert.equal(game.brakeEnergy, 100);
-  game.setBrake(true); game.update(0.5);
-  assert.equal(game.braking, true);
-  assert.ok(game.speed < game.difficulty.cruiseSpeed);
+test('brake API and energy reserve are removed', () => {
+  const game = fresh();
+  assert.equal(game.setBrake, undefined);
+  assert.equal(game.brakeEnergy, undefined);
 });
 
 test('the same seed reproduces traffic across normal frame chunk sizes', () => {
@@ -291,7 +269,6 @@ test('visible lane choices support six-minute runs across seeds as real traffic 
     assert.equal(game.health, 100, `seed ${seed}: readable traffic should be avoidable`);
     assert.equal(game.collisions, 0);
     assert.equal(game.pulsesUsed, 0, 'basic survival does not require an emergency ability');
-    assert.equal(game.brakeEnergy, 100);
     assert.ok(game.dodged > 100);
     const early = waves.filter(wave => wave.elapsed < 30);
     const late = waves.filter(wave => wave.elapsed >= 300 && wave.elapsed < 330);

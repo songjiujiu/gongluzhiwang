@@ -10,22 +10,21 @@
     "keyboardLaneChange": true,
     "roadSwipe": true,
     "oneLanePerSwipe": true,
-    "swipeBrakeAutoRelease": true,
-    "brakeEnergy": true,
+    "noBrake": true,
     "pulse": true,
     "noDrivingButtons": true,
     "pauseFrozen": true,
     "backgroundReleasesInput": true,
     "naturalResult": {
       "mode": "result",
-      "score": 1082,
-      "elapsed": 33.25000000000025,
-      "distance": 934.9599908909754,
+      "score": 1655,
+      "elapsed": 41.69999999999977,
+      "distance": 1240.6371598259989,
       "health": 0,
       "best": {
-        "score": 1082,
-        "distance": 934.9599908909754,
-        "elapsed": 33.25000000000025
+        "score": 1655,
+        "distance": 1240.6371598259989,
+        "elapsed": 41.69999999999977
       }
     },
     "retry": true,
@@ -36,7 +35,7 @@
       "health": 100,
       "tier": 6,
       "waves": 76,
-      "dodged": 124,
+      "dodged": 125,
       "mode": "playing"
     },
     "compactViewport": true

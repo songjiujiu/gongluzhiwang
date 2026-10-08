@@ -44,10 +44,7 @@ class RoadKingCore {
     this.signalsUsed = 0;
     this.pulsesUsed = 0;
     this.throttle = false;
-    this.brake = false;
-    this.braking = false;
-    this.brakeEnergy = 100;
-    this.brakeLocked = false;
+
     this._nextTraffic = 1.4;
     this._nextId = 1;
     this._safeLane = 0;
@@ -107,19 +104,9 @@ class RoadKingCore {
       this.signalTimer += dt;
       if (this.signalTimer > 6) { this.signalDirection = 0; this.signalTimer = 0; }
     }
-    this.braking = this.brake && !this.brakeLocked && this.brakeEnergy > 0;
-    if (this.braking) {
-      this.brakeEnergy = Math.max(0, this.brakeEnergy - 28 * dt);
-      if (this.brakeEnergy <= 1e-8) {
-        this.brakeEnergy = 0;
-        this.brakeLocked = true;
-        this.braking = false;
-        this._message('刹车能量耗尽 · 松开后恢复', 2.5);
-      }
-    } else if (!this.brake) this.brakeEnergy = Math.min(100, this.brakeEnergy + 15 * dt);
     const cruise = this.difficulty.cruiseSpeed;
-    const desired = this.braking ? Math.max(32, cruise * 0.45) : Math.min(240, cruise + (this.throttle ? 22 : 0));
-    this.speed = moveTowards(this.speed, desired, dt * (this.braking ? 120 : this.throttle ? 45 : 24));
+    const desired = Math.min(240, cruise + (this.throttle ? 22 : 0));
+    this.speed = moveTowards(this.speed, desired, dt * (this.throttle ? 45 : 24));
     this.maxSpeed = Math.max(this.maxSpeed, this.speed);
     this.distance += this.speed / 3.6 * dt;
     const distanceScore = Math.floor(this.distance * 1.5);
@@ -187,14 +174,9 @@ class RoadKingCore {
   }
 
   setThrottle(held) { this.throttle = this.mode === 'playing' && !!held; }
-  setBrake(held) {
-    this.brake = this.mode === 'playing' && !!held;
-    if (this.brake && this.brakeEnergy <= 0) this.brakeLocked = true;
-    if (!this.brake) { this.brakeLocked = false; this.braking = false; }
-  }
   pause() {
     if (this.mode !== 'playing') return false;
-    this.setBrake(false); this.setThrottle(false);
+    this.setThrottle(false);
     this.mode = 'paused';
     this._emit('mode', { mode: this.mode });
     return true;
@@ -206,7 +188,7 @@ class RoadKingCore {
     return true;
   }
   menu() {
-    this.setBrake(false); this.setThrottle(false);
+    this.setThrottle(false);
     this.mode = 'menu';
     this._emit('mode', { mode: this.mode });
   }
@@ -260,7 +242,7 @@ class RoadKingCore {
   _updateTraffic(dt) {
     if (!Number.isFinite(dt) || dt <= 0) return;
     // Moving traffic slows behind the next wave. This preserves the spacing
-    // around stationary roadblocks, including while the player is braking.
+    // around stationary roadblocks.
     const waves = new Map();
     for (const car of this.traffic) {
       if (car.escaped || car.hit || car.passed || !car.waveId) continue;
@@ -329,7 +311,7 @@ class RoadKingCore {
     this.resultReason = reason;
     this.mode = 'result';
     this.stars = 0;
-    this.throttle = this.brake = this.braking = false;
+    this.throttle = false;
     this._emit('result', {
       level: 0, won: false, reason, stars: 0, score: this.score,
       health: this.health, clearedEvents: 0, eventCount: 0,
@@ -352,3 +334,4 @@ function moveTowards(value, target, delta) {
 
 module.exports = RoadKingCore;
 module.exports.RoadKingCore = RoadKingCore;
+

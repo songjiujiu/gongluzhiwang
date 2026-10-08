@@ -45,8 +45,8 @@ fs.mkdirSync(out, { recursive: true });
     const state = async () => page.evaluate(() => {
       const g = roadKingApp.game;
       return { mode: g.mode, elapsed: g.elapsed, lane: g.lane, speed: g.speed, distance: g.distance,
-        score: g.score, health: g.health, brake: g.brake, throttle: g.throttle, brakeEnergy: g.brakeEnergy,
-        brakeLocked: g.brakeLocked, pulseCooldown: g.pulseCooldown, difficulty: g.difficulty, best: roadKingApp.best };
+        score: g.score, health: g.health, throttle: g.throttle,
+        pulseCooldown: g.pulseCooldown, difficulty: g.difficulty, best: roadKingApp.best };
     });
     await page.goto('http://127.0.0.1:4179/');
     await ready();
@@ -78,16 +78,8 @@ fs.mkdirSync(out, { recursive: true });
     checks.oneLanePerSwipe = true;
     await page.mouse.move(swipe.x, swipe.y); await page.mouse.down();
     await page.mouse.move(swipe.x, swipe.y + swipe.dx); await page.mouse.up();
-    assert.equal((await state()).brake, true);
-    await advance(.9); assert.equal((await state()).brake, false);
-    checks.swipeBrakeAutoRelease = true;
-    await page.keyboard.down('Space'); await advance(4);
-    const depleted = await state();
-    assert.equal(depleted.brakeEnergy, 0);
-    assert.equal(depleted.brakeLocked, true);
-    await page.keyboard.up('Space'); await advance(2);
-    assert.ok((await state()).brakeEnergy > 0);
-    checks.brakeEnergy = true;
+    assert.equal(await page.evaluate(() => roadKingApp.game.setBrake), undefined);
+    checks.noBrake = true;
     await page.mouse.move(swipe.x, swipe.y); await page.mouse.down();
     await page.mouse.move(swipe.x, swipe.y - swipe.dx); await page.mouse.up();
     assert.ok((await state()).pulseCooldown > 0);
@@ -104,7 +96,7 @@ fs.mkdirSync(out, { recursive: true });
     await page.keyboard.down('Space');
     await page.evaluate(() => window.dispatchEvent(new Event('blur')));
     const background = await state();
-    assert.equal(background.mode, 'paused'); assert.equal(background.brake, false); assert.equal(background.throttle, false);
+    assert.equal(background.mode, 'paused'); assert.equal(background.throttle, false);
     await page.keyboard.up('Space'); await page.evaluate(() => window.dispatchEvent(new Event('focus')));
     checks.backgroundReleasesInput = true;
     await click('返回');

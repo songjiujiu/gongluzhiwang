@@ -148,14 +148,13 @@
     const game = core();
     if (!game) return;
     window.roadKingApp.setKeyboardHolds(
-      held.has('KeyS') || held.has('ArrowDown') || held.has('Space'),
       held.has('KeyW') || held.has('ArrowUp')
     );
   }
   window.addEventListener('keydown', event => {
     const game = core();
     if (!game) return;
-    const keys = ['KeyA', 'KeyD', 'KeyW', 'KeyS', 'KeyF', 'KeyR', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Space', 'Escape', 'Enter'];
+    const keys = ['KeyA', 'KeyD', 'KeyW', 'KeyF', 'KeyR', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'Escape', 'Enter'];
     if (!keys.includes(event.code)) return;
     event.preventDefault();
     held.add(event.code); updateHeld();
