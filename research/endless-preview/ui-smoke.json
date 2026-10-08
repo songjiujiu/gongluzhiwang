@@ -17,13 +17,13 @@
     "backgroundReleasesInput": true,
     "naturalResult": {
       "mode": "result",
-      "score": 1885,
+      "score": 1825,
       "elapsed": 44.24999999999962,
-      "distance": 1337.2105662731294,
+      "distance": 1337.238555546033,
       "health": 0,
       "best": {
-        "score": 1885,
-        "distance": 1337.2105662731294,
+        "score": 1825,
+        "distance": 1337.238555546033,
         "elapsed": 44.24999999999962
       }
     },
@@ -35,7 +35,7 @@
       "health": 100,
       "tier": 6,
       "waves": 76,
-      "dodged": 117,
+      "dodged": 126,
       "mode": "playing"
     },
     "compactViewport": true

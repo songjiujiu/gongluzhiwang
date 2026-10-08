@@ -60,7 +60,7 @@ class RoadKingApp {
   }
   setKeyboardHolds(throttle){this.keyboard={throttle};this.updateHolds();}
   point(t){return{x:((t.clientX==null?t.x:t.clientX)-this.ox)/this.scale,y:((t.clientY==null?t.y:t.clientY)-this.oy)/this.scale};}
-  inside(p,b){return p.x>=b.x&&p.x<=b.x+b.w&&p.y>=b.y&&p.y<=b.y+b.h;}
+  inside(p,b){if(b.circle)return Math.hypot(p.x-b.x-b.w/2,p.y-b.y-b.h/2)<=b.w/2;return p.x>=b.x&&p.x<=b.x+b.w&&p.y>=b.y&&p.y<=b.y+b.h;}
   touchStart(e){
     (e.changedTouches||e.touches||[]).forEach(t=>{
       const pt=this.point(t),b=this.buttons.slice().reverse().find(b=>!b.disabled&&this.inside(pt,b)),id=t.identifier==null?0:t.identifier;
@@ -226,7 +226,13 @@ class RoadKingApp {
     if(playing&&g.elapsed<7){this.rr(111,276,318,42,12,'rgba(10,27,38,.88)');this.txt('← 左右滑动，连续闪避 →',270,297,18,C.white,'bold','center');}
     const controls=c.createLinearGradient(0,766,0,H);controls.addColorStop(0,'#163747');controls.addColorStop(1,'#0b202e');c.fillStyle=controls;c.fillRect(0,766,W,194);this.line(0,766,W,766,'#769082');
     this.txt('←',99,814,39,C.cyan,'bold','center');this.txt('滑动驾驶',270,807,26,C.white,'bold','center');this.txt('→',441,814,39,C.cyan,'bold','center');this.txt('左滑 / 右滑 · 每次换一条车道',270,840,16,C.mute,'normal','center');
-    this.button(130,862,280,48,g.pulseCooldown>0?'气浪冷却 '+Math.ceil(g.pulseCooldown)+'s':'释放气浪 ✦',()=>g.pulse(),{key:'气浪技能',disabled:!playing||g.pulseCooldown>0,primary:true,size:22});
+    if(playing){
+      const x=473,y=664,r=45,cooling=g.pulseCooldown>0;
+      c.save();c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fillStyle=cooling?'rgba(20,43,53,.42)':'rgba(24,65,68,.48)';c.fill();c.strokeStyle=cooling?'rgba(205,232,224,.32)':'rgba(151,255,221,.72)';c.lineWidth=2;c.stroke();
+      if(cooling){c.beginPath();c.arc(x,y,r-4,-Math.PI/2,-Math.PI/2+Math.PI*2*(1-g.pulseCooldown/10));c.strokeStyle='rgba(115,239,208,.65)';c.lineWidth=3;c.stroke();}
+      this.txt(cooling?Math.ceil(g.pulseCooldown)+'s':'✦',x,y-9,cooling?23:30,cooling?C.white:C.cyan,'bold','center');this.txt('气浪',x,y+21,15,C.white,'bold','center');c.restore();
+      this.buttons.push({x:x-r,y:y-r,w:r*2,h:r*2,circle:true,key:'气浪技能',disabled:cooling,action:()=>g.pulse()});
+    }
     this.txt('自动提速 · 提前观察车流',270,925,16,C.mute,'normal','center');
   }
   scrim(){this.ctx.fillStyle='rgba(3,12,19,.83)';this.ctx.fillRect(0,0,W,H);this.buttons=[];}

@@ -1,7 +1,7 @@
 {
   "archive": "公路之王_滑动操作版.zip",
-  "bytes": 5798127,
-  "sha256": "daf6e83f126d79c8c4eaac17e634e655548906bdfc06fd8b9e2271ff9dd983ac",
+  "bytes": 5766249,
+  "sha256": "8ca6d8ff0d2a47d843189e34f7029f24bf12e27b3b2973765afdaeb4b6f501b7",
   "importDirectory": "公路之王",
   "files": [
     "art/blender/manifest.json",
