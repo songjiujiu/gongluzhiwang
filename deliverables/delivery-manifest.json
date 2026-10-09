@@ -1,7 +1,7 @@
 {
   "archive": "公路之王_实时三维版.zip",
-  "bytes": 12481531,
-  "sha256": "b9b6cae5f892ec55fde29893339cda30b87b42d55942219751a4179c28ad976d",
+  "bytes": 12982076,
+  "sha256": "76ed59f8d6397d5f4961a9180b2605462ccf7dd4aa029bfb56a8f901b69c23b0",
   "importDirectory": "公路之王",
   "files": [
     "art/blender/manifest.json",
@@ -20,6 +20,8 @@
     "preview/serve.js",
     "README.md",
     "research/blender-preview/blender-ui-smoke.json",
+    "research/blender-preview/collision-stop-320x568.png",
+    "research/blender-preview/collision-stop-390x844.png",
     "research/blender-preview/fallback-missing-player-390x844.png",
     "research/blender-preview/gameplay-320x568.png",
     "research/blender-preview/gameplay-390x844.png",
@@ -77,7 +79,7 @@
   ],
   "zipIntegrity": "passed",
   "platform": "Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD",
-  "verification": "27 Node tests; editable Blender geometry and real-time WebGL browser asset/input checks. See research/blender-preview and README for scope.",
+  "verification": "29 Node tests; collision stop/recovery, editable Blender geometry and real-time WebGL browser asset/input checks. See research/blender-preview and README for scope.",
   "notVerified": [
     "Blender art version in Douyin IDE simulator",
     "Android/iOS phone",

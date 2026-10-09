@@ -241,7 +241,7 @@ class RoadKingApp {
       this.txt(cooling?Math.ceil(g.pulseCooldown)+'s':'✦',x,y-9,cooling?23:30,cooling?C.white:C.cyan,'bold','center');this.txt('气浪',x,y+21,15,C.white,'bold','center');c.restore();
       this.buttons.push({x:x-r,y:y-r,w:r*2,h:r*2,circle:true,key:'气浪技能',disabled:cooling,action:()=>g.pulse()});
     }
-    this.txt('自动提速 · 提前观察车流',270,934,15,C.mute,'normal','center');
+    this.txt(g.collisionStopped?'碰撞停车 · 滑到旁边车道重新起步':'自动提速 · 提前观察车流',270,934,15,C.mute,'normal','center');
   }
   scrim(){this.ctx.fillStyle='rgba(3,12,19,.83)';this.ctx.fillRect(0,0,W,H);this.buttons=[];}
   drawPause(){

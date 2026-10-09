@@ -70,7 +70,7 @@ async function initializePage(browser, viewport, failedAsset) {
       return originalDrawImage.call(this, image, ...args);
     };
   });
-  await page.goto(url);
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 });
   try {
     // RAF is deliberately frozen for deterministic simulation, so readiness must
     // poll by timer rather than Playwright's default animation-frame polling.
@@ -148,11 +148,31 @@ function assertAssets(assets) {
       assert.ok(checks.mixedHazards.visibleTraffic.some(car => car.kind === 'barrier'));
       assert.ok(checks.mixedHazards.visibleTraffic.some(car => car.threat));
       checks.screenshots.push(await snapshot(page, 'high-speed-' + size));
-      // Stop steering and allow the natural collision rules to end the run.
+      // Stop steering: a natural collision must stop the car until lane recovery.
+      checks.collisionStop = await page.evaluate(() => {
+        const app = roadKingApp, game = app.game;
+        for (let n = 0; n < 12000 && !game.collisionStopped; n++) game.update(.05);
+        const distance = game.distance, health = game.health;
+        game.update(10); app.draw();
+        return { stopped: game.collisionStopped, speed: game.speed, distanceFrozen: game.distance === distance, healthUnchanged: game.health === health };
+      });
+      assert.equal(checks.collisionStop.stopped, true);
+      assert.equal(checks.collisionStop.speed, 0);
+      assert.equal(checks.collisionStop.distanceFrozen, true);
+      assert.equal(checks.collisionStop.healthUnchanged, true);
+      checks.screenshots.push(await snapshot(page, 'collision-stop-' + size));
+      // Recover by public lane inputs between crashes, until durability runs out.
       checks.result = await page.evaluate(() => {
         const app = roadKingApp, game = app.game;
         let frames = 0;
-        while (game.mode === 'playing' && frames++ < 12000) { game.update(.05); app.clock += .05; }
+        while (game.mode === 'playing' && frames++ < 12000) {
+          if (game.collisionStopped && Math.abs(game.playerX - game.lane) < .01) {
+            const target = [-1, 0, 1].find(lane => Math.abs(lane - game.lane) === 1 &&
+              !game.traffic.some(car => Math.abs(car.x - lane) < .65 && Math.abs(car.z) < 12));
+            if (target !== undefined) game.changeLane(target - game.lane);
+          }
+          game.update(.05); app.clock += .05;
+        }
         app.draw();
         return { mode: game.mode, elapsed: game.elapsed, health: game.health, score: game.score, collisions: game.collisions };
       });

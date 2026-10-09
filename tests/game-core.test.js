@@ -115,10 +115,18 @@ test('collision removes 26 health and grants 2.1 seconds of protection', () => {
   assert.equal(game.health, 74);
   assert.equal(game.collisions, 1);
   assert.equal(second.hit, false);
-  game.invulnerability = 0;
-  game._updateTraffic(0.001);
-  assert.equal(game.health, 48);
-  assert.equal(game.collisions, 2);
+  game.update(5);
+  assert.equal(game.speed, 0);
+  assert.equal(game.health, 74);
+  assert.equal(game.collisionStopped, true);
+  const distance = game.distance;
+  game.changeLane(1);
+  game.update(.2);
+  assert.equal(game.collisionStopped, false);
+  assert.equal(game.speed, 0);
+  assert.equal(game.distance, distance);
+  game.update(1);
+  assert.ok(game.speed > 0 && game.speed <= 24.01);
 });
 
 test('a run settles once on the fourth hit and retry resets all challenge resources', () => {
@@ -126,7 +134,7 @@ test('a run settles once on the fourth hit and retry resets all challenge resour
   const game = fresh(137, (type, data) => events.push({ type, data }));
   noSpawns(game);
   game.update(80); game.pulse(); game.setSignal(1); game.update(0.5);
-  for (let i = 0; i < 4; i++) { game.invulnerability = 0; car(game); game._updateTraffic(0.001); }
+  for (let i = 0; i < 4; i++) { game.traffic = []; game.collisionStopped = false; game.invulnerability = 0; car(game); game._updateTraffic(0.001); }
   game.update(0.01);
   assert.equal(game.mode, 'result');
   assert.equal(game.health, 0);
@@ -281,18 +289,51 @@ test('visible lane choices support six-minute runs across seeds as real traffic 
   console.log('Six-minute public-input runs:', JSON.stringify(summaries));
 });
 
-test('an unattended car crashes instead of farming an endless score', () => {
+test('an unattended car stays stopped after its first crash without farming distance score', () => {
   for (const seed of [1, 23, 137, 90210, 0xdeadbeef]) {
     const events = [];
     const game = fresh(seed, type => events.push(type));
     game.update(360);
-    assert.equal(game.mode, 'result', `seed ${seed}, survived ${game.elapsed}s`);
-    assert.equal(game.health, 0);
-    assert.equal(game.collisions, 4);
-    assert.ok(game.elapsed < 360);
-    assert.equal(events.filter(type => type === 'result').length, 1);
+    assert.equal(game.mode, 'playing');
+    assert.equal(game.health, 74);
+    assert.equal(game.collisions, 1);
+    assert.equal(game.collisionStopped, true);
+    assert.equal(game.speed, 0);
+    assert.equal(events.filter(type => type === 'result').length, 0);
     const score = game.score;
     game.update(1000);
     assert.equal(game.score, score);
   }
+});
+
+test('rear cars queue without crossing the stopped player and drive on after it changes lanes', () => {
+  const game = fresh(); noSpawns(game);
+  car(game);
+  game.update(.01);
+  const rear = car(game, 0, -12), following = car(game, 0, -20);
+  const otherLane = car(game, -1, -12);
+  game.update(12);
+  assert.ok(rear.z <= -4.7);
+  assert.ok(following.z <= rear.z - 5.5);
+  assert.ok(otherLane.z > 0);
+  assert.equal(game.collisions, 1);
+  game.changeLane(1); game.update(.2);
+  assert.equal(game.collisionStopped, false);
+  game.update(1);
+  assert.ok(rear.z > -4.7);
+});
+
+test('changing into a blocked neighbouring lane keeps the car stopped', () => {
+  const game = fresh(); noSpawns(game);
+  car(game); game.update(.01);
+  const blocker = car(game, 1, 4.7);
+  blocker.kind = 'barrier'; blocker.speed = blocker.baseSpeed = 0;
+  game.changeLane(1); game.update(3);
+  assert.equal(game.playerX, 1);
+  assert.equal(game.speed, 0);
+  assert.equal(game.collisionStopped, true);
+  game.changeLane(-1); game.update(.2);
+  assert.equal(game.collisionStopped, true);
+  game.changeLane(-1); game.update(.2);
+  assert.equal(game.collisionStopped, false);
 });

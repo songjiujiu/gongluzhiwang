@@ -35,6 +35,8 @@ class RoadKingCore {
     this.pulseCooldown = 0;
     this.pulseLife = 0;
     this.invulnerability = 0;
+    this.collisionStopped = false;
+    this.collisionX = 0;
     this.laneChangeCooldown = 0;
     this.message = '';
     this.messageTimer = 0;
@@ -106,7 +108,7 @@ class RoadKingCore {
     }
     const cruise = this.difficulty.cruiseSpeed;
     const desired = Math.min(240, cruise + (this.throttle ? 22 : 0));
-    this.speed = moveTowards(this.speed, desired, dt * (this.throttle ? 45 : 24));
+    this.speed = this.collisionStopped ? 0 : moveTowards(this.speed, desired, dt * (this.throttle ? 45 : 24));
     this.maxSpeed = Math.max(this.maxSpeed, this.speed);
     this.distance += this.speed / 3.6 * dt;
     const distanceScore = Math.floor(this.distance * 1.5);
@@ -114,8 +116,14 @@ class RoadKingCore {
     this._distanceScore = distanceScore;
     this.playerX = moveTowards(this.playerX, this.lane, dt * 5);
     this._updateTraffic(dt);
+    if (this.collisionStopped && Math.abs(this.playerX - this.collisionX) >= 0.8 && Math.abs(this.playerX - this.lane) < 0.01 &&
+        !this.traffic.some(car => Math.abs(car.x - this.playerX) < 0.65 && Math.abs(car.z) < 5.5)) {
+      this.collisionStopped = false;
+      this._message('已避开碰撞 · 从静止重新加速', 2.5);
+      this._emit('collision-recovered', { lane: this.lane });
+    }
     if (this.health <= 0) { this._finish(false, '车辆耐久耗尽'); return; }
-    if (this.elapsed + 1e-8 >= this._nextTraffic) {
+    if (!this.collisionStopped && this.elapsed + 1e-8 >= this._nextTraffic) {
       const spawned = this._spawnTraffic();
       this._nextTraffic = this.elapsed + (spawned ? this.difficulty.spawnInterval : 0.15);
     }
@@ -278,18 +286,30 @@ class RoadKingCore {
           }
         }
       }
+      if (car.hit) car.speed = this.collisionStopped || car.kind === 'barrier' ? 0 : car.baseSpeed;
+      const previousZ = car.z;
       car.z += (car.speed - this.speed) / 3.6 * dt * 0.75;
       car.x = moveTowards(car.x, car.lane, dt * 4);
-      if (!car.escaped && !car.hit && this.invulnerability <= 1e-8 && Math.abs(car.x - this.playerX) < 1.72 / 3.35 && Math.abs(car.z) < 3.5) {
+      // Rear traffic queues behind the player instead of passing through it.
+      // Damage immunity also keeps approaching traffic physically separated.
+      if (Math.abs(car.x - this.playerX) < 0.65) {
+        if (previousZ <= -3.5 && car.z > -4.7) car.z = -4.7;
+        if (previousZ >= 3.5 && car.z < 4.7 && (this.collisionStopped || this.invulnerability > 1e-8)) car.z = 4.7;
+      }
+      if (!this.collisionStopped && !car.escaped && !car.hit && this.invulnerability <= 1e-8 && Math.abs(car.x - this.playerX) < 1.72 / 3.35 && Math.abs(car.z) < 3.5) {
         car.hit = true;
         this.health = Math.max(0, this.health - 26);
         this.score = Math.max(0, this.score - 120);
         this.collisions++;
         this.invulnerability = 2.1;
-        this.speed = Math.max(25, this.speed - 23);
+        this.speed = 0;
+        this.collisionStopped = true;
+        this.collisionX = this.playerX;
+        car.speed = 0;
+        car.z = previousZ < 0 ? -4.7 : 4.7;
         car.changePending = false;
         car.signalDirection = 0;
-        this._message('发生碰撞 −26 耐久 / −120 分', 3);
+        this._message('碰撞停车 −26 耐久 · 左右滑动换道后重新加速', 6);
         this._emit('collision', { carId: car.id, health: this.health, damage: 26, invulnerability: 2.1 });
       }
       if (!car.passed && car.z < -7) {
@@ -302,6 +322,16 @@ class RoadKingCore {
         }
       }
       if (car.z < -32 || car.z > 175) this.traffic.splice(index, 1);
+    }
+    // Keep a bumper gap through queues, including behind the stopped crash car.
+    const ordered = [...this.traffic].sort((a, b) => b.z - a.z);
+    for (let i = 0; i < ordered.length; i++) {
+      for (let j = 0; j < i; j++) {
+        if (Math.abs(ordered[i].x - ordered[j].x) < 0.65 && ordered[i].z > ordered[j].z - 5.5) {
+          ordered[i].z = ordered[j].z - 5.5;
+        }
+      }
+      if (Math.abs(ordered[i].x - this.playerX) < 0.65 && ordered[i].z <= 0 && ordered[i].z > -4.7) ordered[i].z = -4.7;
     }
   }
 
