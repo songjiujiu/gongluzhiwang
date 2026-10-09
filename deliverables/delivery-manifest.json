@@ -1,7 +1,7 @@
 {
   "archive": "公路之王_实时三维版.zip",
-  "bytes": 18283089,
-  "sha256": "86b9d4c3144b5484fd709ced6d2af8eb7e106847f99f8535a0861f6ed559a5c5",
+  "bytes": 18286389,
+  "sha256": "001817f6b78d236d00a57a1920d0cd6189d36978a8325395957a029dc54b3f59",
   "importDirectory": "公路之王",
   "files": [
     "art/audio/lotus-idle.mp3",
@@ -18,6 +18,7 @@
     "art/blender/roadking-assets.blend",
     "art/blender/showcase.png",
     "docs/blender-art.md",
+    "docs/difficulty-config.md",
     "docs/endless-mode.md",
     "docs/game-design.md",
     "preview/browser-platform.js",
@@ -53,6 +54,7 @@
     "research/blender-preview/recovery-rear-queues-390x844.png",
     "research/blender-preview/result-320x568.png",
     "research/blender-preview/result-390x844.png",
+    "tests/difficulty-config.test.js",
     "tests/engine-audio.test.js",
     "tests/game-app.test.js",
     "tests/game-core.test.js",
@@ -92,6 +94,7 @@
     "公路之王/icon.png",
     "公路之王/project.config.json",
     "公路之王/README.md",
+    "公路之王/src/difficulty-config.js",
     "公路之王/src/engine-audio.js",
     "公路之王/src/game-app.js",
     "公路之王/src/game-core.js",
@@ -100,7 +103,7 @@
   ],
   "zipIntegrity": "passed",
   "platform": "Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD",
-  "verification": "43 Node tests; four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
+  "verification": "46 Node tests; configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
   "notVerified": [
     "Blender art version in Douyin IDE simulator",
     "Android/iOS phone",

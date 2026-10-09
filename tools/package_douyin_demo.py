@@ -27,6 +27,7 @@ for folder in ('公路之王', 'preview', 'tests'):
     files.extend(p for p in (root / folder).rglob('*') if p.is_file())
 files.extend(root / p for p in (
     'docs/endless-mode.md',
+    'docs/difficulty-config.md',
     'docs/blender-art.md',
     'docs/game-design.md',
     'tools/generate_audio.py',
@@ -76,7 +77,7 @@ report = {
     'files':names,
     'zipIntegrity':'passed',
     'platform':'Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD',
-    'verification':'43 Node tests; four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.',
+    'verification':'46 Node tests; configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.',
     'notVerified':['Blender art version in Douyin IDE simulator','Android/iOS phone','live upload and publication','phone performance','audio listening'],
 }
 (target / 'delivery-manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')

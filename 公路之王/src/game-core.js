@@ -1,10 +1,12 @@
 'use strict';
+const DifficultyConfig=require('./difficulty-config');
 
 // Platform-independent endless-driving rules. Distances are metres; lane/x are -1..1.
 // Each wave reserves a lane, and neighbouring waves leave time for one lane change.
 class RoadKingCore {
   constructor(options = {}) {
     if (typeof options === 'function') options = { random: options };
+    this.stages=validateStages(options.difficultyConfig||DifficultyConfig);
     this.random = typeof options.random === 'function' ? options.random : Math.random;
     this.onEvent = typeof options.onEvent === 'function' ? options.onEvent : null;
     this.mode = 'menu';
@@ -16,8 +18,8 @@ class RoadKingCore {
     this.level = 0;
     this.elapsed = 0;
     this.distance = 0;
-    this.speed = 76;
-    this.maxSpeed = 76;
+    this.speed = this.stages[0].speedStart;
+    this.maxSpeed = this.speed;
     this.health = 100;
     this.score = 0;
     this.dodged = 0;
@@ -79,20 +81,23 @@ class RoadKingCore {
 
   _updateDifficulty() {
     const elapsed = this.elapsed;
-    const tier = Math.min(4, Math.floor((elapsed + 1e-8) / 30) + 1);
-    const labels = ['轻松起步', '变道提速', '密集高速', '极速挑战'];
-    const progress = clamp((elapsed - (tier - 1) * 30) / 30, 0, 1);
-    const cruiseSpeed = tier===1?76+12*progress:tier===2?112+33*progress:tier===3?162+36*progress:218+10*(1-Math.exp(-(elapsed-90)/60));
-    const spawnInterval = tier===1?4.6-.5*progress:tier===2?3.6-.6*progress:tier===3?2.5-.6*progress:1.1+.35*Math.exp(-(elapsed-90)/60);
+    let index=0,start=0;
+    while(index<this.stages.length-1&&elapsed+1e-8>=start+this.stages[index].durationSeconds){start+=this.stages[index].durationSeconds;index++;}
+    const stage=this.stages[index],tier=index+1;
+    const localTime=Math.max(0,elapsed-start);
+    const progress=index===this.stages.length-1?1-Math.exp(-localTime/stage.durationSeconds):clamp(localTime/stage.durationSeconds,0,1);
+    const cruiseSpeed=stage.speedStart+(stage.speedEnd-stage.speedStart)*progress;
+    const spawnInterval=stage.spawnStart+(stage.spawnEnd-stage.spawnStart)*progress;
     const previousTier = this.difficulty.tier;
     Object.assign(this.difficulty, {
       tier,
-      label: labels[Math.min(tier - 1, labels.length - 1)],
+      label: stage.label,
       progress, cruiseSpeed, spawnInterval,
-      reactionTime: [5,4,3.2,2.6][tier-1],
-      mergeChance: [0,.65,.75,.85][tier-1],
-      doubleChance: [0,.2,.65,.85][tier-1],
-      barrierChance: [0,0,.3,.45][tier-1]
+      reactionTime: stage.reactionSeconds,
+      mergeChance: stage.mergeChance,
+      doubleChance: stage.doubleChance,
+      barrierChance: stage.barrierChance,
+      maxActiveObstacles: stage.maxActiveObstacles
     });
     if (previousTier && previousTier !== tier) {
       this._message('强度 ' + tier + ' · ' + this.difficulty.label, 2.8);
@@ -236,10 +241,10 @@ class RoadKingCore {
 
   _spawnTraffic() {
     const active = this.traffic.filter(car => !car.escaped && !car.hit && car.z > -8);
-    if (active.length >= (this.difficulty.tier>=3?14:8)) return false;
+    if (active.length >= this.difficulty.maxActiveObstacles) return false;
     const safeLane = this._pick([-1, 0, 1].filter(lane => Math.abs(lane - this._safeLane) <= 1));
     const blocked = [-1, 0, 1].filter(lane => lane !== safeLane);
-    const double = this.random() < this.difficulty.doubleChance;
+    const double = this.random() < this.difficulty.doubleChance && active.length+2<=this.difficulty.maxActiveObstacles;
     const barrier = this.random() < this.difficulty.barrierChance;
     const waveSpeed = barrier ? 0 : 22 + Math.min(12, this.elapsed * 0.06);
     const approachSpeed = Math.min(240, this.difficulty.cruiseSpeed + 22);
@@ -250,7 +255,7 @@ class RoadKingCore {
     if (z > 145) return false;
     const lanes = double ? blocked : [this._pick(blocked)];
     const waveId = ++this.waveCount;
-    const stagger = double && this.elapsed >= 55 ? 7 : 0;
+    const stagger = double && this.difficulty.tier >= 3 ? 7 : 0;
     const canChange = !barrier && safeLane !== 0 && this.random() < this.difficulty.mergeChance;
     const carIds = [];
     lanes.forEach((lane, index) => {
@@ -386,6 +391,18 @@ class RoadKingCore {
   _emit(type, data) { if (this.onEvent) this.onEvent(type, data); }
 }
 
+function validateStages(config){
+  if(!config||!Array.isArray(config.stages)||config.stages.length!==4)throw new Error('difficulty-config: stages 必须包含四档配置');
+  return config.stages.map((stage,index)=>{
+    const invalid=field=>{throw new Error('difficulty-config: 强度 '+(index+1)+' 的 '+field+' 配置无效');};
+    if(!stage||typeof stage.label!=='string'||!stage.label.trim())invalid('label');
+    for(const key of ['durationSeconds','spawnStart','spawnEnd','reactionSeconds'])if(!Number.isFinite(stage[key])||stage[key]<=0)invalid(key);
+    for(const key of ['speedStart','speedEnd'])if(!Number.isFinite(stage[key])||stage[key]<=0||stage[key]>240)invalid(key);
+    for(const key of ['mergeChance','doubleChance','barrierChance'])if(!Number.isFinite(stage[key])||stage[key]<0||stage[key]>1)invalid(key);
+    if(!Number.isInteger(stage.maxActiveObstacles)||stage.maxActiveObstacles<2)invalid('maxActiveObstacles');
+    return {...stage};
+  });
+}
 function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
 function moveTowards(value, target, delta) {
   return Math.abs(target - value) <= delta ? target : value + Math.sign(target - value) * delta;

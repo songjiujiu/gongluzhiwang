@@ -151,6 +151,7 @@
   }
   try {
     await load('engine-audio');
+    await load('difficulty-config');
     await load('game-core');
     await load('scene-renderer');
     const RoadKingApp = await load('game-app');
