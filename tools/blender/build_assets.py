@@ -1,8 +1,9 @@
-"""Road King — original Blender arcade models and reproducible sprite renders.
+"""Road King — reference-inspired Blender models and reproducible sprite renders.
 
 Run: blender --background --threads 6 --python tools/blender/build_assets.py
 Optional: -- --only car-player (also writes an editable .blend source).
-All meshes are generated locally; no downloaded or licensed third-party models.
+All meshes are generated locally. The reference image is an appearance target,
+not measured multi-view geometry; the output is a reconstruction, not a replica.
 """
 import bpy
 import math
@@ -28,7 +29,7 @@ if hasattr(bpy.context.preferences.filepaths, 'use_save_preview'):
     bpy.context.preferences.filepaths.use_save_preview = False
 scene.render.engine = 'CYCLES'
 scene.cycles.device = 'CPU'
-scene.cycles.samples = 40
+scene.cycles.samples = 64
 scene.cycles.use_denoising = True
 scene.cycles.max_bounces = 5
 scene.render.threads_mode = 'FIXED'
@@ -59,10 +60,10 @@ def mat(name, color, metallic=0.0, roughness=0.4, emission=0.0, coat=0.0):
     return m
 
 M = {
-    'teal': mat('LAGOON / multilayer turquoise lacquer', (0.015, 0.57, 0.59), .7, .22, coat=.5),
-    'silver': mat('PEARL / brushed titanium', (.53, .65, .68), .65, .29, coat=.3),
+    'teal': mat('LAGOON / multilayer turquoise lacquer', (0.012, 0.36, 0.41), .82, .19, coat=.65),
+    'silver': mat('PEARL / brushed titanium', (.48, .51, .53), .78, .23, coat=.3),
     'blue': mat('INDIGO / deep metallic', (.055, .12, .37), .65, .24, coat=.45),
-    'orange': mat('EMBER / orange lacquer', (.97, .19, .038), .55, .23, coat=.45),
+    'orange': mat('EMBER / orange lacquer', (.76, .18, .035), .75, .21, coat=.45),
     'white': mat('Ivory reflective paint', (.92, .94, .88), .12, .32),
     'glass': mat('Smoked panoramic glass', (.018, .052, .071), .38, .14, coat=.8),
     'rubber': mat('Tire rubber', (.018, .023, .028), 0, .58),
@@ -162,97 +163,33 @@ def wheel(x,y,z, sporty=True):
         segment('Forged radial spoke',a,b,.039,M['metal'],8)
     cylinder('Hub cap',(face+side*.055,y,z),.092,.022,M['metal'],(0,math.pi/2,0),24,.01)
 
+# The v2 control cages and detailing live in a separate, editable module.
+import importlib.util
+spec = importlib.util.spec_from_file_location('reference_models', Path(__file__).with_name('reference_models.py'))
+reference_models = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(reference_models)
 def car(name, color, kind='sport', stripes=False):
-    global COL
-    COL=bpy.data.collections.new(name)
-    scene.collection.children.link(COL)
-    paint=M[color]
-    suv=kind=='suv'
-    sedan=kind=='sedan'
-    body_top=1.12 if suv else 1.00
-    extra=.18 if suv else 0
-    width=1.04 if suv else 1.0
-    loft('Sculpted monocoque',[
-        (-2.20,width*.88,.45+extra,.87+extra,.93+extra),
-        (-1.85,width,.40+extra,1.00+extra,1.04+extra),
-        (-1.30,width*1.025,.39+extra,1.05+extra,1.075+extra),
-        (-.1,width*.96,.38+extra,1.0+extra,1.05+extra),
-        (1.22,width*1.015,.4+extra,.93+extra,.99+extra),
-        (1.9,width*.94,.45+extra,.84+extra,.90+extra),
-        (2.17,width*.76,.48+extra,.76+extra,.81+extra)],paint)
-    cube('Graphite chassis',(0,0,.39+extra),(1.68,3.8,.22),M['black'],.10)
-    for side in [-1,1]:
-        for y in [-1.34,1.29]:
-            wheel(side*1.02*width,y,.49+extra*.4,not suv)
-        cube('Sill aero blade',(side*1.018,-.05,.51+extra),(.09,2.25,.15),M['black'],.035)
-        # Color-edged shoulders, sculpted around the cabin.
-        cube('Rear wheel shoulder',(side*.85,-1.40,1.0+extra),(.33,.89,.17),paint,.11)
-        cube('Side mirror stem',(side*1.025,.40,1.14+extra),(.22,.07,.06),M['black'],.02)
-        cube('Body color mirror',(side*1.15,.43,1.20+extra),(.23,.25,.12),paint,.07)
-        cube('Recessed door handle',(side*.983,-.10,1.03+extra),(.04,.20,.045),M['metal'],.02)
-    # Panoramic cabin, with actual sloping glass front/back and faceted side glazing.
-    rear=-1.28 if suv else -1.13
-    roof_rear=-.85 if suv else -.53
-    roof_front=.50 if suv else .25
-    nose=.98 if suv else .91
-    base=1.025+extra
-    top=1.83 if suv else 1.56 if sedan else 1.49
-    cabin_w=.84 if suv else .78
-    loft('Panoramic glass canopy',[(rear,.81,base-.03,base+.05,base+.08),
-        (roof_rear,cabin_w,base-.04,top-.05,top),
-        (roof_front,cabin_w*.96,base-.04,top-.05,top),
-        (nose,.73,base-.04,base+.045,base+.07)],M['glass'])
-    cube('Floating painted roof',(0,(roof_rear+roof_front)/2,top+.027),(cabin_w*1.73,roof_front-roof_rear+.05,.067),paint,.08)
-    for side in [-1,1]:
-        # A/C pillars and a belt line frame the dark glass.
-        segment('Front windshield pillar',(side*.72,nose,base+.04),(side*cabin_w*.95,roof_front,top-.01),.045,paint)
-        segment('Rear roof pillar',(side*.79,rear,base+.05),(side*cabin_w,roof_rear,top-.015),.055,paint)
-        segment('Window beltline',(side*.82,rear+.1,base+.07),(side*.76,nose-.08,base+.055),.029,paint)
-        if suv or sedan:
-            segment('Cabin B pillar',(side*cabin_w,-.18,base+.055),(side*cabin_w,-.18,top-.045),.052,M['black'])
-    # Three dimensional rear fascia visible in play.
-    cube('Rear black diffuser',(0,-2.172,.56+extra),(1.57,.14,.19),M['black'],.06)
-    cube('Recessed rear fascia',(0,-2.181,.78+extra),(1.75,.085,.16),M['black'],.035)
-    for side in [-1,1]:
-        cube('Ruby tail lamp',(side*.60,-2.235,.855+extra),(.54,.042,.105),M['red'],.035)
-        cube('Lamp graphic',(side*.59,-2.26,.87+extra),(.37,.012,.023),M['red'],.012)
-        cylinder('Titanium exhaust',(side*.59,-2.22,.53+extra),.072,.15,M['metal'],(math.pi/2,0,0),24,.012)
-        cylinder('Exhaust aperture',(side*.59,-2.302,.53+extra),.048,.01,M['black'],(math.pi/2,0,0),20,0)
-        cube('LED headlamp',(side*.57,2.096,.81+extra),(.44,.065,.085),M['light'],.03)
-    cube('Rear plate',(0,-2.241,.735+extra),(.33,.027,.11),M['white'],.014)
-    cube('Front splitter',(0,2.125,.52+extra),(1.53,.18,.10),M['black'],.04)
-    if stripes:
-        for x in [-.20,.20]:
-            # Twin pearl racing stripes follow separate body panels.
-            cube('Twin roof racing stripe',(x,(roof_rear+roof_front)/2,top+.069),(.19,roof_front-roof_rear-.01,.009),M['white'],.007)
-            # Rear deck is the most visible panel from the chase camera.
-            stripe=mesh('Twin deck racing stripe',[(x-.095,-2.08,.973+extra),(x+.095,-2.08,.973+extra),
-                (x+.095,-1.22,1.082+extra),(x-.095,-1.22,1.082+extra)],[(0,1,2,3)],M['white'])
-            mesh('Twin hood racing stripe',[(x-.095,.96,1.024+extra),(x+.095,.96,1.024+extra),
-                (x+.095,1.96,.906+extra),(x-.095,1.96,.906+extra)],[(0,1,2,3)],M['white'])
-        for side in [-1,1]:
-            cube('Spoiler pedestal',(side*.61,-1.81,1.12),(.11,.13,.17),M['black'],.02)
-        cube('Sculpted rear wing',(0,-1.84,1.225),(1.9,.30,.085),paint,.045)
-        cube('Wing graphite trailing edge',(0,-2.0,1.226),(1.84,.03,.05),M['black'],.013)
-    if suv:
-        for side in [-1,1]:
-            cube('Roof luggage rail',(side*.67,-.15,top+.14),(.065,1.36,.10),M['black'],.035)
-        cube('SUV roof panoramic inset',(0,-.15,top+.065),(1.1,.74,.012),M['glass'],.10)
-    return COL
+    return reference_models.build_car(globals(), name, color, kind, stripes)
 
 assets={}
-assets['car-player']=car('01 / LAGOON GT — player','teal','sport',True)
+assets['car-player']=car('01 / LAGOON GT — player','teal','sport',False)
 assets['car-silver']=car('02 / PEARL SUV — traffic','silver','suv')
 assets['car-blue']=car('03 / INDIGO sedan — traffic','blue','sedan')
-assets['car-orange']=car('04 / EMBER sport — traffic','orange','sport')
+assets['car-orange']=car('04 / EMBER sedan — traffic','orange','sedan')
 
 COL=bpy.data.collections.new('05 / Road works — striped barricade')
 scene.collection.children.link(COL)
 assets['barrier']=COL
+# Asphalt dust and pores, a procedural material shared by concrete bases.
+stone=M['rocklight'].node_tree
+noise=stone.nodes.new('ShaderNodeTexNoise');noise.inputs['Scale'].default_value=28
+bump=stone.nodes.new('ShaderNodeBump');bump.inputs['Strength'].default_value=.22;bump.inputs['Distance'].default_value=.06
+stone.links.new(noise.outputs['Fac'],bump.inputs['Height']);stone.links.new(bump.outputs['Normal'],stone.nodes['Principled BSDF'].inputs['Normal'])
 for side in [-1,1]:
-    cube('Weighted road foot',(side*.96,0,.10),(.67,.86,.2),M['black'],.09)
+    cube('Weighted road foot',(side*.96,0,.10),(.67,.86,.2),M['rocklight'],.055)
     cube('Galvanized support post',(side*.96,0,.64),(.10,.12,1.0),M['metal'],.025)
-cube('Molded warning panel',(0,-.03,.90),(2.85,.25,.76),M['white'],.065)
+cube('Upper warning board',(0,-.03,1.10),(2.85,.16,.28),M['white'],.025)
+cube('Lower warning board',(0,-.03,.61),(2.85,.16,.28),M['white'],.025)
 # Raised diagonal stripes, clipped within board edges.
 def clip(poly, axis, limit, keep_greater):
     out=[]
@@ -269,8 +206,10 @@ for i in range(-3,5):
     x=i*.7
     poly=[(x,.56),(x+.34,.56),(x+.74,1.25),(x+.40,1.25)]
     poly=clip(clip(poly,0,-1.35,True),0,1.35,False)
-    if len(poly)>2:
-        mesh('Raised diagonal safety stripe',[(a,-.160,b) for a,b in poly],[tuple(range(len(poly)))],M['redpaint'])
+    for low,high in [(.97,1.23),(.48,.74)]:
+        stripe=clip(clip(poly,1,low,True),1,high,False)
+        if len(stripe)>2:
+            mesh('Orange diagonal safety stripe',[(a,-.116,b) for a,b in stripe],[tuple(range(len(stripe)))],M['cone'])
 for side in [-1,1]:
     cube('Warning beacon base',(side*1.1,-.01,1.32),(.28,.25,.085),M['black'],.028)
     cylinder('Amber warning beacon',(side*1.1,-.01,1.45),.105,.22,M['amber'],vertices=24,soft=.035)
@@ -285,8 +224,8 @@ for j in range(9):
     x=.11*math.sin(j*.20)
     a=(x,0,z)
     b=(.11*math.sin((j+1)*.20),0,z+.42)
-    trunk=segment('Tapered palm trunk section',a,b,.18-j*.009,M['trunk'],10)
-    cylinder('Bark growth ring',(x,0,z+.12),.19-j*.009,.055,M['rock'],vertices=10,soft=.005)
+    trunk=segment('Tapered palm trunk section',a,b,.18-j*.009,M['trunk'],24)
+    cylinder('Bark growth ring',(x,0,z+.12),.19-j*.009,.055,M['rock'],vertices=24,soft=.005)
 for i in range(9):
     ang=i*math.tau/9
     length=1.65+(i%3)*.13
@@ -305,7 +244,16 @@ for i in range(9):
     for j in range(5):
         faces.extend([(j*3,j*3+1,(j+1)*3+1,(j+1)*3),(j*3+1,j*3+2,(j+1)*3+2,(j+1)*3+1)])
     leaf=mesh('Folded sculpted palm frond',verts,faces,M['leaflight'] if i%2 else M['leaf'])
-    solid=leaf.modifiers.new('Leaf thickness','SOLIDIFY');solid.thickness=.018
+    for polygon in leaf.data.polygons: polygon.use_smooth=True
+    sub=leaf.modifiers.new('Curved frond surface','SUBSURF');sub.levels=2
+    solid=leaf.modifiers.new('Leaf thickness','SOLIDIFY');solid.thickness=.012
+    # Fine individual leaflets make a recognizable feathered palm silhouette.
+    for j in range(1,14):
+        t=j/15;r=t*length;cx=.11+math.cos(ang)*r;cy=math.sin(ang)*r;z=3.36+.54*math.sin(t*math.pi)-.49*t
+        for side in [-1,1]:
+            reach=.34*math.sin(t*math.pi)**.6
+            tip=(cx-math.sin(ang)*side*reach+math.cos(ang)*.13,cy+math.cos(ang)*side*reach+math.sin(ang)*.13,z-.16)
+            mesh('Palm leaflet',[(cx,cy,z+.04),(cx+math.cos(ang)*.08,cy+math.sin(ang)*.08,z+.035),tip],[(0,1,2)],M['leaflight'] if i%2 else M['leaf'])
 for x,y,z in [(.04,-.12,3.34),(.23,-.04,3.36),(.12,.14,3.29)]:
     bpy.ops.mesh.primitive_ico_sphere_add(subdivisions=2,radius=.15,location=(x,y,z))
     add(bpy.context.object,'Palm coconut',M['trunk'])
@@ -341,7 +289,8 @@ specs={
     'barrier':(384,256),'tree':(256,384),'rock':(256,192),
 }
 manifest={'generator':'Blender 5.2 / Cycles CPU / original procedural meshes',
-          'style':'Coastal arcade / warm key, cool fill, metallic lacquer',
+          'style':'Reference v2 / sculpted fastback coupe, continuous LED lamps, metallic turquoise; image-inspired reconstruction',
+          'reference':'art/blender/reference-v2.png',
           'coordinates':{'forward':'+Y','up':'+Z','spriteView':'orthographic rear elevated, no yaw'},
           'assets':{}}
 
@@ -384,7 +333,8 @@ if '--' in sys.argv:
     skip_existing='--skip-existing' in args
 for key,size in specs.items():
     select_asset(key)
-    spec=frame_collection(assets[key],size,view=(0,-10,9) if key=='tree' else (0,-9,13))
+    view=(0,-13,8) if key.startswith('car-') else (0,-10,9) if key=='tree' else (0,-9,13)
+    spec=frame_collection(assets[key],size,view=view)
     spec['file']=key+'.png'
     manifest['assets'][key]=spec
     if only and key not in only: continue
@@ -394,7 +344,7 @@ for key,size in specs.items():
 
 # A larger three-quarter hero shot shows the fully modeled sides and alloy rims.
 select_asset('car-player')
-manifest['assets']['hero']=frame_collection(assets['car-player'],(768,512),view=(7,-10,8),anchor=.92,padding=.09)
+manifest['assets']['hero']=frame_collection(assets['car-player'],(768,512),view=(6,-10,5.5),anchor=.92,padding=.09)
 manifest['assets']['hero']['file']='hero.png'
 if not only or 'hero' in only:
     scene.cycles.samples=48

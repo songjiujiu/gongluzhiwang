@@ -9,6 +9,8 @@ target = root / 'deliverables'
 target.mkdir(exist_ok=True)
 verification = json.loads((root / 'research/blender-preview/blender-ui-smoke.json').read_text(encoding='utf-8'))
 assert verification.get('passed') is True, 'Visual verification must pass before packaging'
+model_verification = json.loads((root / 'art/blender/model-verification.json').read_text(encoding='utf-8'))
+assert model_verification.get('passed') is True, 'Editable source geometry must pass inspection'
 for asset in verification['renderInputs']:
     image_path = root / '公路之王/assets/blender' / (asset['name'] + '.png')
     assert hashlib.sha256(image_path.read_bytes()).hexdigest() == asset['sha256'], 'A rendered asset changed after verification'
@@ -24,12 +26,19 @@ files.extend(root / p for p in (
     'art/blender/manifest.json',
     'art/blender/README.md',
     'art/blender/showcase.png',
+    'art/blender/reference-v2.png',
+    'art/blender/reference-scene.png',
+    'art/blender/reference-scene.blend',
     'tools/blender/build_assets.py',
+    'tools/blender/reference_models.py',
+    'tools/blender/render_reference_scene.py',
+    'tools/blender/verify_model_source.py',
+    'art/blender/model-verification.json',
     'tools/verify_blender_preview.cjs',
 ))
 files.extend(p for p in (root / 'research/blender-preview').glob('*') if p.suffix in ('.json', '.png'))
 assert all(p.is_file() for p in files), 'Missing delivery input'
-archive = target / '公路之王_滑动操作版.zip'
+archive = target / '公路之王_参考建模v2.zip'
 with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as z:
     for p in sorted(set(files)):
         z.write(p, p.relative_to(root).as_posix())

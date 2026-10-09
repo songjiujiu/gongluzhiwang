@@ -36,7 +36,7 @@
 从上一级工作区执行：
 
 ```powershell
-node --test tests/game-core.test.js tests/platform.test.js
+node --test tests/*.test.js
 node preview/serve.js 4179
 ```
 

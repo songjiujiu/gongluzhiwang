@@ -4,6 +4,8 @@
 
 车辆、路障及路边模型使用 **Blender 建模与预渲染**，搭配海岸公路新画面；可编辑模型与美术脚本位于 `art/blender/` 和 `tools/blender/`。
 
+当前为参考建模 v2：依据选定效果图重建青绿色轿跑、银色 SUV、橙色轿车及双层施工路障。实际模型展示见 `art/blender/showcase.png`，海岸场景渲染见 `art/blender/reference-scene.png`。这是可编辑的单图三维重建，与参考图并非完全一致。
+
 请在抖音开发者工具中导入 **`公路之王/` 子目录**，入口为 `公路之王/game.js`。
 
 - [导入、操作与验证说明](公路之王/README.md)
@@ -16,7 +18,7 @@
 在本目录运行逻辑与平台适配测试：
 
 ```powershell
-node --test tests/game-core.test.js tests/platform.test.js
+node --test tests/*.test.js
 ```
 
 打开浏览器本地预览：

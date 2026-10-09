@@ -121,7 +121,7 @@ function assertAssets(assets) {
 
 (async () => {
   const browser = await chromium.launch({ headless: true, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe' });
-  const report = { date: '2026-10-08', kind: 'Actual Blender-rendered PNG sprites composited by browser Canvas; not real-time 3D, a Douyin simulator, or a phone test', source: url, renderInputs: renderInputs(), viewports: {}, passed: false };
+  const report = { date: new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai' }).format(new Date()), kind: 'Actual Blender-rendered PNG sprites composited by browser Canvas; not real-time 3D, a Douyin simulator, or a phone test', source: url, renderInputs: renderInputs(), viewports: {}, passed: false };
   try {
     for (const viewport of [{ width: 390, height: 844 }, { width: 320, height: 568 }]) {
       const size = viewport.width + 'x' + viewport.height;
