@@ -223,8 +223,8 @@ class RoadKingApp {
   }
   drawMenu(){
     const c=this.ctx,fade=c.createLinearGradient(0,0,0,H);fade.addColorStop(0,'rgba(7,24,36,.98)');fade.addColorStop(.21,'rgba(8,27,39,.89)');fade.addColorStop(.41,'rgba(8,27,39,.50)');fade.addColorStop(.57,'rgba(8,27,39,.98)');fade.addColorStop(1,'rgba(8,27,39,1)');c.fillStyle=fade;c.fillRect(0,0,W,H);
-    this.rr(28,28,6,17,3,C.orange);this.txt('ROAD KING',45,37,16,C.white,'bold');this.txt('ENDLESS DRIVE',514,37,12,C.mute,'normal','right');
-    this.txt('公路之王',26,108,61,C.white,'bold');this.txt('一条公路，没有终点。',30,165,23,'#d0ded6');
+    this.rr(28,28,6,17,3,C.orange);this.txt('驾考宝典',45,37,16,C.white,'bold');this.txt('ENDLESS DRIVE',514,37,12,C.mute,'normal','right');
+    this.txt('驾考宝典之公路日常',26,108,48,C.white,'bold');this.txt('一条公路，没有终点。',30,165,23,'#d0ded6');
     this.rr(28,202,151,31,15,'rgba(88,192,171,.14)','#3f736e');this.txt('日落海岸 · 无尽',103,218,15,C.cyan,'bold','center');
     this.txt('越开越快',29,287,26,C.white,'bold');this.txt('越躲越险',29,327,26,C.white,'bold');this.line(30,355,65,355,C.orange,3);this.txt('下一公里，',29,385,16,'#d2ded4');this.txt('由你的反应决定。',29,409,16,'#d2ded4');
     if(this.art.hero){this.groundShadow(355,439,130,21);c.drawImage(this.art.hero,158,215,388,259);}else this.car(398,412,1.65,C.cyan,true,false);
@@ -260,7 +260,7 @@ class RoadKingApp {
     this.button(50,424,440,66,'继续挑战',()=>{this.releaseHolds();this.game.resume();},{primary:true});this.button(50,507,211,58,'重新开始',()=>this.start(),{size:20});this.button(279,507,211,58,'返回首页',()=>{this.releaseHolds();this.game.menu();},{size:20});this.button(50,593,440,52,this.muted?'音效：关':'音效：开',()=>this.toggleSound(),{size:18});
   }
   drawResult(){
-    const g=this.game;this.scrim();this.rr(24,158,492,675,23,C.panel,'#43606a');this.txt('ROAD KING  /  本局纪录',270,195,14,C.cyan,'bold','center');this.txt(this.newBest?'刷新个人纪录':'这一程，到这里',270,252,36,C.white,'bold','center');this.txt('下一次，试着再多坚持一公里。',270,299,18,C.mute,'normal','center');
+    const g=this.game;this.scrim();this.rr(24,158,492,675,23,C.panel,'#43606a');this.txt('驾考宝典之公路日常  /  本局纪录',270,195,14,C.cyan,'bold','center');this.txt(this.newBest?'刷新个人纪录':'这一程，到这里',270,252,36,C.white,'bold','center');this.txt('下一次，试着再多坚持一公里。',270,299,18,C.mute,'normal','center');
     this.txt('本局得分',270,354,16,C.mute,'normal','center');this.txt(Math.round(g.score),270,405,62,C.cyan,'bold','center');this.txt('最高分 '+Math.round(this.best.score),270,455,17,this.newBest?C.orange:C.mute,'bold','center');
     const stats=[['行驶距离',distance(g.distance)],['存活时间',duration(g.elapsed)],['最高时速',Math.round(g.maxSpeed||g.speed)+' km/h'],['成功躲避',number(g.dodged)+' 次']];
     stats.forEach((stat,i)=>{const x=i%2===0?150:390,y=i<2?507:591;this.txt(stat[0],x,y,15,C.mute,'normal','center');this.txt(stat[1],x,y+34,27,C.white,'bold','center');});

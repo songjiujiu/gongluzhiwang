@@ -53,7 +53,7 @@ files.extend(root / p for p in (
 files.extend(p for p in (root / 'research/blender-preview').glob('*') if p.suffix in ('.json', '.png'))
 files.extend(p for p in (root / 'art/audio').glob('*') if p.is_file())
 assert all(p.is_file() for p in files), 'Missing delivery input'
-archive = target / '公路之王_实时三维版.zip'
+archive = target / '驾考宝典之公路日常_实时三维版.zip'
 with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as z:
     for p in sorted(set(files)):
         z.write(p, p.relative_to(root).as_posix())
