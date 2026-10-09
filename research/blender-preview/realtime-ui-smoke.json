@@ -4,21 +4,21 @@
   "meshInputs": [
     {
       "name": "meshes.json",
-      "bytes": 5892,
-      "sha256": "6814ba4e72b3b167a618742ea1fc003c0f24819393680c9d4929b58cfded22fa"
+      "bytes": 11001,
+      "sha256": "1cba376e86216645b53814ac3a8da7367cbb94273d5070e231f57e0ffa6dd8ea"
     },
     {
       "name": "meshes.bin",
-      "bytes": 2223216,
-      "sha256": "0187948e498fb6d337a32fd364006b48c739ac132d8f1206d25cbc1937604fd7"
+      "bytes": 2184048,
+      "sha256": "35c0a5ab11f7c86a3c79729b602189d934bdbb5c646d2c6b70f46982e60e17f1"
     }
   ],
   "viewports": {
     "390x844": {
       "status": "ready",
       "vertices": {
-        "player": 73386,
-        "suv": 83766,
+        "player": 71946,
+        "suv": 81942,
         "barrier": 7398,
         "tree": 19998,
         "rock": 720
@@ -44,8 +44,8 @@
     "320x568": {
       "status": "ready",
       "vertices": {
-        "player": 73386,
-        "suv": 83766,
+        "player": 71946,
+        "suv": 81942,
         "barrier": 7398,
         "tree": 19998,
         "rock": 720

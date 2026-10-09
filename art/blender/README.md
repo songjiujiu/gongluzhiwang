@@ -10,6 +10,8 @@
 
 ## 视觉设计
 
+v3 同步更新首页 `hero.png` 和实时玩家网格：加宽后轮拱、收窄车身腰线、拉长拱形车顶，将闭合椭圆灯管改成开放式薄片 LED 灯组，并用贴合式面板重建尾翼。当前造型以 `roadking-assets.blend`、`showcase.png` 和实际首页截图为准；独立海岸展示图仍保留 v2 版本。
+
 v2 根据 `reference-v2.png` 重新构建青绿色流线轿跑、银灰 SUV 和橙色轿车。玩家车使用连续曲面车身、真实轮拱开口、烟黑玻璃、贴合式窗柱、小尾翼、多辐轮毂、贯穿尾灯、扩散器和椭圆排气口，取消旧版白色条纹和高尾翼。施工路障改为橙白双层警示板和混凝土底座，棕榈叶使用曲面与羽状叶片。
 
 `reference-scene.blend` 和 `reference-scene.png` 是同一组模型的独立 Blender 海岸场景和渲染。车辆细节脚本为 `../../tools/blender/reference_models.py`，海岸展示脚本为 `../../tools/blender/render_reference_scene.py`。它们是依据单张生成参考图的三维重建，隐藏结构为建模推断，与参考图并非完全一致。

@@ -11,7 +11,7 @@ OUT.mkdir(parents=True,exist_ok=True)
 bpy.ops.wm.open_mainfile(filepath=str(ROOT/'art/blender/roadking-assets.blend'))
 sources={'player':('01 /',(-3.1,-2,0)),'suv':('02 /',(0,-2,0)),
          'barrier':('05 /',(.1,3.8,0)),'tree':('06 /',(3.6,4.1,0)),'rock':('07 /',(4,1,0))}
-buffer=bytearray();manifest={'version':1,'stride':12,'positionScale':2048,'normalScale':32767,'coordinateSystem':'X right, Y up, -Z forward','models':{}}
+buffer=bytearray();manifest={'version':1,'modelRevision':'v3-curved-fastback','stride':12,'positionScale':2048,'normalScale':32767,'coordinateSystem':'X right, Y up, -Z forward','models':{}}
 for name,(prefix,origin) in sources.items():
     col=next(c for c in bpy.data.collections if c.name.startswith(prefix))
     groups={}

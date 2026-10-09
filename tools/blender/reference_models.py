@@ -59,8 +59,8 @@ def build_car(api, name, color, kind='sport', stripes=False):
     # curved bonnet and a lower front nose. No stack of rectangular body blocks.
     stations = [
         (-2.32,.82,.78),(-2.30,.88,.84),(-2.24,.95,.94),
-        (-2.10,.98,1.01),(-1.76,1.00,1.055),(-1.43,1.025,1.09),
-        (-1.05,.99,1.08),(-.65,.94,1.065),(-.10,.935,1.06),
+        (-2.10,1.00,1.01),(-1.76,1.075,1.105),(-1.43,1.095,1.14),
+        (-1.05,1.04,1.10),(-.65,.94,1.065),(-.10,.915,1.06),
         (.50,.96,1.04),(1.05,.995,1.005),(1.40,1.00,.96),
         (1.86,.96,.91),(2.14,.90,.86),(2.28,.81,.77),(2.30,.79,.73)]
     rings=[]
@@ -89,10 +89,10 @@ def build_car(api, name, color, kind='sport', stripes=False):
 
     # Round shoulders on an uninterrupted fastback canopy; the roof is a
     # separate curved panel on top of dark glass, with explicit window frames.
-    top=1.78 if suv else 1.48 if sedan else 1.43
+    top=1.78 if suv else 1.48 if sedan else 1.53
     rear=-1.45 if not suv else -1.66
-    rear_roof=-.57 if not suv else -1.10
-    front_roof=.39 if not suv else .48
+    rear_roof=-.78 if not suv else -1.10
+    front_roof=.53 if not suv else .48
     front=1.08
     stations_glass=[(rear,.73,1.09+lift),(rear+.06,.755,1.14+lift),
                     (rear_roof,.73,top),(rear_roof+.12,.725,top+.018),
@@ -109,8 +109,9 @@ def build_car(api, name, color, kind='sport', stripes=False):
     roof_xs=[-.655,-.63,-.40,0,.40,.63,.655]
     for j,y in enumerate(roof_ys):
         for x in roof_xs:
-            z=top+.043-.045*(abs(x)/.655)**2-(.013 if j in [0,5] else 0)
-            roof_verts.append((x,y,z))
+            crown=math.sin(j*math.pi/5)
+            z=top+.022+.065*crown-.065*(abs(x)/.655)**2
+            roof_verts.append((x*(.88+.12*crown),y,z))
     faces=[(j*7+i,j*7+i+1,(j+1)*7+i+1,(j+1)*7+i) for j in range(5) for i in range(6)]
     roof=smooth(mesh('Curved painted roof panel',roof_verts,faces,paint),2)
     thick=roof.modifiers.new('Roof panel thickness','SOLIDIFY');thick.thickness=.025
@@ -164,8 +165,13 @@ def build_car(api, name, color, kind='sport', stripes=False):
         outline=[(side*.38,-2.352,.86+lift),(side*.80,-2.34,.91+lift),(side*.90,-2.31,.87+lift),
                  (side*.84,-2.343,.775+lift),(side*.49,-2.36,.775+lift),(side*.38,-2.352,.86+lift)]
         mesh('Smoked swept tail lamp lens',outline[:-1],[(0,1,2,3,4)],M['black'])
-        ribbon('Swept LED tail lamp perimeter',outline,.011,M['red'])
-        ribbon('Tail lamp lower signature',[(side*.44,-2.365,.81+lift),(side*.76,-2.352,.82+lift),(side*.85,-2.33,.855+lift)],.012,M['red'])
+        # Flat open blade lenses replace the previous oval neon-tube outline.
+        blade=[(side*.39,-2.37,.885+lift),(side*.83,-2.35,.925+lift),
+               (side*.91,-2.32,.89+lift),(side*.83,-2.36,.87+lift),
+               (side*.39,-2.38,.855+lift)]
+        lens=mesh('Angular red LED blade lens',blade,[(0,1,2,3,4)],M['red'])
+        thickness=lens.modifiers.new('Lamp lens thickness','SOLIDIFY');thickness.thickness=.012
+        ribbon('Tail lamp lower signature',[(side*.52,-2.378,.79+lift),(side*.80,-2.36,.80+lift),(side*.875,-2.335,.855+lift)],.007,M['red'])
         ribbon('Front narrow LED headlamp',[(side*.38,2.289,.78+lift),(side*.71,2.27,.79+lift),(side*.86,2.19,.83+lift)],.022,M['light'])
         cube('Front bumper air intake',(side*.71,2.25,.53+lift),(.24,.10,.23),M['black'],.065)
         ribbon('Hood character crease',[(side*.53,.99,1.02+lift),(side*.59,1.57,.94+lift),(side*.45,2.12,.87+lift)],.008,paint)
@@ -177,7 +183,11 @@ def build_car(api, name, color, kind='sport', stripes=False):
     cube('Broad rear lower diffuser',(0,-2.29,.365+lift),(1.70,.17,.21),M['black'],.075)
     for x in [-.40,-.20,0,.20,.40]:
         cube('Diffuser aero fin',(x,-2.34,.285+lift),(.026,.28,.115),M['black'],.006)
-    ribbon('Integrated black deck spoiler',[(-.92,-2.08,1.052+lift),(-.63,-2.16,1.088+lift),(0,-2.18,1.098+lift),(.63,-2.16,1.088+lift),(.92,-2.08,1.052+lift)],.043,M['black'])
+    spoiler=mesh('Integrated black deck spoiler',
+        [(-.98,-2.03,1.06+lift),(-.92,-2.25,1.10+lift),(0,-2.28,1.115+lift),(.92,-2.25,1.10+lift),(.98,-2.03,1.06+lift),(0,-2.08,1.08+lift)],
+        [(0,1,2,5),(5,2,3,4)],M['black'])
+    lip=spoiler.modifiers.new('Spoiler sculpted lip','SOLIDIFY');lip.thickness=.022
+    rounded=spoiler.modifiers.new('Spoiler soft edges','BEVEL');rounded.width=.012;rounded.segments=3
     cube('Front central grille',(0,2.27,.52+lift),(1.10,.09,.24),M['black'],.06)
     for i in range(4):
         cube('Grille horizontal slat',(0,2.327,.445+i*.045+lift),(1.0,.017,.01),M['metal'],.003)

@@ -6,50 +6,50 @@
     {
       "name": "car-player",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-player.png",
-      "size": 102878,
-      "sha256": "e1cea4f09c085470bc298d9d2c5b5598b1144d988ccc3388a0bb9e072f6d627a"
+      "size": 105320,
+      "sha256": "597a128b124571cd5b0d6d412cca3243ce100cab53d088cd9c094dae088f6c5f"
     },
     {
       "name": "car-silver",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-silver.png",
-      "size": 101805,
-      "sha256": "b1fdabb31f2e8133b0994a838f71d4720adebdc8e787e5868944b5548a4a8ed3"
+      "size": 101928,
+      "sha256": "d5f7534cb4266e1a20d91ff550f712513e0f30d55ed92eecb34d0fe0a010966e"
     },
     {
       "name": "car-blue",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-blue.png",
-      "size": 102384,
-      "sha256": "27f7700cdd3e359eb09c6f3304b6b129bb22068a16b2c99937b34341dd27344c"
+      "size": 103680,
+      "sha256": "f6a9631f7dbd7971a211c5ab0a10388d5166a48c17432db21d5cf42753ec510a"
     },
     {
       "name": "car-orange",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-orange.png",
-      "size": 105241,
-      "sha256": "334edcacd22c36db597687f2aacc28d8f0197a5389d530176f67900d07bf4e3f"
+      "size": 107333,
+      "sha256": "3fd5ba3664e36049a386e27185f7cf728e50e942f337304e62df934846708e64"
     },
     {
       "name": "barrier",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\barrier.png",
       "size": 71096,
-      "sha256": "c9cdf06a4edfabeec0e056b23c41944b16850c6543ab1c722298a2f43dbbb854"
+      "sha256": "61c2c40d45f0a5b5d81e2b37b9c0b1a5c86789f26dc97d23f375458133f935d4"
     },
     {
       "name": "tree",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\tree.png",
       "size": 85742,
-      "sha256": "ed8fe84b8d361326e5b92354fccdc1fc53b88d4e73fccbdc300c9ac37a92b1f1"
+      "sha256": "5cde776ffacef837e1e6ef5c9dafa4f650a8d40dc982ff1a307c7e3c780c6d2d"
     },
     {
       "name": "rock",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\rock.png",
       "size": 40733,
-      "sha256": "e5f47a8670e8850340b35ac899feb25a6d1eb6e04123278cf55d3988240b9737"
+      "sha256": "f107817344b3ab6da2b04f6251fc35fb904c63341cf182f920c9d6e13688cde3"
     },
     {
       "name": "hero",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\hero.png",
-      "size": 390632,
-      "sha256": "6bc40b8aa14cc14b9bae6c89e5b02b279646354688d58b84633eecfd7b054359"
+      "size": 394226,
+      "sha256": "fe64634ea0906c0e6fcd3c6467b1f5997bcb3586c67588d13c5f537ac9a1ba9e"
     }
   ],
   "viewports": {
@@ -58,24 +58,6 @@
         "loaded": 8,
         "errors": [],
         "images": {
-          "car-silver": {
-            "width": 256,
-            "height": 384,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
-            "complete": true
-          },
-          "car-blue": {
-            "width": 256,
-            "height": 384,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
-            "complete": true
-          },
-          "car-player": {
-            "width": 256,
-            "height": 384,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
-            "complete": true
-          },
           "car-orange": {
             "width": 256,
             "height": 384,
@@ -94,16 +76,34 @@
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/tree.png",
             "complete": true
           },
-          "hero": {
-            "width": 768,
-            "height": 512,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/hero.png",
+          "car-player": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
+            "complete": true
+          },
+          "car-silver": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
             "complete": true
           },
           "rock": {
             "width": 256,
             "height": 192,
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/rock.png",
+            "complete": true
+          },
+          "car-blue": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
+            "complete": true
+          },
+          "hero": {
+            "width": 768,
+            "height": 512,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/hero.png",
             "complete": true
           }
         }
@@ -260,28 +260,28 @@
         "loaded": 8,
         "errors": [],
         "images": {
-          "car-player": {
-            "width": 256,
-            "height": 384,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
-            "complete": true
-          },
           "car-silver": {
             "width": 256,
             "height": 384,
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
             "complete": true
           },
-          "car-orange": {
+          "car-player": {
             "width": 256,
             "height": 384,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
             "complete": true
           },
           "car-blue": {
             "width": 256,
             "height": 384,
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
+            "complete": true
+          },
+          "car-orange": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
             "complete": true
           },
           "barrier": {
@@ -473,16 +473,16 @@
           "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
           "complete": true
         },
-        "car-orange": {
-          "width": 256,
-          "height": 384,
-          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
-          "complete": true
-        },
         "car-blue": {
           "width": 256,
           "height": 384,
           "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
+          "complete": true
+        },
+        "car-orange": {
+          "width": 256,
+          "height": 384,
+          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
           "complete": true
         },
         "barrier": {
@@ -542,56 +542,56 @@
         }
       ]
     },
-    "expectedNetworkError": "Only the deliberately missing car-player.png request may fail; gameplay continues using vector fallback."
+    "expectedNetworkError": "Only the deliberately missing legacy car-player.png request may fail; gameplay continues using real-time geometry."
   },
   "renderInputsAtFinish": [
     {
       "name": "car-player",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-player.png",
-      "size": 102878,
-      "sha256": "e1cea4f09c085470bc298d9d2c5b5598b1144d988ccc3388a0bb9e072f6d627a"
+      "size": 105320,
+      "sha256": "597a128b124571cd5b0d6d412cca3243ce100cab53d088cd9c094dae088f6c5f"
     },
     {
       "name": "car-silver",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-silver.png",
-      "size": 101805,
-      "sha256": "b1fdabb31f2e8133b0994a838f71d4720adebdc8e787e5868944b5548a4a8ed3"
+      "size": 101928,
+      "sha256": "d5f7534cb4266e1a20d91ff550f712513e0f30d55ed92eecb34d0fe0a010966e"
     },
     {
       "name": "car-blue",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-blue.png",
-      "size": 102384,
-      "sha256": "27f7700cdd3e359eb09c6f3304b6b129bb22068a16b2c99937b34341dd27344c"
+      "size": 103680,
+      "sha256": "f6a9631f7dbd7971a211c5ab0a10388d5166a48c17432db21d5cf42753ec510a"
     },
     {
       "name": "car-orange",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\car-orange.png",
-      "size": 105241,
-      "sha256": "334edcacd22c36db597687f2aacc28d8f0197a5389d530176f67900d07bf4e3f"
+      "size": 107333,
+      "sha256": "3fd5ba3664e36049a386e27185f7cf728e50e942f337304e62df934846708e64"
     },
     {
       "name": "barrier",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\barrier.png",
       "size": 71096,
-      "sha256": "c9cdf06a4edfabeec0e056b23c41944b16850c6543ab1c722298a2f43dbbb854"
+      "sha256": "61c2c40d45f0a5b5d81e2b37b9c0b1a5c86789f26dc97d23f375458133f935d4"
     },
     {
       "name": "tree",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\tree.png",
       "size": 85742,
-      "sha256": "ed8fe84b8d361326e5b92354fccdc1fc53b88d4e73fccbdc300c9ac37a92b1f1"
+      "sha256": "5cde776ffacef837e1e6ef5c9dafa4f650a8d40dc982ff1a307c7e3c780c6d2d"
     },
     {
       "name": "rock",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\rock.png",
       "size": 40733,
-      "sha256": "e5f47a8670e8850340b35ac899feb25a6d1eb6e04123278cf55d3988240b9737"
+      "sha256": "f107817344b3ab6da2b04f6251fc35fb904c63341cf182f920c9d6e13688cde3"
     },
     {
       "name": "hero",
       "file": "D:\\codex\\gonluzhiwang\\公路之王\\assets\\blender\\hero.png",
-      "size": 390632,
-      "sha256": "6bc40b8aa14cc14b9bae6c89e5b02b279646354688d58b84633eecfd7b054359"
+      "size": 394226,
+      "sha256": "fe64634ea0906c0e6fcd3c6467b1f5997bcb3586c67588d13c5f537ac9a1ba9e"
     }
   ]
 }

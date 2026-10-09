@@ -1,7 +1,7 @@
 {
   "archive": "公路之王_实时三维版.zip",
-  "bytes": 12518659,
-  "sha256": "ae043879c77455ac012fbb1ceac27a90b0a5b020e0eb0c84836b01aaa76b5d80",
+  "bytes": 12481531,
+  "sha256": "b9b6cae5f892ec55fde29893339cda30b87b42d55942219751a4179c28ad976d",
   "importDirectory": "公路之王",
   "files": [
     "art/blender/manifest.json",

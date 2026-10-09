@@ -5,54 +5,54 @@
     {
       "name": "01 / LAGOON GT — player",
       "objects": 189,
-      "bodyVertices": 3740,
-      "bodyPolygons": 3564,
+      "bodyVertices": 3746,
+      "bodyPolygons": 3572,
       "bodyDimensions": [
-        2.007,
+        2.155,
         4.619,
-        0.859
+        0.902
       ],
-      "actualMeshes": 100,
-      "curves": 89
+      "actualMeshes": 103,
+      "curves": 86
     },
     {
       "name": "02 / PEARL SUV — traffic",
       "objects": 197,
-      "bodyVertices": 3681,
-      "bodyPolygons": 3516,
+      "bodyVertices": 3685,
+      "bodyPolygons": 3522,
       "bodyDimensions": [
-        2.066,
+        2.213,
         4.619,
-        0.859
+        0.902
       ],
-      "actualMeshes": 100,
-      "curves": 97
+      "actualMeshes": 103,
+      "curves": 94
     },
     {
       "name": "03 / INDIGO sedan — traffic",
       "objects": 191,
-      "bodyVertices": 3740,
-      "bodyPolygons": 3564,
+      "bodyVertices": 3746,
+      "bodyPolygons": 3572,
       "bodyDimensions": [
-        2.007,
+        2.155,
         4.619,
-        0.859
+        0.902
       ],
-      "actualMeshes": 100,
-      "curves": 91
+      "actualMeshes": 103,
+      "curves": 88
     },
     {
       "name": "04 / EMBER sedan — traffic",
       "objects": 191,
-      "bodyVertices": 3740,
-      "bodyPolygons": 3564,
+      "bodyVertices": 3746,
+      "bodyPolygons": 3572,
       "bodyDimensions": [
-        2.007,
+        2.155,
         4.619,
-        0.859
+        0.902
       ],
-      "actualMeshes": 100,
-      "curves": 91
+      "actualMeshes": 103,
+      "curves": 88
     }
   ],
   "passed": true
