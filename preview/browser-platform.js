@@ -14,6 +14,7 @@
   const pressed = new Map();
   const held = new Set();
   const sounds = Object.create(null);
+  let engine = null, engineIdle = null, engineStarting = false;
   const images = Object.create(null);
 
   function touch(pointer) {
@@ -94,6 +95,14 @@
     },
     stopSound() {
       for (const audio of Object.values(sounds)) { audio.pause(); audio.currentTime = 0; }
+    },
+    setEngine({active,volume,rate,idleVolume}) {
+      try {
+        if(!active){if(engine)engine.pause();if(engineIdle)engineIdle.pause();return;}
+        if(!engine){engine=new Audio('/公路之王/audio/engine.wav');engine.loop=true;engine.preservesPitch=false;engineIdle=new Audio('/公路之王/audio/engine-idle.wav');engineIdle.loop=true;}
+        engine.volume=volume;engine.playbackRate=rate;engineIdle.volume=idleVolume;
+        if((engine.paused||engineIdle.paused)&&!engineStarting){engineStarting=true;Promise.all([engine,engineIdle].filter(a=>a.paused).map(a=>a.play())).catch(()=>{}).finally(()=>{engineStarting=false;});}
+      } catch (_) {engineStarting=false;}
     },
     vibrate() { if (navigator.vibrate) navigator.vibrate(18); }
   };

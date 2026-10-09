@@ -1,0 +1,60 @@
+{
+  "kind": "Actual Chromium engine playback, speed-driven pitch/volume and lifecycle checks; not native phone or subjective listening verification",
+  "asset": {
+    "bytes": 98828,
+    "sha256": "dc84438cea67f790cd9e616e7c61b7b702370df279d822373abe3aaad515e927"
+  },
+  "passed": true,
+  "idleAsset": {
+    "bytes": 98828,
+    "sha256": "a6cb6ba849ae9e586ca297be887957741fba4a71be6bd413419c2cc4caaa4057"
+  },
+  "recordingSource": "wikusv / V8 Lotus / Freesound, CC BY 4.0",
+  "start": {
+    "duration": 2.24,
+    "loop": true,
+    "volume": 0.22746666666666668,
+    "rate": 0.9924999999999999,
+    "preservesPitch": false,
+    "paused": false,
+    "speed": 76,
+    "idleVolume": 0.039999999999999994,
+    "idlePaused": false
+  },
+  "fast": {
+    "duration": 2.24,
+    "loop": true,
+    "volume": 0.3384050558164064,
+    "rate": 1.1663019651241635,
+    "preservesPitch": false,
+    "paused": false,
+    "speed": 168.69438139955383,
+    "idleVolume": 0,
+    "idlePaused": false
+  },
+  "loopWrap": true,
+  "crashIdle": {
+    "duration": 2.24,
+    "loop": true,
+    "volume": 0,
+    "rate": 0.85,
+    "preservesPitch": false,
+    "paused": false,
+    "speed": 0,
+    "idleVolume": 0.2,
+    "idlePaused": false
+  },
+  "recovery": {
+    "duration": 2.24,
+    "loop": true,
+    "volume": 0.21372631578947396,
+    "rate": 0.9850000000000001,
+    "preservesPitch": false,
+    "paused": false,
+    "speed": 72.00000000000009,
+    "idleVolume": 0.04842105263157877,
+    "idlePaused": false
+  },
+  "engineInstances": 1,
+  "errors": []
+}

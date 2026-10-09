@@ -15,7 +15,7 @@ function fixture(info = {}) {
     getStorageSync: key => storage.has(key) ? storage.get(key) : null,
     setStorageSync: (key, value) => storage.set(key, value),
     createInnerAudioContext() {
-      const item = { plays: 0, stops: 0, play() { this.plays++; }, stop() { this.stops++; }, onError(callback) { this.error = callback; } };
+      const item = { plays: 0, stops: 0, pauses: 0, play() { this.plays++; }, pause() { this.pauses++; }, stop() { this.stops++; }, onError(callback) { this.error = callback; } };
       audio.push(item); return item;
     },
     vibrateShort(options) { events.vibration = options; }
@@ -79,6 +79,21 @@ test('audio contexts are cached by sound name, replay safely and stop on request
   platform.stopSound();
   assert.equal(audio[0].stops, 3); assert.equal(audio[1].stops, 2);
   assert.equal(typeof audio[0].error, 'function');
+});
+
+test('engine uses cached roar and idle contexts without restarting or suppressing collision effects', () => {
+  const {platform,audio}=fixture();
+  platform.setEngine({active:false,volume:.1,rate:.55});assert.equal(audio.length,0);
+  platform.setEngine({active:true,volume:.17,rate:1,idleVolume:.1});
+  const engine=audio[0];assert.equal(engine.src,'audio/engine.wav');assert.equal(engine.loop,true);
+  assert.equal(audio[1].src,'audio/engine-idle.wav');assert.equal(audio[1].loop,true);
+  platform.setEngine({active:true,volume:.32,rate:1.3,idleVolume:0});
+  assert.equal(engine.plays,1);assert.equal(engine.volume,.32);assert.equal(engine.playbackRate,1.3);assert.equal(audio[1].volume,0);
+  platform.sound('hit');platform.stopSound();assert.equal(engine.stops,0);
+  platform.setEngine({active:false,volume:.1,rate:.55});assert.equal(engine.pauses,1);
+  assert.equal(audio[1].pauses,1);
+  platform.setEngine({active:true,volume:0,rate:.85,idleVolume:.2});assert.equal(engine.plays,2);assert.equal(audio.length,3);
+  engine.error();platform.setEngine({active:true,volume:0,rate:.85,idleVolume:.2});assert.equal(engine.plays,3);
 });
 
 test('frame schedules the exact callback and optional APIs can be absent', () => {

@@ -18,16 +18,18 @@ class RoadKingApp {
     const assets=['car-player','car-silver','car-blue','car-orange','barrier','tree','rock','hero'];
     this.artReady=Promise.all(assets.map(name=>Promise.resolve().then(()=>p.loadImage('assets/blender/'+name+'.png')).then(img=>{this.art[name]=img;this.artLoaded++;}).catch(()=>{this.art[name]=null;this.artErrors.push(name);}))).then(()=>true);
     this.muted=!!p.read('roadking.muted.v1');
+    this.hidden=false;
     const saved=p.read(BEST_KEY)||{};this.best={score:number(saved.score),distance:number(saved.distance),elapsed:number(saved.elapsed)};
     this.game=new Core({onEvent:(type,data)=>this.onEvent(type,data)});
     this.scene=new SceneRenderer(p);
     p.touches(e=>this.touchStart(e),e=>this.touchMove(e),e=>this.touchEnd(e),()=>this.releaseHolds());
-    p.lifecycle(()=>{this.releaseHolds();this.game.pause();p.stopSound();},()=>{this.last=p.now();});
+    p.lifecycle(()=>{this.hidden=true;this.releaseHolds();this.game.pause();p.stopSound();this.syncEngine();},()=>{this.hidden=false;this.last=p.now();this.syncEngine();});
     this.last=p.now();
     this.tick=()=>{const now=p.now(),dt=Math.min(.1,Math.max(0,(now-this.last)/1000));this.last=now;this.clock+=dt;this.update(dt);this.shake=Math.max(0,this.shake-dt*2);this.draw();p.frame(this.tick);};
     p.frame(this.tick);
   }
   onEvent(type,data={}){
+    if(type==='start'||type==='mode'||type==='result'||type==='collision')this.syncEngine();
     if(type==='collision'){this.shake=.5;this.p.vibrate();if(!this.muted)this.p.sound('hit');}
     if(type==='pulse'&&!this.muted)this.p.sound('pulse');
     if(type==='result'){
@@ -46,6 +48,7 @@ class RoadKingApp {
       this.game.update(step);this.flushLane();
       this.updateHolds();remaining-=step;
     }
+    this.syncEngine();
   }
   changeLane(direction){
     if(this.game.mode!=='playing')return;
@@ -90,7 +93,13 @@ class RoadKingApp {
   }
   touchEnd(e){(e.changedTouches||[]).forEach(t=>{delete this.touchMap[t.identifier==null?0:t.identifier];});this.updateHolds();}
   updateHolds(){this.game.setThrottle(!!this.keyboard.throttle);}
-  toggleSound(){this.muted=!this.muted;this.p.write('roadking.muted.v1',this.muted);if(this.muted)this.p.stopSound();}
+  syncEngine(){
+    if(!this.p.setEngine)return;
+    const rev=Math.max(0,Math.min(1,this.game.speed/240));
+    const drive=Math.max(0,Math.min(1,this.game.speed/95));
+    this.p.setEngine({active:!this.muted&&!this.hidden&&this.game.mode==='playing',rate:.85+.45*rev,volume:drive*(.24+.14*rev),idleVolume:.20*(1-drive)});
+  }
+  toggleSound(){this.muted=!this.muted;this.p.write('roadking.muted.v1',this.muted);if(this.muted)this.p.stopSound();this.syncEngine();}
 
   rr(x,y,w,h,r,fill,stroke){
     const c=this.ctx;r=Math.min(r,w/2,h/2);c.beginPath();c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.quadraticCurveTo(x+w,y,x+w,y+r);c.lineTo(x+w,y+h-r);c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);c.lineTo(x+r,y+h);c.quadraticCurveTo(x,y+h,x,y+h-r);c.lineTo(x,y+r);c.quadraticCurveTo(x,y,x+r,y);c.closePath();if(fill){c.fillStyle=fill;c.fill();}if(stroke){c.strokeStyle=stroke;c.lineWidth=1.3;c.stroke();}

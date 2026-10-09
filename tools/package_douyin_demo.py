@@ -15,6 +15,10 @@ for mesh in runtime_verification['meshInputs']:
     assert hashlib.sha256((root/'公路之王/assets/scene'/mesh['name']).read_bytes()).hexdigest()==mesh['sha256'],'Runtime geometry changed after verification'
 model_verification = json.loads((root / 'art/blender/model-verification.json').read_text(encoding='utf-8'))
 assert model_verification.get('passed') is True, 'Editable source geometry must pass inspection'
+engine_verification=json.loads((root/'research/blender-preview/engine-playback.json').read_text(encoding='utf-8'))
+assert engine_verification.get('passed') is True, 'Engine playback verification must pass'
+assert hashlib.sha256((root/'公路之王/audio/engine.wav').read_bytes()).hexdigest()==engine_verification['asset']['sha256'], 'Engine audio changed after verification'
+assert hashlib.sha256((root/'公路之王/audio/engine-idle.wav').read_bytes()).hexdigest()==engine_verification['idleAsset']['sha256'], 'Idle recording changed after verification'
 for asset in verification['renderInputs']:
     image_path = root / '公路之王/assets/blender' / (asset['name'] + '.png')
     assert hashlib.sha256(image_path.read_bytes()).hexdigest() == asset['sha256'], 'A rendered asset changed after verification'
@@ -26,6 +30,9 @@ files.extend(root / p for p in (
     'docs/blender-art.md',
     'docs/game-design.md',
     'tools/generate_audio.py',
+    'tools/generate_engine_audio.py',
+    'tools/decode_engine_recordings.cjs',
+    'tools/verify_engine_preview.cjs',
     'art/blender/roadking-assets.blend',
     'art/blender/manifest.json',
     'art/blender/README.md',
@@ -43,6 +50,7 @@ files.extend(root / p for p in (
     'tools/verify_realtime_preview.cjs',
 ))
 files.extend(p for p in (root / 'research/blender-preview').glob('*') if p.suffix in ('.json', '.png'))
+files.extend(p for p in (root / 'art/audio').glob('*') if p.is_file())
 assert all(p.is_file() for p in files), 'Missing delivery input'
 archive = target / '公路之王_实时三维版.zip'
 with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as z:
@@ -68,7 +76,7 @@ report = {
     'files':names,
     'zipIntegrity':'passed',
     'platform':'Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD',
-    'verification':'34 Node tests; traffic merge clearance, collision stop/recovery, editable Blender geometry and real-time WebGL browser asset/input checks. See research/blender-preview and README for scope.',
+    'verification':'36 Node tests; engine looping/pitch/volume/lifecycle browser playback checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.',
     'notVerified':['Blender art version in Douyin IDE simulator','Android/iOS phone','live upload and publication','phone performance','audio listening'],
 }
 (target / 'delivery-manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
