@@ -29,6 +29,7 @@ class RoadKingApp {
     p.frame(this.tick);
   }
   onEvent(type,data={}){
+    if(type==='collision'||(type==='mode'&&this.game.mode!=='playing'))this.releaseHolds();
     if(type==='start'||type==='mode'||type==='result'||type==='collision')this.syncEngine();
     if(type==='collision'){this.shake=.5;this.p.vibrate();if(!this.muted)this.p.sound('hit');}
     if(type==='pulse'&&!this.muted)this.p.sound('pulse');
@@ -44,7 +45,7 @@ class RoadKingApp {
     if(!Number.isFinite(dt)||dt<=0)return;
     let remaining=dt;
     while(remaining>1e-8&&this.game.mode==='playing'){
-      const step=Math.min(remaining,.05);
+      const step=Math.min(remaining,.05);this.updateHolds(step);
       this.game.update(step);this.flushLane();
       this.updateHolds();remaining-=step;
     }
@@ -70,12 +71,13 @@ class RoadKingApp {
     (e.changedTouches||e.touches||[]).forEach(t=>{
       const pt=this.point(t),b=this.buttons.slice().reverse().find(b=>!b.disabled&&this.inside(pt,b)),id=t.identifier==null?0:t.identifier;
       if(b){this.touchMap[id]={button:b,pt};if(b.hold)this.updateHolds();else{b.action();this.draw();}}
-      else if(this.game.mode==='playing'&&pt.x>=0&&pt.x<=W&&pt.y>=185&&pt.y<=H&&!Object.values(this.touchMap).some(item=>item.swipe))this.touchMap[id]={pt,swipe:true,axis:null,used:false};
+      else if(this.game.mode==='playing'&&pt.x>=0&&pt.x<=W&&pt.y>=185&&pt.y<=H&&!Object.values(this.touchMap).some(item=>item.swipe))this.touchMap[id]={pt,swipe:true,axis:null,used:false,heldTime:0,holdEligible:true};
     });
   }
   touchMove(e){
     (e.changedTouches||e.touches||[]).forEach(t=>{
       const id=t.identifier==null?0:t.identifier,item=this.touchMap[id];if(!item)return;const pt=this.point(t);
+      if(item.swipe&&Math.hypot(pt.x-item.pt.x,pt.y-item.pt.y)>18){item.holdEligible=false;this.updateHolds();}
       if(item.button&&item.button.hold&&!this.inside(pt,item.button)){delete this.touchMap[id];this.updateHolds();}
       // Lock to the dominant direction; each deliberate swipe performs one action.
       if(item.swipe&&!item.used&&this.game.mode==='playing'){
@@ -92,7 +94,7 @@ class RoadKingApp {
     });
   }
   touchEnd(e){(e.changedTouches||[]).forEach(t=>{delete this.touchMap[t.identifier==null?0:t.identifier];});this.updateHolds();}
-  updateHolds(){this.game.setThrottle(!!this.keyboard.throttle);}
+  updateHolds(dt=0){const touches=Object.values(this.touchMap);for(const item of touches)if(item.swipe&&item.holdEligible&&!item.used)item.heldTime+=dt;this.game.setThrottle(this.game.mode==="playing"&&!this.game.collisionStopped&&(!!this.keyboard.throttle||touches.some(item=>item.swipe&&item.holdEligible&&!item.used&&item.heldTime>=.3)));}
   syncEngine(){
     if(!this.p.setEngine)return;
     const rev=Math.max(0,Math.min(1,this.game.speed/240));
@@ -227,7 +229,7 @@ class RoadKingApp {
     this.txt('越开越快',29,287,26,C.white,'bold');this.txt('越躲越险',29,327,26,C.white,'bold');this.line(30,355,65,355,C.orange,3);this.txt('下一公里，',29,385,16,'#d2ded4');this.txt('由你的反应决定。',29,409,16,'#d2ded4');
     if(this.art.hero){this.groundShadow(355,439,130,21);c.drawImage(this.art.hero,158,215,388,259);}else this.car(398,412,1.65,C.cyan,true,false);
     this.rr(24,458,492,91,17,'rgba(23,51,63,.96)','#476069');this.txt('个人最高分',43,482,14,C.mute);this.txt(Math.round(this.best.score),43,519,37,C.cyan,'bold');this.txt('最远 '+distance(this.best.distance),493,486,17,C.white,'bold','right');this.txt('最长 '+duration(this.best.elapsed),493,518,16,C.mute,'normal','right');
-    const tips=[['01','自动提速','越开越快，提前观察远处车流。'],['02','左右滑动','每次滑动换一条车道，连续滑动闪避。'],['03','点击气浪','点击气浪技能，推开近前车辆。']];
+    const tips=[['01','长按加速','按住路面加速，松手恢复自动提速。'],['02','左右滑动','每次滑动换一条车道，连续滑动闪避。'],['03','点击气浪','点击气浪技能，推开近前车辆。']];
     tips.forEach((tip,i)=>{const y=581+i*58;this.rr(29,y-9,30,29,8,'#263e48');this.txt(tip[0],44,y+6,13,C.orange,'bold','center');this.txt(tip[1],78,y,19,C.white,'bold');this.txt(tip[2],78,y+26,16,C.mute);});
     this.button(24,775,492,76,'开始挑战  →',()=>this.start(),{primary:true,size:28});this.txt('车流越来越密 · 活得越久，得分越高',270,878,16,C.white,'normal','center');
     this.button(24,904,148,35,this.muted?'音效：关':'音效：开',()=>this.toggleSound(),{size:14,radius:9});this.txt('单局无尽 · 随时再来一局',515,922,14,C.mute,'normal','right');
@@ -242,7 +244,7 @@ class RoadKingApp {
     if(playing&&this.scene.status!=='ready'){this.rr(20,199,500,42,12,'rgba(10,27,38,.96)');this.txt(this.scene.status==='failed'?'画面加载失败 · 请重新编译':'正在加载三维场景…',270,220,16,C.orange,'bold','center');}
     if(playing&&g.elapsed<7){this.rr(111,276,318,42,12,'rgba(10,27,38,.88)');this.txt('← 左右滑动，连续闪避 →',270,297,18,C.white,'bold','center');}
     const controls=c.createLinearGradient(0,844,0,H);controls.addColorStop(0,'#163747');controls.addColorStop(1,'#0b202e');c.fillStyle=controls;c.fillRect(0,844,W,116);this.line(0,844,W,844,'#769082');
-    this.txt('←',99,875,34,C.cyan,'bold','center');this.txt('滑动驾驶',270,872,24,C.white,'bold','center');this.txt('→',441,875,34,C.cyan,'bold','center');this.txt('左滑 / 右滑 · 每次换一条车道',270,901,16,C.mute,'normal','center');
+    this.txt('←',99,875,34,C.cyan,'bold','center');this.txt('滑动驾驶',270,872,24,C.white,'bold','center');this.txt('→',441,875,34,C.cyan,'bold','center');this.txt('左右滑动换道 · 长按路面加速',270,901,16,C.mute,'normal','center');
     if(playing){
       const x=473,y=664,r=45,cooling=g.pulseCooldown>0;
       c.save();c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fillStyle=cooling?'rgba(20,43,53,.42)':'rgba(24,65,68,.48)';c.fill();c.strokeStyle=cooling?'rgba(205,232,224,.32)':'rgba(151,255,221,.72)';c.lineWidth=2;c.stroke();
@@ -250,7 +252,7 @@ class RoadKingApp {
       this.txt(cooling?Math.ceil(g.pulseCooldown)+'s':'✦',x,y-9,cooling?23:30,cooling?C.white:C.cyan,'bold','center');this.txt('气浪',x,y+21,15,C.white,'bold','center');c.restore();
       this.buttons.push({x:x-r,y:y-r,w:r*2,h:r*2,circle:true,key:'气浪技能',disabled:cooling,action:()=>g.pulse()});
     }
-    this.txt(g.collisionStopped?'碰撞停车 · 滑到旁边车道重新起步':'自动提速 · 提前观察车流',270,934,15,C.mute,'normal','center');
+    this.txt(g.collisionStopped?'碰撞停车 · 滑到旁边车道重新起步':g.throttle?'正在加速 · 松手恢复巡航':'自动提速 · 长按路面加速',270,934,15,C.mute,'normal','center');
   }
   scrim(){this.ctx.fillStyle='rgba(3,12,19,.83)';this.ctx.fillRect(0,0,W,H);this.buttons=[];}
   drawPause(){
