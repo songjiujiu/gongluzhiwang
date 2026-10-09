@@ -1,7 +1,7 @@
 {
   "archive": "公路之王_实时三维版.zip",
-  "bytes": 17915548,
-  "sha256": "2f9ac9517bb2ee41d05b31b189290e6b393cbb21887e660d2d19ff3b265e367e",
+  "bytes": 18663440,
+  "sha256": "2ca9f9de889eb029368b6fbe7955c4b4fb05eb6f98fb7c23f05529e228fc72c3",
   "importDirectory": "公路之王",
   "files": [
     "art/audio/lotus-idle.mp3",
@@ -49,6 +49,8 @@
     "research/blender-preview/realtime-pulse-320x568.png",
     "research/blender-preview/realtime-pulse-390x844.png",
     "research/blender-preview/realtime-ui-smoke.json",
+    "research/blender-preview/recovery-rear-queues-320x568.png",
+    "research/blender-preview/recovery-rear-queues-390x844.png",
     "research/blender-preview/result-320x568.png",
     "research/blender-preview/result-390x844.png",
     "research/blender-preview/tier-music.json",
@@ -103,7 +105,7 @@
   ],
   "zipIntegrity": "passed",
   "platform": "Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD",
-  "verification": "42 Node tests; four difficulty tiers and actual browser music playback switching, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
+  "verification": "44 Node tests; four difficulty tiers and actual browser music playback switching, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
   "notVerified": [
     "Blender art version in Douyin IDE simulator",
     "Android/iOS phone",

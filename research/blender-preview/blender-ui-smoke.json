@@ -88,16 +88,16 @@
             "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/barrier.png",
             "complete": true
           },
-          "rock": {
-            "width": 256,
-            "height": 192,
-            "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/rock.png",
-            "complete": true
-          },
           "tree": {
             "width": 256,
             "height": 384,
             "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/tree.png",
+            "complete": true
+          },
+          "rock": {
+            "width": 256,
+            "height": 192,
+            "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/rock.png",
             "complete": true
           },
           "hero": {
@@ -110,6 +110,7 @@
       },
       "screenshots": [
         "menu-390x844.png",
+        "recovery-rear-queues-390x844.png",
         "merge-waits-for-neighbour-390x844.png",
         "merge-after-neighbour-clears-390x844.png",
         "gameplay-390x844.png",
@@ -118,6 +119,13 @@
         "collision-stop-390x844.png",
         "result-390x844.png"
       ],
+      "recoveryWithRearQueues": {
+        "stopped": false,
+        "speed": 21.599999999999987,
+        "lane": 1,
+        "x": 1,
+        "collisions": 1
+      },
       "blockedMerge": {
         "x": -1,
         "lane": -1,
@@ -274,22 +282,10 @@
         "loaded": 8,
         "errors": [],
         "images": {
-          "car-blue": {
+          "car-orange": {
             "width": 256,
             "height": 384,
-            "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
-            "complete": true
-          },
-          "car-silver": {
-            "width": 256,
-            "height": 384,
-            "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
-            "complete": true
-          },
-          "car-player": {
-            "width": 256,
-            "height": 384,
-            "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
+            "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
             "complete": true
           },
           "barrier": {
@@ -304,10 +300,22 @@
             "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/tree.png",
             "complete": true
           },
-          "car-orange": {
+          "car-player": {
             "width": 256,
             "height": 384,
-            "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
+            "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
+            "complete": true
+          },
+          "car-silver": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
+            "complete": true
+          },
+          "car-blue": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
             "complete": true
           },
           "rock": {
@@ -326,6 +334,7 @@
       },
       "screenshots": [
         "menu-320x568.png",
+        "recovery-rear-queues-320x568.png",
         "merge-waits-for-neighbour-320x568.png",
         "merge-after-neighbour-clears-320x568.png",
         "gameplay-320x568.png",
@@ -334,6 +343,13 @@
         "collision-stop-320x568.png",
         "result-320x568.png"
       ],
+      "recoveryWithRearQueues": {
+        "stopped": false,
+        "speed": 21.599999999999987,
+        "lane": 1,
+        "x": 1,
+        "collisions": 1
+      },
       "blockedMerge": {
         "x": -1,
         "lane": -1,

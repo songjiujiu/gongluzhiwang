@@ -345,6 +345,27 @@ test('changing into a blocked neighbouring lane keeps the car stopped', () => {
   assert.equal(game.collisionStopped, false);
 });
 
+test('a crash halfway through a lane change resumes in the clear destination',()=>{
+  const game=fresh();noSpawns(game);
+  game.lane=1;game.playerX=.5;
+  car(game,0,0);game._updateTraffic(.001);
+  assert.equal(game.collisionStopped,true);
+  assert.ok(game.collisionX>.49&&game.collisionX<.51);
+  game.update(.2);
+  assert.equal(game.playerX,1);assert.equal(game.collisionStopped,false);
+  game.update(1);assert.ok(game.speed>0);assert.equal(game.collisions,1);
+});
+
+test('rear queues in all lanes do not lock a clear recovery lane',()=>{
+  const game=fresh();noSpawns(game);car(game);game.update(.01);
+  for(const lane of [-1,0,1]){const rear=car(game,lane,-4.7);rear.speed=rear.baseSpeed=0;}
+  game.changeLane(1);game.update(.2);
+  assert.equal(game.collisionStopped,false);
+  game.update(1);assert.ok(game.speed>0);
+  const rear=game.traffic.find(c=>c.lane===1);assert.ok(rear.z<=-4.7);
+  assert.equal(game.collisions,1);
+});
+
 test('signalled traffic waits for an occupied destination, then merges when it clears', () => {
   for (const kind of ['car', 'barrier']) {
     const game = fresh(); noSpawns(game);

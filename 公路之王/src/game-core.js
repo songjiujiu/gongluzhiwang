@@ -120,8 +120,12 @@ class RoadKingCore {
     this._distanceScore = distanceScore;
     this.playerX = moveTowards(this.playerX, this.lane, dt * 5);
     this._updateTraffic(dt);
-    if (this.collisionStopped && Math.abs(this.playerX - this.collisionX) >= 0.8 && Math.abs(this.playerX - this.lane) < 0.01 &&
-        !this.traffic.some(car => Math.abs(car.x - this.playerX) < 0.65 && Math.abs(car.z) < 5.5)) {
+    // A completed move into a physically clear lane is enough to restart.
+    // The crash may happen halfway through a lane change, so displacement from
+    // collisionX is not a reliable clearance check. Queued cars behind the
+    // rear bumper must not lock the player at zero speed either.
+    if (this.collisionStopped && Math.abs(this.playerX - this.lane) < 0.01 &&
+        !this.traffic.some(car => Math.abs(car.x - this.playerX) < 0.65 && car.z > -3.5 && car.z < 5.5)) {
       this.collisionStopped = false;
       this._message('已避开碰撞 · 从静止重新加速', 2.5);
       this._emit('collision-recovered', { lane: this.lane });

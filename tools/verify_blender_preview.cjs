@@ -132,6 +132,18 @@ function assertAssets(assets) {
       const checks = { assets, screenshots: [] };
       checks.screenshots.push(await snapshot(page, 'menu-' + size));
       await click(page, '开始');
+      checks.recoveryWithRearQueues=await page.evaluate(()=>{
+        const app=roadKingApp,g=app.game;g._nextTraffic=Infinity;g.lane=1;g.playerX=.5;
+        g.traffic=[g._car(0,0)];g._updateTraffic(.001);
+        for(const lane of [-1,0,1]){const rear=g._car(lane,-4.7);rear.speed=rear.baseSpeed=0;g.traffic.push(rear);}
+        app.update(1);app.draw();
+        return {stopped:g.collisionStopped,speed:g.speed,lane:g.lane,x:g.playerX,collisions:g.collisions};
+      });
+      assert.equal(checks.recoveryWithRearQueues.stopped,false);
+      assert.ok(checks.recoveryWithRearQueues.speed>0);
+      assert.equal(checks.recoveryWithRearQueues.collisions,1);
+      checks.screenshots.push(await snapshot(page,'recovery-rear-queues-'+size));
+      await page.evaluate(()=>roadKingApp.start());
       // Controlled reproduction of the reported cross-lane clipping. The long
       // natural run below restarts afterward and uses only public driving inputs.
       checks.blockedMerge = await page.evaluate(() => {
