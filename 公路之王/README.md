@@ -1,8 +1,8 @@
 # 公路之王 · 单关无尽版
 
-原生 JavaScript + Canvas 2D 竖屏小游戏。只有一条无限延伸的公路：存活越久，车辆越快，障碍越密集，连续换道与预判要求越高。耐久耗尽后结束，挑战最高分、最长距离和最长存活时间。
+原生 JavaScript + WebGL 三维场景 / Canvas 界面竖屏小游戏。只有一条无限延伸的公路：存活越久，车辆越快，障碍越密集，连续换道与预判要求越高。耐久耗尽后结束，挑战最高分、最长距离和最长存活时间。
 
-当前画面使用 Blender 建模并预渲染的车辆、施工路障和景观 PNG，配合海岸公路与新界面。游戏仍通过原生 Canvas 运行，模型源文件位于上一级 `art/blender/`；详见 [Blender 美术说明](../docs/blender-art.md)。
+当前游戏直接加载 Blender 导出的压缩三维网格，使用实时 WebGL 绘制车辆、路障、棕榈和岩石，搭配同一透视下的道路、护栏、山体和海面。镜头跟随换道，保证主车保持在屏幕内。PNG 用于菜单展示与兼容后备画面。模型源文件位于上一级 `art/blender/`；详见 [Blender 美术说明](../docs/blender-art.md)。
 
 ## 导入与启动
 
@@ -42,7 +42,7 @@ node preview/serve.js 4179
 
 访问 [http://127.0.0.1:4179/](http://127.0.0.1:4179/)。若端口已有服务，直接访问并刷新。浏览器与抖音环境加载同一份 `game-core.js` 和 `game-app.js`。浏览器预览工具不需要放入抖音发布包。
 
-规则与平台测试 **25/25 通过**。覆盖无尽规则及资源加载、缓存与缺图重试；6 个随机种子各驾驶 360 秒，只观察可见车流并换道，全部零碰撞。Blender 新画面的浏览器验证脚本为 `tools/verify_blender_preview.cjs`，使用本机已有 Playwright 与 Chrome，截图和报告输出至 `research/blender-preview/`。
+规则与平台测试 **27/27 通过**。覆盖无尽规则及资源加载、缓存、缺图重试和原生网格文件读取。`tools/verify_realtime_preview.cjs` 验证 WebGL 状态、换道后主车完整显示、气浪冷却和暂停；`tools/verify_blender_preview.cjs` 验证长时间车流与结算。实际游戏截图和报告输出至 `research/blender-preview/`。
 
 本次验证范围为 Node 规则/平台测试与共享源码浏览器预览（390×844、320×568）。本次无尽修改尚未在抖音模拟器或手机真机重验，也未上传、审核或发布。`research/douyin-preview/` 中的记录与旧版 PDF 是原三关版本的历史资料。
 

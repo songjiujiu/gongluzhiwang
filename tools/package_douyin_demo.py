@@ -9,6 +9,10 @@ target = root / 'deliverables'
 target.mkdir(exist_ok=True)
 verification = json.loads((root / 'research/blender-preview/blender-ui-smoke.json').read_text(encoding='utf-8'))
 assert verification.get('passed') is True, 'Visual verification must pass before packaging'
+runtime_verification=json.loads((root/'research/blender-preview/realtime-ui-smoke.json').read_text(encoding='utf-8'))
+assert runtime_verification.get('passed') is True, 'Real-time WebGL visual/input verification must pass'
+for mesh in runtime_verification['meshInputs']:
+    assert hashlib.sha256((root/'公路之王/assets/scene'/mesh['name']).read_bytes()).hexdigest()==mesh['sha256'],'Runtime geometry changed after verification'
 model_verification = json.loads((root / 'art/blender/model-verification.json').read_text(encoding='utf-8'))
 assert model_verification.get('passed') is True, 'Editable source geometry must pass inspection'
 for asset in verification['renderInputs']:
@@ -33,12 +37,14 @@ files.extend(root / p for p in (
     'tools/blender/reference_models.py',
     'tools/blender/render_reference_scene.py',
     'tools/blender/verify_model_source.py',
+    'tools/blender/export_runtime_meshes.py',
     'art/blender/model-verification.json',
     'tools/verify_blender_preview.cjs',
+    'tools/verify_realtime_preview.cjs',
 ))
 files.extend(p for p in (root / 'research/blender-preview').glob('*') if p.suffix in ('.json', '.png'))
 assert all(p.is_file() for p in files), 'Missing delivery input'
-archive = target / '公路之王_参考建模v2.zip'
+archive = target / '公路之王_实时三维版.zip'
 with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as z:
     for p in sorted(set(files)):
         z.write(p, p.relative_to(root).as_posix())
@@ -61,8 +67,8 @@ report = {
     'importDirectory':'公路之王',
     'files':names,
     'zipIntegrity':'passed',
-    'platform':'Douyin native Canvas 2D with Blender prerendered PNG assets',
-    'verification':'25 Node tests; Blender model/render outputs and shared-code browser asset/input checks. See research/blender-preview and README for scope.',
+    'platform':'Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD',
+    'verification':'27 Node tests; editable Blender geometry and real-time WebGL browser asset/input checks. See research/blender-preview and README for scope.',
     'notVerified':['Blender art version in Douyin IDE simulator','Android/iOS phone','live upload and publication','phone performance','audio listening'],
 }
 (target / 'delivery-manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')

@@ -53,6 +53,12 @@
 
   const platform = {
     canvas, width, height, ratio, top: 30, bottom: phone ? 18 : 12,
+    createRenderCanvas:()=>document.createElement('canvas'),
+    async loadSceneData(){
+      const [meta,data]=await Promise.all([fetch('/公路之王/assets/scene/meshes.json'),fetch('/公路之王/assets/scene/meshes.bin')]);
+      if(!meta.ok||!data.ok)throw new Error('3D meshes could not be loaded');
+      return{manifest:await meta.json(),binary:await data.arrayBuffer()};
+    },
     now: () => Date.now(),
     frame: callback => window.requestAnimationFrame(callback),
     touches(start, move, end, cancel) { Object.assign(callbacks, { start, move, end, cancel }); },
@@ -130,6 +136,7 @@
   }
   try {
     await load('game-core');
+    await load('scene-renderer');
     const RoadKingApp = await load('game-app');
     window.roadKingApp = new RoadKingApp(platform);
     window.roadKingReady = true;

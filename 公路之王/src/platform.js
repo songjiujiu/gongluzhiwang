@@ -11,6 +11,13 @@ module.exports = function createPlatform(api) {
   const images = Object.create(null);
   return {
     canvas,width,height,ratio,top:Math.max(30,safe.top||0),bottom:Math.max(10,height-(safe.bottom||height)),
+    createRenderCanvas:()=>api.createCanvas(),
+    async loadSceneData(){
+      const fs=api.getFileSystemManager();
+      const read=(filePath,encoding)=>new Promise((resolve,reject)=>fs.readFile({filePath,encoding,success:r=>resolve(r.data),fail:reject}));
+      const [json,binary]=await Promise.all([read('assets/scene/meshes.json','utf8'),read('assets/scene/meshes.bin')]);
+      return{manifest:JSON.parse(json),binary};
+    },
     now:()=>Date.now(), frame:fn=>requestAnimationFrame(fn),
     touches(start,move,end,cancel) { bind('onTouchStart',start);bind('onTouchMove',move);bind('onTouchEnd',end);bind('onTouchCancel',cancel); },
     lifecycle(hide,show) { bind('onHide',hide);bind('onShow',show); },

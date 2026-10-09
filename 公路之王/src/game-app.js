@@ -1,4 +1,5 @@
 const Core = require('./game-core');
+const SceneRenderer = require('./scene-renderer');
 const W=540,H=960;
 const C={ink:'#0c202c',panel:'#132d3b',cyan:'#73efd0',white:'#f5f6e9',mute:'#a7bec3',orange:'#ffad70',red:'#ff7967'};
 const BEST_KEY='roadking.endless.best.v1';
@@ -19,6 +20,7 @@ class RoadKingApp {
     this.muted=!!p.read('roadking.muted.v1');
     const saved=p.read(BEST_KEY)||{};this.best={score:number(saved.score),distance:number(saved.distance),elapsed:number(saved.elapsed)};
     this.game=new Core({onEvent:(type,data)=>this.onEvent(type,data)});
+    this.scene=new SceneRenderer(p);
     p.touches(e=>this.touchStart(e),e=>this.touchMove(e),e=>this.touchEnd(e),()=>this.releaseHolds());
     p.lifecycle(()=>{this.releaseHolds();this.game.pause();p.stopSound();},()=>{this.last=p.now();});
     this.last=p.now();
@@ -111,6 +113,11 @@ class RoadKingApp {
   }
   projection(z,x=0){const p=1/(1+Math.max(-8,z)/34),half=242*p;return{x:270+x*half*.66,y:208+530*p,p,half};}
   drawWorld(){
+    if(this.scene.render(this.game,this.clock)){
+      this.ctx.drawImage(this.scene.canvas,0,0,W,H);
+      for(const car of this.game.traffic){if(car.warningTimer>0&&car.signalDirection&&car.z>0&&car.z<120){const a=this.scene.project([car.x*3.1,2.3,-car.z]);if(a){this.rr(a.x-32,a.y-24,64,24,7,C.orange);this.txt(car.signalDirection<0?'← 变线':'变线 →',a.x,a.y-12,13,C.ink,'bold','center');}}}
+      return;
+    }
     const c=this.ctx,g=this.game,menu=g.mode==='menu',travel=menu?this.clock*12:g.distance*.75;
     const sky=c.createLinearGradient(0,0,0,330);sky.addColorStop(0,'#54809b');sky.addColorStop(.50,'#e4ae97');sky.addColorStop(.82,'#ffdfaa');sky.addColorStop(1,'#efe5be');c.fillStyle=sky;c.fillRect(0,0,W,H);
     const glow=c.createRadialGradient(430,221,5,430,221,133);glow.addColorStop(0,'rgba(255,243,179,.75)');glow.addColorStop(1,'rgba(255,225,169,0)');c.fillStyle=glow;c.fillRect(290,84,250,270);
@@ -223,6 +230,7 @@ class RoadKingApp {
     this.rr(12,117,516,65,14,'rgba(13,34,45,.94)','#3d5861');this.txt('存活 '+duration(g.elapsed),27,139,18,C.white,'bold');this.txt(distance(g.distance),510,139,19,C.white,'bold','right');this.txt('强度 '+difficulty.tier+' · '+difficulty.label,27,166,14,danger?C.orange:C.cyan,'bold');
     for(let i=0;i<6;i++)this.rr(382+i*22,161,16,6,3,i<difficulty.tier?danger?C.orange:C.cyan:'#3a515b');
     if(playing&&g.messageTimer>0&&g.message){const message=String(g.message);this.rr(20,199,500,42,12,'rgba(10,27,38,.93)');this.txt(message,270,220,message.length>27?13:16,C.white,'bold','center');}
+    if(playing&&this.scene.status!=='ready'){this.rr(20,199,500,42,12,'rgba(10,27,38,.96)');this.txt(this.scene.status==='failed'?'画面加载失败 · 请重新编译':'正在加载三维场景…',270,220,16,C.orange,'bold','center');}
     if(playing&&g.elapsed<7){this.rr(111,276,318,42,12,'rgba(10,27,38,.88)');this.txt('← 左右滑动，连续闪避 →',270,297,18,C.white,'bold','center');}
     const controls=c.createLinearGradient(0,844,0,H);controls.addColorStop(0,'#163747');controls.addColorStop(1,'#0b202e');c.fillStyle=controls;c.fillRect(0,844,W,116);this.line(0,844,W,844,'#769082');
     this.txt('←',99,875,34,C.cyan,'bold','center');this.txt('滑动驾驶',270,872,24,C.white,'bold','center');this.txt('→',441,875,34,C.cyan,'bold','center');this.txt('左滑 / 右滑 · 每次换一条车道',270,901,16,C.mute,'normal','center');

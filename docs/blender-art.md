@@ -16,13 +16,15 @@
 
 车辆控制网格和细节由 `tools/blender/reference_models.py` 构建，主脚本保留材质、灯光、渲染与资源锚点。`art/blender/reference-scene.blend` 和 `reference-scene.png` 是使用同一组实际模型制作的海岸场景与渲染，可通过 `tools/blender/render_reference_scene.py` 重建。场景中的道路、海面、山石和护栏都是 Blender 几何与程序材质。
 
-这是根据单张参考图进行的可编辑三维重建，不是逐像素复制。参考图没有尺寸与其他角度信息，隐藏表面由建模推断；车型轮廓、灯组及材质仍与生成参考存在差异。游戏保留原生 Canvas 道路与追尾相机，海岸场景展示渲染未作为静态背景替换游戏道路。
+这是根据单张参考图进行的可编辑三维重建，不是逐像素复制。参考图没有尺寸与其他角度信息，隐藏表面由建模推断；车型轮廓、灯组及实时材质仍与生成参考存在差异。海岸场景独立展示渲染不作为游戏效果的验收依据。
 
 ## 渲染方式
 
-模型由 Blender 创建并预渲染成透明图片，游戏通过原生 Canvas 2D 的 `drawImage` 绘制，沿用现有透视缩放、深度排序与三车道逻辑。这是 **Blender 模型预渲染素材**，游戏运行时仍为抖音原生 Canvas，并未改成实时 3D 引擎。
+当前为 **实时 WebGL 三维场景**。`tools/blender/export_runtime_meshes.py` 将完整模型的 evaluated 网格简化并导出为 `公路之王/assets/scene/meshes.json` 和 `meshes.bin`，保留平滑法线和材质分组。运行时使用低机位跟车镜头、深度测试、道路纹理、车漆环境反射、阴影、海面和雾效，所有物体共用三维坐标。Canvas 只负责菜单、HUD 和触控界面，并合成离屏 WebGL 画布。
 
-模型文件与渲染脚本放在抖音项目目录外，手机运行只需要 PNG；不需要安装 Blender、访问外部素材服务器或加载 `.blend` 文件。道路、护栏、天际线、光效和交互界面由 Canvas 绘制，与 Blender 车辆及路边模型组合。
+网格采用 16 位坐标与法线量化，运行时二进制约 2.2 MB，不需要安装 Blender、访问 CDN 或加载 `.blend`。原生平台使用第二个 `tt.createCanvas()` 建立离屏 WebGL 画布，通过本地文件系统读取网格；浏览器使用同一渲染模块。PNG 保留给菜单与兼容后备画面。WebGL 加载失败会明确显示“画面加载失败 · 请重新编译”，不能把后备画面当作三维版本验收。
+
+完整模型重建后，另执行 `blender --background --python tools/blender/export_runtime_meshes.py` 更新运行时网格。`research/blender-preview/realtime-ui-smoke.json` 和 `realtime-game-*.png` 是实际游戏浏览器验证。实时材质不是 Cycles 光线追踪，手机的性能与离屏合成兼容性尚未验证。
 
 ## 素材用途
 

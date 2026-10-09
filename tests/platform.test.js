@@ -27,6 +27,18 @@ function fixture(info = {}) {
   return { platform: module.exports(api), api, events, storage, audio, images, canvas, frames };
 }
 
+test('scene files use local native filesystem JSON and binary reads',async()=>{
+  const {platform,api}=fixture(),binary=new ArrayBuffer(24),reads=[];
+  api.getFileSystemManager=()=>({readFile(options){reads.push(options);options.success({data:options.encoding?'{"models":{},"stride":12}':binary});}});
+  const scene=await platform.loadSceneData();
+  assert.equal(scene.manifest.stride,12);assert.equal(scene.binary,binary);
+  assert.deepEqual(reads.map(r=>r.filePath),['assets/scene/meshes.json','assets/scene/meshes.bin']);
+});
+test('missing native scene file rejects instead of returning empty geometry',async()=>{
+  const {platform,api}=fixture();api.getFileSystemManager=()=>({readFile(options){options.fail(new Error('missing scene'));}});
+  await assert.rejects(platform.loadSceneData(),/missing scene/);
+});
+
 test('Douyin canvas uses CSS dimensions, caps backing scale at two and respects safe area', () => {
   const { platform, canvas } = fixture();
   assert.equal(platform.width, 390); assert.equal(platform.height, 844); assert.equal(platform.ratio, 2);

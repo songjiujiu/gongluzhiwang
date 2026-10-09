@@ -1,6 +1,6 @@
 {
   "date": "2026-10-09",
-  "kind": "Actual Blender-rendered PNG sprites composited by browser Canvas; not real-time 3D, a Douyin simulator, or a phone test",
+  "kind": "Real-time WebGL Blender geometry and Canvas HUD; legacy PNG/menu assets also checked. Not a Douyin simulator or phone test.",
   "source": "http://127.0.0.1:4179/",
   "renderInputs": [
     {
@@ -58,12 +58,6 @@
         "loaded": 8,
         "errors": [],
         "images": {
-          "car-player": {
-            "width": 256,
-            "height": 384,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
-            "complete": true
-          },
           "car-silver": {
             "width": 256,
             "height": 384,
@@ -74,6 +68,12 @@
             "width": 256,
             "height": 384,
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
+            "complete": true
+          },
+          "car-player": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
             "complete": true
           },
           "car-orange": {
@@ -94,16 +94,16 @@
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/tree.png",
             "complete": true
           },
-          "rock": {
-            "width": 256,
-            "height": 192,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/rock.png",
-            "complete": true
-          },
           "hero": {
             "width": 768,
             "height": 512,
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/hero.png",
+            "complete": true
+          },
+          "rock": {
+            "width": 256,
+            "height": 192,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/rock.png",
             "complete": true
           }
         }
@@ -234,14 +234,18 @@
         "collisions": 4
       },
       "drawCalls": {
-        "tree.png": 144,
-        "rock.png": 144,
-        "car-blue.png": 7,
-        "barrier.png": 15,
-        "car-orange.png": 11,
-        "car-silver.png": 17,
-        "hero.png": 3,
-        "car-player.png": 9
+        "hero.png": 3
+      },
+      "runtimeScene": {
+        "status": "ready",
+        "models": [
+          "player",
+          "suv",
+          "barrier",
+          "tree",
+          "rock"
+        ],
+        "glError": 0
       },
       "buttonsInsideViewport": true,
       "issues": {
@@ -262,6 +266,12 @@
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-player.png",
             "complete": true
           },
+          "car-silver": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
+            "complete": true
+          },
           "car-orange": {
             "width": 256,
             "height": 384,
@@ -274,28 +284,22 @@
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
             "complete": true
           },
-          "car-silver": {
-            "width": 256,
-            "height": 384,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
-            "complete": true
-          },
           "barrier": {
             "width": 384,
             "height": 256,
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/barrier.png",
             "complete": true
           },
-          "rock": {
-            "width": 256,
-            "height": 192,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/rock.png",
-            "complete": true
-          },
           "tree": {
             "width": 256,
             "height": 384,
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/tree.png",
+            "complete": true
+          },
+          "rock": {
+            "width": 256,
+            "height": 192,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/rock.png",
             "complete": true
           },
           "hero": {
@@ -432,14 +436,18 @@
         "collisions": 4
       },
       "drawCalls": {
-        "tree.png": 144,
-        "rock.png": 144,
-        "car-blue.png": 7,
-        "barrier.png": 15,
-        "car-orange.png": 11,
-        "car-silver.png": 17,
-        "hero.png": 3,
-        "car-player.png": 9
+        "hero.png": 3
+      },
+      "runtimeScene": {
+        "status": "ready",
+        "models": [
+          "player",
+          "suv",
+          "barrier",
+          "tree",
+          "rock"
+        ],
+        "glError": 0
       },
       "buttonsInsideViewport": true,
       "issues": {
@@ -465,16 +473,16 @@
           "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
           "complete": true
         },
-        "car-blue": {
-          "width": 256,
-          "height": 384,
-          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
-          "complete": true
-        },
         "car-orange": {
           "width": 256,
           "height": 384,
           "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
+          "complete": true
+        },
+        "car-blue": {
+          "width": 256,
+          "height": 384,
+          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
           "complete": true
         },
         "barrier": {

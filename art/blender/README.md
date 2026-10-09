@@ -12,7 +12,9 @@
 
 v2 根据 `reference-v2.png` 重新构建青绿色流线轿跑、银灰 SUV 和橙色轿车。玩家车使用连续曲面车身、真实轮拱开口、烟黑玻璃、贴合式窗柱、小尾翼、多辐轮毂、贯穿尾灯、扩散器和椭圆排气口，取消旧版白色条纹和高尾翼。施工路障改为橙白双层警示板和混凝土底座，棕榈叶使用曲面与羽状叶片。
 
-`reference-scene.blend` 和 `reference-scene.png` 是同一组模型的实际 Blender 海岸场景和渲染。车辆细节脚本为 `../../tools/blender/reference_models.py`，海岸展示脚本为 `../../tools/blender/render_reference_scene.py`。它们是依据单张生成参考图的三维重建，隐藏结构为建模推断，与参考图并非完全一致；游戏内道路仍使用 Canvas 绘制。
+`reference-scene.blend` 和 `reference-scene.png` 是同一组模型的独立 Blender 海岸场景和渲染。车辆细节脚本为 `../../tools/blender/reference_models.py`，海岸展示脚本为 `../../tools/blender/render_reference_scene.py`。它们是依据单张生成参考图的三维重建，隐藏结构为建模推断，与参考图并非完全一致。
+
+当前游戏改为 WebGL 实时三维渲染，实际游戏截图见 `../../research/blender-preview/realtime-game-390x844.png`，不以独立 Cycles 展示图代替游戏效果。`../../tools/blender/export_runtime_meshes.py` 导出约 2.2 MB 的量化网格与材质分组，文件位于 `../../公路之王/assets/scene/`。道路、护栏、山体、海面和车辆使用统一透视；Canvas 用于 HUD 和合成。
 
 ## 重建
 
@@ -28,7 +30,7 @@ v2 根据 `reference-v2.png` 重新构建青绿色流线轿跑、银灰 SUV 和�
 & 'C:\Program Files\Blender Foundation\Blender 5.2\blender.exe' --background --threads 6 --python tools\blender\build_assets.py -- --only car-player,hero,showcase
 ```
 
-渲染使用 CPU、6 线程、AgX 色彩变换以及 Cycles 降噪。游戏内车图为正后上方的正交投影，车辆沿世界 `+Y` 方向行驶。菜单 `hero.png` 为同一辆完整 3D 模型的斜后方视角。游戏 PNG 均无烘焙地面，供 Canvas 统一添加接地阴影。
+兼容 PNG 渲染使用 CPU、6 线程、AgX 色彩变换以及 Cycles 降噪，沿用正后上方正交投影和 Blender `+Y` 前向。菜单 `hero.png` 为同一辆完整 3D 模型的斜后方视角。实时网格转换为 X 右、Y 上、-Z 前向，使用透视跟车镜头和运行时阴影。
 
 所有 sprite 的接地锚点为归一化坐标 `[0.5, 0.92]`。绘制时可令 PNG 的该点与游戏对象地面位置重合。`contentProjection` 是几何投影范围；抗锯齿后的实际 alpha 范围可能相差少量像素。
 

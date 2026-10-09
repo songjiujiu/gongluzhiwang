@@ -80,7 +80,8 @@ async function initializePage(browser, viewport, failedAsset) {
     console.error(JSON.stringify({ viewport, initializationFailure: diagnostic, issues }));
     throw error;
   }
-  await page.evaluate(async () => { await roadKingApp.artReady; roadKingApp.draw(); });
+  await page.evaluate(async () => { await Promise.all([roadKingApp.artReady,roadKingApp.scene.ready]); roadKingApp.draw(); });
+  assert.equal(await page.evaluate(()=>roadKingApp.scene.status),'ready');
   const assets = await page.evaluate(() => ({ loaded: roadKingApp.artLoaded, errors: roadKingApp.artErrors,
     images: Object.fromEntries(Object.entries(roadKingApp.art).filter(([, image]) => image).map(([key, image]) => [key, {
       width: image.naturalWidth || image.width, height: image.naturalHeight || image.height, source: image.src,
@@ -120,8 +121,8 @@ function assertAssets(assets) {
 }
 
 (async () => {
-  const browser = await chromium.launch({ headless: true, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe' });
-  const report = { date: new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai' }).format(new Date()), kind: 'Actual Blender-rendered PNG sprites composited by browser Canvas; not real-time 3D, a Douyin simulator, or a phone test', source: url, renderInputs: renderInputs(), viewports: {}, passed: false };
+  const browser = await chromium.launch({ headless: true, executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--enable-unsafe-swiftshader'] });
+  const report = { date: new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai' }).format(new Date()), kind: 'Real-time WebGL Blender geometry and Canvas HUD; legacy PNG/menu assets also checked. Not a Douyin simulator or phone test.', source: url, renderInputs: renderInputs(), viewports: {}, passed: false };
   try {
     for (const viewport of [{ width: 390, height: 844 }, { width: 320, height: 568 }]) {
       const size = viewport.width + 'x' + viewport.height;
@@ -160,7 +161,9 @@ function assertAssets(assets) {
       assert.ok(checks.result.collisions >= 4);
       checks.screenshots.push(await snapshot(page, 'result-' + size));
       checks.drawCalls = await page.evaluate(() => window.blenderDrawCalls);
-      for (const name of assetNames) assert.ok(checks.drawCalls[name + '.png'] > 0, name + ' must actually be drawn');
+      assert.ok(checks.drawCalls['hero.png']>0,'Menu hero must actually be drawn');
+      checks.runtimeScene=await page.evaluate(()=>({status:roadKingApp.scene.status,models:Object.keys(roadKingApp.scene.models),glError:roadKingApp.scene.gl.getError()}));
+      assert.equal(checks.runtimeScene.status,'ready');assert.equal(checks.runtimeScene.glError,0);
       checks.buttonsInsideViewport = await page.evaluate(() => roadKingApp.buttons.every(button => button.x >= 0 && button.y >= 0 && button.x + button.w <= 540 && button.y + button.h <= 960));
       assert.ok(checks.buttonsInsideViewport);
       assert.deepEqual(issues, { pageErrors: [], consoleErrors: [], failedRequests: [], badResponses: [] });
@@ -186,7 +189,7 @@ function assertAssets(assets) {
     const fallbackScreenshot = await snapshot(fallback.page, 'fallback-missing-player-390x844');
     report.missingAssetFallback = { injectedFailure: 'car-player.png returns HTTP 404', assets: fallback.assets,
       run: fallbackRun, screenshot: fallbackScreenshot, issues: fallback.issues,
-      expectedNetworkError: 'Only the deliberately missing car-player.png request may fail; gameplay continues using vector fallback.' };
+      expectedNetworkError: 'Only the deliberately missing legacy car-player.png request may fail; gameplay continues using real-time geometry.' };
     await fallback.context.close();
     report.renderInputsAtFinish = renderInputs();
     assert.deepEqual(report.renderInputsAtFinish, report.renderInputs, 'Rendered PNG files changed during verification; rerun against the final files');
