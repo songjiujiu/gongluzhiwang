@@ -16,6 +16,16 @@ test('four tiers gate merges and roadblocks while increasing speed and density',
  assert.ok(rows[2].barriers>0);assert.ok(rows[2].count>rows[0].count);
  for(let i=1;i<4;i++){assert.ok(rows[i].cruiseSpeed>rows[i-1].cruiseSpeed);assert.ok(rows[i].spawnInterval<rows[i-1].spawnInterval);}
 });
+test('failed or interrupted climax playback retries without a frame-by-frame play storm',async()=>{
+ let time=0,plays=0,interrupt;
+ const music=createMusic((file,volume,cb)=>{interrupt=cb;return{play(){plays++;return plays===1?Promise.reject(new Error('decoder not ready')):Promise.resolve();},pause(){},seek(){}};},()=>time);
+ music.set({active:true,tier:4});await Promise.resolve();
+ for(let i=0;i<100;i++)music.set({active:true,tier:4});assert.equal(plays,1);
+ time=500;music.set({active:true,tier:4});assert.equal(plays,2);
+ interrupt();time=1000;music.set({active:true,tier:4});assert.equal(plays,3);
+ interrupt();time=1500;music.set({active:false,tier:4});assert.equal(plays,3);
+ music.set({active:true,tier:4});assert.equal(plays,4);
+});
 test('music switches once at tiers 3 and 4, pauses and resumes without restarting',()=>{
  const clips=[];const music=createMusic((file,volume)=>{const p={file,volume,plays:0,pauses:0,seeks:[],play(){this.plays++},pause(){this.pauses++},seek(t){this.seeks.push(t)}};clips.push(p);return p;});
  for(const tier of [1,2])music.set({active:true,tier});assert.equal(clips.length,0);

@@ -10,8 +10,10 @@ module.exports = function createPlatform(api) {
   const safe = info.safeArea || {top:0,bottom:height};
   const bind = (name, cb) => { if (typeof api[name] === 'function') api[name](cb); };
   const audio = {};
-  const music=createMusicPlayer((file,volume)=>{
-    const a=api.createInnerAudioContext();a.src=file;a.loop=true;a.volume=volume;if(a.onError)a.onError(()=>{});
+  const music=createMusicPlayer((file,volume,onInterrupted)=>{
+    const a=api.createInnerAudioContext();a.src=file;a.loop=true;a.volume=volume;
+    if(a.onError)a.onError(onInterrupted);
+    if(a.onEnded)a.onEnded(()=>{if(a.seek)a.seek(0);onInterrupted();});
     return {play:()=>a.play(),pause:()=>a.pause?a.pause():a.stop(),seek:t=>{if(a.seek)a.seek(t);}};
   });
   let engine = null, engineIdle = null, enginePlaying = false;

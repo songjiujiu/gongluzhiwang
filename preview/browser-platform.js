@@ -99,9 +99,11 @@
       for (const audio of Object.values(sounds)) { audio.pause(); audio.currentTime = 0; }
     },
     setMusic(state){
-      if(!musicPlayer)musicPlayer=modules['music-player']((file,volume)=>{
+      if(!musicPlayer)musicPlayer=modules['music-player']((file,volume,onInterrupted)=>{
         const a=new Audio('/公路之王/'+file);a.loop=true;a.volume=volume;
-        return {play:()=>{const p=a.play();if(p&&p.catch)p.catch(()=>{});},pause:()=>a.pause(),seek:t=>{a.currentTime=t;}};
+        a.addEventListener('error',onInterrupted);
+        a.addEventListener('ended',()=>{a.currentTime=0;onInterrupted();});
+        return {play:()=>a.play(),pause:()=>a.pause(),seek:t=>{a.currentTime=t;}};
       });musicPlayer.set(state);
     },
     setEngine({active,volume,rate,idleVolume}) {

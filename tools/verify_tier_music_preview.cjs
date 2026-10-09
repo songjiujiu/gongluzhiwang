@@ -14,6 +14,12 @@ const {chromium}=require('C:/Users/songx/.cache/codex-runtimes/codex-primary-run
   await page.evaluate(()=>roadKingApp.update(30));report.tier2=await read();assert.equal(report.tier2.clips.length,0);
   await page.evaluate(()=>roadKingApp.update(30));await page.waitForFunction(()=>testAudio.some(a=>a.src.includes('music-build')&&a.currentTime>.1),null,{polling:50});report.tier3=await read();assert.equal(report.tier3.clips[0].paused,false);
   await page.evaluate(()=>roadKingApp.update(30));await page.waitForFunction(()=>testAudio.some(a=>a.src.includes('music-climax')&&a.currentTime>.1),null,{polling:50});report.tier4=await read();assert.equal(report.tier4.clips[0].paused,true);assert.equal(report.tier4.clips[1].paused,false);
+  await page.evaluate(()=>{const a=testAudio.find(a=>a.src.includes('music-climax'));a.currentTime=a.duration-.2;});
+  await page.waitForFunction(()=>testAudio.some(a=>a.src.includes('music-climax')&&a.currentTime<2&&a.currentTime>.05&&!a.paused),null,{polling:50});
+  report.climaxLoop=await read();assert.equal(report.climaxLoop.clips[1].paused,false);
+  await page.evaluate(()=>{const a=testAudio.find(a=>a.src.includes('music-climax'));a.pause();a.dispatchEvent(new Event('error'));});
+  await page.waitForTimeout(550);await page.evaluate(()=>roadKingApp.update(.05));
+  await page.waitForFunction(()=>testAudio.some(a=>a.src.includes('music-climax')&&!a.paused),null,{polling:50});report.interruptionRecovered=await read();
   await page.evaluate(()=>roadKingApp.toggleSound());assert.ok((await read()).clips.every(a=>a.paused));
   await page.evaluate(()=>roadKingApp.toggleSound());assert.equal((await read()).clips[1].paused,false);
   await page.evaluate(()=>roadKingApp.game.pause());assert.ok((await read()).clips.every(a=>a.paused));

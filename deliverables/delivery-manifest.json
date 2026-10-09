@@ -1,7 +1,7 @@
 {
   "archive": "公路之王_实时三维版.zip",
-  "bytes": 18663440,
-  "sha256": "2ca9f9de889eb029368b6fbe7955c4b4fb05eb6f98fb7c23f05529e228fc72c3",
+  "bytes": 18664084,
+  "sha256": "baca084ae4c42459a2fd14aa67a126ab3cdcff86d9a64da350028a3489d54e2c",
   "importDirectory": "公路之王",
   "files": [
     "art/audio/lotus-idle.mp3",
@@ -105,7 +105,7 @@
   ],
   "zipIntegrity": "passed",
   "platform": "Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD",
-  "verification": "44 Node tests; four difficulty tiers and actual browser music playback switching, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
+  "verification": "45 Node tests; four difficulty tiers and actual browser music playback switching, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
   "notVerified": [
     "Blender art version in Douyin IDE simulator",
     "Android/iOS phone",
