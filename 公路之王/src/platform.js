@@ -1,4 +1,5 @@
 // Native Douyin adapter. Does not require a DOM, server, login or network.
+const createEngineAudio=require('./engine-audio');
 module.exports = function createPlatform(api) {
   const canvas = api.createCanvas(), info = api.getSystemInfoSync();
   const width = info.windowWidth || info.screenWidth || 375;
@@ -9,6 +10,23 @@ module.exports = function createPlatform(api) {
   const bind = (name, cb) => { if (typeof api[name] === 'function') api[name](cb); };
   const audio = {};
   let engine = null, engineIdle = null, enginePlaying = false;
+  const engineAudio=createEngineAudio({
+    createContext:()=>api.getAudioContext?api.getAudioContext():null,
+    loadBytes:filePath=>new Promise((resolve,reject)=>api.getFileSystemManager().readFile({filePath,success:r=>resolve(r.data),fail:reject})),
+    onFailure:state=>fallbackEngine(state)
+  });
+  function fallbackEngine({active,volume,rate,idleVolume}){
+    if(!api.createInnerAudioContext)return;
+    try{
+      if(!active){if(enginePlaying)for(const a of [engine,engineIdle]){if(a){if(a.pause)a.pause();else a.stop();}}enginePlaying=false;return;}
+      if(!engine){engine=api.createInnerAudioContext();engine.loop=true;engine.src='audio/engine.wav';if(engine.onError)engine.onError(()=>{enginePlaying=false;});engineIdle=api.createInnerAudioContext();engineIdle.loop=true;engineIdle.src='audio/engine-idle.wav';if(engineIdle.onError)engineIdle.onError(()=>{enginePlaying=false;});}
+      if(Math.abs(engine.volume-volume)>.005||engine.volume==null)engine.volume=volume;
+      if(Math.abs(engineIdle.volume-idleVolume)>.005||engineIdle.volume==null)engineIdle.volume=idleVolume;
+      // Legacy players keep a steady rate; frequent rate setters can interrupt audio.
+      if(engine.playbackRate!==1.25){try{engine.playbackRate=1.25;}catch(_){}}
+      if(!enginePlaying){enginePlaying=true;engine.play();engineIdle.play();}
+    }catch(_){enginePlaying=false;}
+  }
   const images = Object.create(null);
   return {
     canvas,width,height,ratio,top:Math.max(30,safe.top||0),bottom:Math.max(10,height-(safe.bottom||height)),
@@ -47,23 +65,7 @@ module.exports = function createPlatform(api) {
       } catch(_) {}
     },
     stopSound(){Object.keys(audio).forEach(k=>{try{audio[k].stop();}catch(_){}});},
-    setEngine({active,volume,rate,idleVolume}) {
-      if (!api.createInnerAudioContext) return;
-      try {
-        if(!active){if(enginePlaying){for(const a of [engine,engineIdle]){if(a){if(a.pause)a.pause();else a.stop();}}}enginePlaying=false;return;}
-        if(!engine){
-          engine=api.createInnerAudioContext();engine.loop=true;
-          if(engine.onError)engine.onError(()=>{enginePlaying=false;});
-          engine.src='audio/engine.wav';
-          engineIdle=api.createInnerAudioContext();engineIdle.loop=true;
-          if(engineIdle.onError)engineIdle.onError(()=>{enginePlaying=false;});
-          engineIdle.src='audio/engine-idle.wav';
-        }
-        engine.volume=volume;engineIdle.volume=idleVolume;
-        try{engine.playbackRate=rate;}catch(_){}
-        if(!enginePlaying){enginePlaying=true;engine.play();engineIdle.play();}
-      }catch(_){enginePlaying=false;}
-    },
+    setEngine(state) {if(!engineAudio.set(state))fallbackEngine(state);},
     vibrate(){if(api.vibrateShort)api.vibrateShort({fail:()=>{}});}
   };
 };

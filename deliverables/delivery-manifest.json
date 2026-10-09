@@ -1,7 +1,7 @@
 {
   "archive": "公路之王_实时三维版.zip",
-  "bytes": 17279438,
-  "sha256": "fe021fed6b7e7b3431405327d35045d3dd7a75a8554bb44476c7e35e54d440ca",
+  "bytes": 17448073,
+  "sha256": "30657fa0ce74fe9ec6bdf7dffe8d4c80aa7471b46ce1a413295e79ec710ddde5",
   "importDirectory": "公路之王",
   "files": [
     "art/audio/lotus-idle.mp3",
@@ -51,6 +51,7 @@
     "research/blender-preview/realtime-ui-smoke.json",
     "research/blender-preview/result-320x568.png",
     "research/blender-preview/result-390x844.png",
+    "tests/engine-audio.test.js",
     "tests/game-app.test.js",
     "tests/game-core.test.js",
     "tests/platform.test.js",
@@ -88,6 +89,7 @@
     "公路之王/icon.png",
     "公路之王/project.config.json",
     "公路之王/README.md",
+    "公路之王/src/engine-audio.js",
     "公路之王/src/game-app.js",
     "公路之王/src/game-core.js",
     "公路之王/src/platform.js",
@@ -95,7 +97,7 @@
   ],
   "zipIntegrity": "passed",
   "platform": "Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD",
-  "verification": "36 Node tests; engine looping/pitch/volume/lifecycle browser playback checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
+  "verification": "39 Node tests; persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
   "notVerified": [
     "Blender art version in Douyin IDE simulator",
     "Android/iOS phone",

@@ -1,60 +1,85 @@
 {
-  "kind": "Actual Chromium engine playback, speed-driven pitch/volume and lifecycle checks; not native phone or subjective listening verification",
+  "kind": "Persistent WebAudio playback and 15-second rendered PCM continuity; not native phone or subjective listening verification",
   "asset": {
-    "bytes": 98828,
-    "sha256": "dc84438cea67f790cd9e616e7c61b7b702370df279d822373abe3aaad515e927"
+    "bytes": 268172,
+    "sha256": "515632beb9e3734602572648bb57517cfa9ff90746f5221dfcb19d81f3c78608"
   },
-  "passed": true,
   "idleAsset": {
     "bytes": 98828,
     "sha256": "a6cb6ba849ae9e586ca297be887957741fba4a71be6bd413419c2cc4caaa4057"
   },
   "recordingSource": "wikusv / V8 Lotus / Freesound, CC BY 4.0",
+  "passed": true,
   "start": {
-    "duration": 2.24,
-    "loop": true,
+    "backend": "WebAudio buffer loops",
+    "failed": false,
+    "active": true,
+    "contextState": "running",
+    "time": 0,
+    "sourceCount": 2,
+    "durations": [
+      6.08,
+      2.24
+    ],
     "volume": 0.22746666666666668,
-    "rate": 0.9924999999999999,
-    "preservesPitch": false,
-    "paused": false,
-    "speed": 76,
+    "rate": 1.3508333333333333,
     "idleVolume": 0.039999999999999994,
-    "idlePaused": false
+    "speed": 76
   },
   "fast": {
-    "duration": 2.24,
-    "loop": true,
+    "backend": "WebAudio buffer loops",
+    "failed": false,
+    "active": true,
+    "contextState": "running",
+    "time": 0,
+    "sourceCount": 2,
+    "durations": [
+      6.08,
+      2.24
+    ],
     "volume": 0.3384050558164064,
-    "rate": 1.1663019651241635,
-    "preservesPitch": false,
-    "paused": false,
-    "speed": 168.69438139955383,
+    "rate": 1.7177485930399006,
     "idleVolume": 0,
-    "idlePaused": false
+    "speed": 168.69438139955383
   },
-  "loopWrap": true,
   "crashIdle": {
-    "duration": 2.24,
-    "loop": true,
+    "backend": "WebAudio buffer loops",
+    "failed": false,
+    "active": true,
+    "contextState": "running",
+    "time": 0.010666666666666666,
+    "sourceCount": 2,
+    "durations": [
+      6.08,
+      2.24
+    ],
     "volume": 0,
-    "rate": 0.85,
-    "preservesPitch": false,
-    "paused": false,
-    "speed": 0,
+    "rate": 1.05,
     "idleVolume": 0.2,
-    "idlePaused": false
+    "speed": 0
   },
   "recovery": {
-    "duration": 2.24,
-    "loop": true,
+    "backend": "WebAudio buffer loops",
+    "failed": false,
+    "active": true,
+    "contextState": "running",
+    "time": 0.021333333333333333,
+    "sourceCount": 2,
+    "durations": [
+      6.08,
+      2.24
+    ],
     "volume": 0.21372631578947396,
-    "rate": 0.9850000000000001,
-    "preservesPitch": false,
-    "paused": false,
-    "speed": 72.00000000000009,
+    "rate": 1.3350000000000004,
     "idleVolume": 0.04842105263157877,
-    "idlePaused": false
+    "speed": 72.00000000000009
   },
-  "engineInstances": 1,
+  "continuity": {
+    "seconds": 15,
+    "loopPasses": 3.4539473684210527,
+    "minRms": 0.18334822180900992,
+    "maxRms": 0.2623245437764595,
+    "silentWindows": 0
+  },
   "errors": []
 }

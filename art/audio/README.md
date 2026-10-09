@@ -8,6 +8,6 @@
 - `lotus-idle.mp3`：[Idle.wav](https://freesound.org/people/wikusv/sounds/232274/) 的公开高质量音频版本。
 - 同名 WAV：浏览器解码、双声道平均至单声道、22050 Hz PCM，供循环剪辑脚本使用。
 
-重建：`node tools/decode_engine_recordings.cjs`，再运行 `python tools/generate_engine_audio.py`。轰鸣取 7.0–9.4 秒，怠速取 2.0–4.4 秒，各使用 160 毫秒交叉淡化并调整峰值。
+重建：`node tools/decode_engine_recordings.cjs`，再运行 `python tools/generate_engine_audio.py`。行驶引擎取转速稳定的 12.8–19.2 秒，以 320 毫秒交叉淡化、柔和稳幅和少量滤波滚动噪声形成 6.08 秒持续行驶循环；怠速取 2.0–4.4 秒并交叉淡化 160 毫秒。
 
-署名随发行包保存在 `公路之王/audio/CREDITS.md`。当前素材为真实录音，未添加合成振荡器或音乐。
+署名随发行包保存在 `公路之王/audio/CREDITS.md`。引擎主体为真实录音，未添加合成振荡器或音乐。`src/engine-audio.js` 使用持久内存音源与平滑参数控制，避免变速时重播和播放器循环的空隙。

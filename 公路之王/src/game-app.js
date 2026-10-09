@@ -97,7 +97,7 @@ class RoadKingApp {
     if(!this.p.setEngine)return;
     const rev=Math.max(0,Math.min(1,this.game.speed/240));
     const drive=Math.max(0,Math.min(1,this.game.speed/95));
-    this.p.setEngine({active:!this.muted&&!this.hidden&&this.game.mode==='playing',rate:.85+.45*rev,volume:drive*(.24+.14*rev),idleVolume:.20*(1-drive)});
+    this.p.setEngine({active:!this.muted&&!this.hidden&&this.game.mode==='playing',rate:1.05+.95*rev,volume:drive*(.24+.14*rev),idleVolume:.20*(1-drive)});
   }
   toggleSound(){this.muted=!this.muted;this.p.write('roadking.muted.v1',this.muted);if(this.muted)this.p.stopSound();this.syncEngine();}
 

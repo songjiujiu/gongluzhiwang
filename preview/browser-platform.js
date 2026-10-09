@@ -15,6 +15,7 @@
   const held = new Set();
   const sounds = Object.create(null);
   let engine = null, engineIdle = null, engineStarting = false;
+  let engineAudio = null;
   const images = Object.create(null);
 
   function touch(pointer) {
@@ -97,10 +98,15 @@
       for (const audio of Object.values(sounds)) { audio.pause(); audio.currentTime = 0; }
     },
     setEngine({active,volume,rate,idleVolume}) {
+      if(!engineAudio){
+        engineAudio=modules['engine-audio']({createContext:()=>new AudioContext(),loadBytes:file=>fetch('/公路之王/'+file).then(r=>{if(!r.ok)throw new Error('Missing engine audio');return r.arrayBuffer();})});
+        window.roadKingEngine=engineAudio;
+      }
+      if(engineAudio.set({active,volume,rate,idleVolume}))return;
       try {
         if(!active){if(engine)engine.pause();if(engineIdle)engineIdle.pause();return;}
         if(!engine){engine=new Audio('/公路之王/audio/engine.wav');engine.loop=true;engine.preservesPitch=false;engineIdle=new Audio('/公路之王/audio/engine-idle.wav');engineIdle.loop=true;}
-        engine.volume=volume;engine.playbackRate=rate;engineIdle.volume=idleVolume;
+        engine.volume=volume;engine.playbackRate=1.25;engineIdle.volume=idleVolume;
         if((engine.paused||engineIdle.paused)&&!engineStarting){engineStarting=true;Promise.all([engine,engineIdle].filter(a=>a.paused).map(a=>a.play())).catch(()=>{}).finally(()=>{engineStarting=false;});}
       } catch (_) {engineStarting=false;}
     },
@@ -144,6 +150,7 @@
     return module.exports;
   }
   try {
+    await load('engine-audio');
     await load('game-core');
     await load('scene-renderer');
     const RoadKingApp = await load('game-app');

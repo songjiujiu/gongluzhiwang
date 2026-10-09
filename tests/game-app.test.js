@@ -21,7 +21,7 @@ test('engine revs track speed and crash idle, and stop on mute, pause, backgroun
  assert.ok(state().rate>start.rate);assert.ok(state().volume>start.volume);
  a.game.traffic.push(a.game._car(0,0));a.update(.01);
  assert.equal(a.game.collisionStopped,true);assert.equal(state().active,true);
- assert.equal(state().rate,.85);assert.equal(state().volume,0);assert.equal(state().idleVolume,.2);
+ assert.equal(state().rate,1.05);assert.equal(state().volume,0);assert.equal(state().idleVolume,.2);
  a.toggleSound();assert.equal(state().active,false);a.toggleSound();assert.equal(state().active,true);
  a.game.pause();assert.equal(state().active,false);a.game.resume();assert.equal(state().active,true);
  p.life[0]();assert.equal(state().active,false);p.life[1]();assert.equal(state().active,false);

@@ -23,7 +23,7 @@ function fixture(info = {}) {
   for (const name of ['onTouchStart', 'onTouchMove', 'onTouchEnd', 'onTouchCancel', 'onHide', 'onShow'])
     api[name] = callback => { events[name] = callback; };
   const module = { exports: {} };
-  vm.runInNewContext(source, { module, requestAnimationFrame: callback => { frames.push(callback); return frames.length; }, Date });
+  vm.runInNewContext(source, { module, require:name=>require('../公路之王/src/'+name.replace('./','')), requestAnimationFrame: callback => { frames.push(callback); return frames.length; }, Date });
   return { platform: module.exports(api), api, events, storage, audio, images, canvas, frames };
 }
 
@@ -88,7 +88,7 @@ test('engine uses cached roar and idle contexts without restarting or suppressin
   const engine=audio[0];assert.equal(engine.src,'audio/engine.wav');assert.equal(engine.loop,true);
   assert.equal(audio[1].src,'audio/engine-idle.wav');assert.equal(audio[1].loop,true);
   platform.setEngine({active:true,volume:.32,rate:1.3,idleVolume:0});
-  assert.equal(engine.plays,1);assert.equal(engine.volume,.32);assert.equal(engine.playbackRate,1.3);assert.equal(audio[1].volume,0);
+  assert.equal(engine.plays,1);assert.equal(engine.volume,.32);assert.equal(engine.playbackRate,1.25);assert.equal(audio[1].volume,0);
   platform.sound('hit');platform.stopSound();assert.equal(engine.stops,0);
   platform.setEngine({active:false,volume:.1,rate:.55});assert.equal(engine.pauses,1);
   assert.equal(audio[1].pauses,1);
