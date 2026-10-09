@@ -1,4 +1,5 @@
 'use strict';
+require('./fixtures/default-difficulty');
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const RoadKingCore = require('../公路之王/src/game-core.js');

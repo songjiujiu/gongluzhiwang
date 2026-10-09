@@ -116,7 +116,7 @@ class RoadKingCore {
       if (this.signalTimer > 6) { this.signalDirection = 0; this.signalTimer = 0; }
     }
     const cruise = this.difficulty.cruiseSpeed;
-    const desired = Math.min(240, cruise + (this.throttle ? 22 : 0));
+    const desired = cruise + (this.throttle ? 22 : 0);
     this.speed = this.collisionStopped ? 0 : moveTowards(this.speed, desired, dt * (this.throttle ? 45 : 24));
     this.maxSpeed = Math.max(this.maxSpeed, this.speed);
     this.distance += this.speed / 3.6 * dt;
@@ -223,7 +223,7 @@ class RoadKingCore {
   }
 
   _pick(items) { return items[Math.min(items.length - 1, Math.floor(clamp(this.random(), 0, 1) * items.length))]; }
-  _safeGap() { return 22 + Math.min(240, this.difficulty.cruiseSpeed + 22) * 0.1; }
+  _safeGap() { return 22 + (this.difficulty.cruiseSpeed + 22) * 0.1; }
 
   _trafficLaneClear(car, nextX, seconds) {
     // Reserve the entire swept width, including the middle lane on a two-lane
@@ -247,7 +247,7 @@ class RoadKingCore {
     const double = this.random() < this.difficulty.doubleChance && active.length+2<=this.difficulty.maxActiveObstacles;
     const barrier = this.random() < this.difficulty.barrierChance;
     const waveSpeed = barrier ? 0 : 22 + Math.min(12, this.elapsed * 0.06);
-    const approachSpeed = Math.min(240, this.difficulty.cruiseSpeed + 22);
+    const approachSpeed = this.difficulty.cruiseSpeed + 22;
     const closing = (approachSpeed - waveSpeed) / 3.6 * 0.75;
     const farthest = active.reduce((z, car) => Math.max(z, car.z), -Infinity);
     const z = Math.max(55, closing * this.difficulty.reactionTime, farthest + this._safeGap());
@@ -397,7 +397,7 @@ function validateStages(config){
     const invalid=field=>{throw new Error('difficulty-config: 强度 '+(index+1)+' 的 '+field+' 配置无效');};
     if(!stage||typeof stage.label!=='string'||!stage.label.trim())invalid('label');
     for(const key of ['durationSeconds','spawnStart','spawnEnd','reactionSeconds'])if(!Number.isFinite(stage[key])||stage[key]<=0)invalid(key);
-    for(const key of ['speedStart','speedEnd'])if(!Number.isFinite(stage[key])||stage[key]<=0||stage[key]>240)invalid(key);
+    for(const key of ['speedStart','speedEnd'])if(!Number.isFinite(stage[key])||stage[key]<=0)invalid(key);
     for(const key of ['mergeChance','doubleChance','barrierChance'])if(!Number.isFinite(stage[key])||stage[key]<0||stage[key]>1)invalid(key);
     if(!Number.isInteger(stage.maxActiveObstacles)||stage.maxActiveObstacles<2)invalid('maxActiveObstacles');
     return {...stage};

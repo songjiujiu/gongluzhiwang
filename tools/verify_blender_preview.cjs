@@ -149,6 +149,7 @@ function assertAssets(assets) {
       checks.blockedMerge = await page.evaluate(() => {
         const app = roadKingApp, game = app.game;
         game._nextTraffic = Infinity;
+        game.speed=0; // Isolate the neighbouring-car merge from user-configured starting speed.
         const moving = game._car(-1, 32, true), neighbour = game._car(0, 32);
         Object.assign(moving, { changePending: true, targetLane: 1, signalDirection: 1, warningTimer: .01 });
         game.traffic = [moving, neighbour];

@@ -1,7 +1,7 @@
 {
   "archive": "驾考宝典之公路日常_实时三维版.zip",
-  "bytes": 18296890,
-  "sha256": "c0096fd219558dceb134bbb9e75d21e1ff25c61f73912ea2f8aadced3293140b",
+  "bytes": 17936816,
+  "sha256": "a7ee02005ebc0b90033fe87ef2127cbf895a6b001ba8c97792070cadce4a75e8",
   "importDirectory": "公路之王",
   "files": [
     "art/audio/lotus-idle.mp3",
@@ -56,6 +56,7 @@
     "research/blender-preview/result-390x844.png",
     "tests/difficulty-config.test.js",
     "tests/engine-audio.test.js",
+    "tests/fixtures/default-difficulty.js",
     "tests/game-app.test.js",
     "tests/game-core.test.js",
     "tests/platform.test.js",
@@ -103,7 +104,7 @@
   ],
   "zipIntegrity": "passed",
   "platform": "Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD",
-  "verification": "46 Node tests; configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
+  "verification": "47 Node tests; configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
   "notVerified": [
     "Blender art version in Douyin IDE simulator",
     "Android/iOS phone",

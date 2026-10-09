@@ -1,4 +1,5 @@
 const test=require('node:test');
+require('./fixtures/default-difficulty');
 const assert=require('node:assert/strict');
 const App=require('../公路之王/src/game-app');
 function fixture(){

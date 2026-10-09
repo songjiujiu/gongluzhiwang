@@ -1,4 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
+require('./fixtures/default-difficulty');
 const Core=require('../公路之王/src/game-core'),defaults=require('../公路之王/src/difficulty-config');
 const config=()=>JSON.parse(JSON.stringify(defaults));
 test('custom durations advance at cumulative boundaries and final stage remains endless',()=>{
@@ -20,4 +21,10 @@ test('invalid stage settings fail with the field and stage instead of breaking g
  for(const [field,value] of [['durationSeconds',0],['mergeChance',1.1],['speedEnd',NaN],['spawnStart',-1],['maxActiveObstacles',1]]){
   const c=config();c.stages[1][field]=value;assert.throws(()=>new Core({difficultyConfig:c}),new RegExp('强度 2.*'+field));
  }
+});
+test('configured speeds and throttle are not clamped at 240 km/h',()=>{
+ const c=config();Object.assign(c.stages[0],{speedStart:400,speedEnd:400});
+ const g=new Core({difficultyConfig:c}).start();g._nextTraffic=Infinity;assert.equal(g.speed,400);
+ g.setThrottle(true);g.update(1);assert.equal(g.speed,422);
+ assert.equal(g._safeGap(),64.2);g.setThrottle(false);g.update(1);assert.equal(g.speed,400);
 });

@@ -2,16 +2,25 @@
 // 修改这里后重新编译。时间单位秒，速度 km/h，概率范围 0–1。
 // 前三档 durationSeconds 控制进入下一档的时间。
 // 最后一档无限持续，durationSeconds 控制速度/密度趋近终值的快慢。
+// `label` | 界面显示的强度名称 |
+// | `durationSeconds` | 本档持续秒数。前三档结束后进入下一档；第四档无限持续，该值控制趋近最终速度和密度的时间尺度 |
+// | `speedStart` / `speedEnd` | 本档巡航起始与最终速度，km/h，范围大于 0，没有固定最大速度限制 |
+// | `spawnStart` / `spawnEnd` | 本档起始与最终障碍生成间隔，秒，数值越小越密集；前方拥挤时仍会推迟生成 |
+// | `reactionSeconds` | 生成障碍时预留的反应秒数，大于 0 |
+// | `mergeChance` | 车辆变道概率，0–1；0 关闭变道，1 为所有符合安全条件的波次开启变道 |
+// | `doubleChance` | 一组生成双障碍的概率，0–1 |
+// | `barrierChance` | 一组生成固定路障的概率，0–1 |
+// | `maxActiveObstacles` | 同时存在的前方有效障碍上限，整数，至少 2
 module.exports={
   "stages": [
     {
       "label": "轻松起步",
-      "durationSeconds": 30,
-      "speedStart": 76,
-      "speedEnd": 88,
+      "durationSeconds": 10,
+      "speedStart": 1000,
+      "speedEnd": 1000,
       "spawnStart": 4.6,
       "spawnEnd": 4.1,
-      "reactionSeconds": 5,
+      "reactionSeconds": 1,
       "mergeChance": 0,
       "doubleChance": 0,
       "barrierChance": 0,
