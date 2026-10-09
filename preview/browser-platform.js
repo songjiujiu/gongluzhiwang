@@ -16,7 +16,6 @@
   const sounds = Object.create(null);
   let engine = null, engineIdle = null, engineStarting = false;
   let engineAudio = null;
-  let musicPlayer = null;
   const images = Object.create(null);
 
   function touch(pointer) {
@@ -98,14 +97,6 @@
     stopSound() {
       for (const audio of Object.values(sounds)) { audio.pause(); audio.currentTime = 0; }
     },
-    setMusic(state){
-      if(!musicPlayer)musicPlayer=modules['music-player']((file,volume,onInterrupted)=>{
-        const a=new Audio('/公路之王/'+file);a.loop=true;a.volume=volume;
-        a.addEventListener('error',onInterrupted);
-        a.addEventListener('ended',()=>{a.currentTime=0;onInterrupted();});
-        return {play:()=>a.play(),pause:()=>a.pause(),seek:t=>{a.currentTime=t;}};
-      });musicPlayer.set(state);
-    },
     setEngine({active,volume,rate,idleVolume}) {
       if(!engineAudio){
         engineAudio=modules['engine-audio']({createContext:()=>new AudioContext(),loadBytes:file=>fetch('/公路之王/'+file).then(r=>{if(!r.ok)throw new Error('Missing engine audio');return r.arrayBuffer();})});
@@ -160,7 +151,6 @@
   }
   try {
     await load('engine-audio');
-    await load('music-player');
     await load('game-core');
     await load('scene-renderer');
     const RoadKingApp = await load('game-app');

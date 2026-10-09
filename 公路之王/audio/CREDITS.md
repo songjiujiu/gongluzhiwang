@@ -9,7 +9,3 @@ Recordings by **wikusv**, from the **V8 Lotus** pack on Freesound.
 用于 `engine.wav` 和 `engine-idle.wav`。修改：使用公开高质量 MP3 版本，转为单声道 22050 Hz PCM，截取稳定转速实录片段，去除直流偏移，柔和控制音量波动，叠加少量原创滤波滚动噪声，调整峰值并交叉淡化循环边界。游戏内通过内存音源平滑调整转速和两段录音的音量。
 
 完整来源与处理脚本见项目 `art/audio/` 和 `tools/generate_engine_audio.py`。
-
-## 本次用户提供的视频音乐
-
-`music-build.mp3` 和 `music-climax.mp3` 从用户指定的 `9e28ff743806ed6c9766e31020b8b022.mp4` 音轨截取。视频画面标注《黑街 DJ》，未核实音乐作者。按本次请求接入：强度 3 使用从 0 秒到片尾的完整原始音轨，强度 4 从 40 秒播放至片尾，转换为 128 kbps MP3，不添加淡化、滤波或其他声音。素材来源为用户文件，不归入上述引擎录音的 CC BY 授权。

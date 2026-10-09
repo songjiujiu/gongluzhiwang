@@ -1,6 +1,6 @@
 // Native Douyin adapter. Does not require a DOM, server, login or network.
 const createEngineAudio=require('./engine-audio');
-const createMusicPlayer=require('./music-player');
+
 module.exports = function createPlatform(api) {
   const canvas = api.createCanvas(), info = api.getSystemInfoSync();
   const width = info.windowWidth || info.screenWidth || 375;
@@ -10,12 +10,6 @@ module.exports = function createPlatform(api) {
   const safe = info.safeArea || {top:0,bottom:height};
   const bind = (name, cb) => { if (typeof api[name] === 'function') api[name](cb); };
   const audio = {};
-  const music=createMusicPlayer((file,volume,onInterrupted)=>{
-    const a=api.createInnerAudioContext();a.src=file;a.loop=true;a.volume=volume;
-    if(a.onError)a.onError(onInterrupted);
-    if(a.onEnded)a.onEnded(()=>{if(a.seek)a.seek(0);onInterrupted();});
-    return {play:()=>a.play(),pause:()=>a.pause?a.pause():a.stop(),seek:t=>{if(a.seek)a.seek(t);}};
-  });
   let engine = null, engineIdle = null, enginePlaying = false;
   const engineAudio=createEngineAudio({
     createContext:()=>api.getAudioContext?api.getAudioContext():null,
@@ -73,7 +67,6 @@ module.exports = function createPlatform(api) {
     },
     stopSound(){Object.keys(audio).forEach(k=>{try{audio[k].stop();}catch(_){}});},
     setEngine(state) {if(!engineAudio.set(state))fallbackEngine(state);},
-    setMusic:state=>music.set(state),
     vibrate(){if(api.vibrateShort)api.vibrateShort({fail:()=>{}});}
   };
 };

@@ -96,7 +96,6 @@ class RoadKingApp {
   touchEnd(e){(e.changedTouches||[]).forEach(t=>{delete this.touchMap[t.identifier==null?0:t.identifier];});this.updateHolds();}
   updateHolds(dt=0){const touches=Object.values(this.touchMap);for(const item of touches)if(item.swipe&&item.holdEligible&&!item.used)item.heldTime+=dt;this.game.setThrottle(this.game.mode==="playing"&&!this.game.collisionStopped&&(!!this.keyboard.throttle||touches.some(item=>item.swipe&&item.holdEligible&&!item.used&&item.heldTime>=.3)));}
   syncEngine(){
-    if(this.p.setMusic)this.p.setMusic({active:!this.muted&&!this.hidden&&this.game.mode==='playing',tier:this.game.mode==='menu'||this.game.mode==='result'?0:this.game.difficulty.tier});
     if(!this.p.setEngine)return;
     const rev=Math.max(0,Math.min(1,this.game.speed/240));
     const drive=Math.max(0,Math.min(1,this.game.speed/95));
