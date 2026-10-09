@@ -16,6 +16,8 @@ for mesh in runtime_verification['meshInputs']:
 model_verification = json.loads((root / 'art/blender/model-verification.json').read_text(encoding='utf-8'))
 assert model_verification.get('passed') is True, 'Editable source geometry must pass inspection'
 engine_verification=json.loads((root/'research/blender-preview/engine-playback.json').read_text(encoding='utf-8'))
+extreme_speed=json.loads((root/'research/blender-preview/extreme-speed.json').read_text(encoding='utf-8'))
+assert extreme_speed.get('passed') is True, 'Extreme speed spawning and collision checks must pass'
 assert engine_verification.get('passed') is True, 'Engine playback verification must pass'
 assert hashlib.sha256((root/'公路之王/audio/engine.wav').read_bytes()).hexdigest()==engine_verification['asset']['sha256'], 'Engine audio changed after verification'
 assert hashlib.sha256((root/'公路之王/audio/engine-idle.wav').read_bytes()).hexdigest()==engine_verification['idleAsset']['sha256'], 'Idle recording changed after verification'
@@ -34,6 +36,7 @@ files.extend(root / p for p in (
     'tools/generate_engine_audio.py',
     'tools/decode_engine_recordings.cjs',
     'tools/verify_engine_preview.cjs',
+    'tools/verify_extreme_speed_preview.cjs',
     'art/blender/roadking-assets.blend',
     'art/blender/manifest.json',
     'art/blender/README.md',
@@ -77,7 +80,7 @@ report = {
     'files':names,
     'zipIntegrity':'passed',
     'platform':'Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD',
-    'verification':'47 Node tests; configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.',
+    'verification':'48 Node tests; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.',
     'notVerified':['Blender art version in Douyin IDE simulator','Android/iOS phone','live upload and publication','phone performance','audio listening'],
 }
 (target / 'delivery-manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')

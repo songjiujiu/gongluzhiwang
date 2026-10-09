@@ -1,7 +1,7 @@
 {
   "archive": "驾考宝典之公路日常_实时三维版.zip",
-  "bytes": 17936816,
-  "sha256": "a7ee02005ebc0b90033fe87ef2127cbf895a6b001ba8c97792070cadce4a75e8",
+  "bytes": 18520117,
+  "sha256": "48e100c8cd17b44ad0712472e3456d229ecd465bde87af57621f83cbebaa82af",
   "importDirectory": "公路之王",
   "files": [
     "art/audio/lotus-idle.mp3",
@@ -29,6 +29,11 @@
     "research/blender-preview/collision-stop-320x568.png",
     "research/blender-preview/collision-stop-390x844.png",
     "research/blender-preview/engine-playback.json",
+    "research/blender-preview/extreme-speed-1000.png",
+    "research/blender-preview/extreme-speed-1500.png",
+    "research/blender-preview/extreme-speed-20000.png",
+    "research/blender-preview/extreme-speed-40000.png",
+    "research/blender-preview/extreme-speed.json",
     "research/blender-preview/fallback-missing-player-390x844.png",
     "research/blender-preview/gameplay-320x568.png",
     "research/blender-preview/gameplay-390x844.png",
@@ -71,6 +76,7 @@
     "tools/generate_engine_audio.py",
     "tools/verify_blender_preview.cjs",
     "tools/verify_engine_preview.cjs",
+    "tools/verify_extreme_speed_preview.cjs",
     "tools/verify_realtime_preview.cjs",
     "公路之王/assets/blender/barrier.png",
     "公路之王/assets/blender/car-blue.png",
@@ -104,7 +110,7 @@
   ],
   "zipIntegrity": "passed",
   "platform": "Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD",
-  "verification": "47 Node tests; configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
+  "verification": "48 Node tests; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
   "notVerified": [
     "Blender art version in Douyin IDE simulator",
     "Android/iOS phone",

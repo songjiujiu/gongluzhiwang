@@ -29,8 +29,8 @@ module.exports={
     {
       "label": "变道提速",
       "durationSeconds": 30,
-      "speedStart": 112,
-      "speedEnd": 145,
+      "speedStart": 1500,
+      "speedEnd": 1500,
       "spawnStart": 3.6,
       "spawnEnd": 3,
       "reactionSeconds": 4,
@@ -42,8 +42,8 @@ module.exports={
     {
       "label": "密集高速",
       "durationSeconds": 30,
-      "speedStart": 162,
-      "speedEnd": 198,
+      "speedStart": 20000,
+      "speedEnd": 20000,
       "spawnStart": 2.5,
       "spawnEnd": 1.9,
       "reactionSeconds": 3.2,
@@ -55,8 +55,8 @@ module.exports={
     {
       "label": "极速挑战",
       "durationSeconds": 60,
-      "speedStart": 218,
-      "speedEnd": 228,
+      "speedStart": 40000,
+      "speedEnd": 40000,
       "spawnStart": 1.45,
       "spawnEnd": 1.1,
       "reactionSeconds": 2.6,

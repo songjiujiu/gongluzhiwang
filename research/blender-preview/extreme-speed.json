@@ -1,0 +1,79 @@
+{
+  "passed": true,
+  "kind": "Controlled extreme-speed rendering, spawning and collision checks in browser; not phone verification",
+  "speeds": [
+    {
+      "spawned": {
+        "speed": 1000,
+        "waves": 1,
+        "traffic": [
+          {
+            "x": 1,
+            "z": 131.13802314779218
+          }
+        ],
+        "glError": 0
+      },
+      "crash": {
+        "stopped": true,
+        "collisions": 1,
+        "speed": 0
+      }
+    },
+    {
+      "spawned": {
+        "speed": 1500,
+        "waves": 1,
+        "traffic": [
+          {
+            "x": -1,
+            "z": 130.7724441294913
+          }
+        ],
+        "glError": 0
+      },
+      "crash": {
+        "stopped": true,
+        "collisions": 1,
+        "speed": 0
+      }
+    },
+    {
+      "spawned": {
+        "speed": 20000,
+        "waves": 1,
+        "traffic": [
+          {
+            "x": 1,
+            "z": 128.72779615512167
+          }
+        ],
+        "glError": 0
+      },
+      "crash": {
+        "stopped": true,
+        "collisions": 1,
+        "speed": 0
+      }
+    },
+    {
+      "spawned": {
+        "speed": 40000,
+        "waves": 1,
+        "traffic": [
+          {
+            "x": -1,
+            "z": 128.20408127439356
+          }
+        ],
+        "glError": 0
+      },
+      "crash": {
+        "stopped": true,
+        "collisions": 1,
+        "speed": 0
+      }
+    }
+  ],
+  "errors": []
+}

@@ -26,5 +26,15 @@ test('configured speeds and throttle are not clamped at 240 km/h',()=>{
  const c=config();Object.assign(c.stages[0],{speedStart:400,speedEnd:400});
  const g=new Core({difficultyConfig:c}).start();g._nextTraffic=Infinity;assert.equal(g.speed,400);
  g.setThrottle(true);g.update(1);assert.equal(g.speed,422);
- assert.equal(g._safeGap(),64.2);g.setThrottle(false);g.update(1);assert.equal(g.speed,400);
+ assert.ok(g._safeGap()>46&&g._safeGap()<64.2);g.setThrottle(false);g.update(1);assert.equal(g.speed,400);
+});
+test('extreme configured speeds still spawn visible hazards and register collisions',()=>{
+ for(const speed of [1000,1500,20000,40000]){
+  const c=config();Object.assign(c.stages[0],{speedStart:speed,speedEnd:speed,reactionSeconds:4,doubleChance:1});
+  const g=new Core({difficultyConfig:c,random:()=>.1}).start();
+  assert.equal(g._spawnTraffic(),true);assert.equal(g.traffic.length,2);
+  assert.ok(g.traffic.every(car=>car.z>=55&&car.z<=145));
+  g.lane=g.playerX=g.traffic[0].lane;g._nextTraffic=Infinity;
+  g.update(6);assert.equal(g.collisions,1);assert.equal(g.collisionStopped,true);assert.equal(g.speed,0);
+ }
 });

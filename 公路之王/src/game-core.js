@@ -183,7 +183,7 @@ class RoadKingCore {
     for (const car of this.traffic) {
       if (car.kind === 'barrier' || car.hit || car.escaped || car.z < -4 || car.z > 36) continue;
       car.z += 12;
-      car.speed = Math.max(150, this.speed + 70);
+      car.speed = Math.max(150, roadSpeed(this.speed) + 70);
       car.escaped = true;
       car.signalDirection = 0;
       car.warningTimer = 0;
@@ -223,7 +223,7 @@ class RoadKingCore {
   }
 
   _pick(items) { return items[Math.min(items.length - 1, Math.floor(clamp(this.random(), 0, 1) * items.length))]; }
-  _safeGap() { return 22 + (this.difficulty.cruiseSpeed + 22) * 0.1; }
+  _safeGap() { return 22 + roadSpeed(this.difficulty.cruiseSpeed + 22) * 0.1; }
 
   _trafficLaneClear(car, nextX, seconds) {
     // Reserve the entire swept width, including the middle lane on a two-lane
@@ -247,10 +247,10 @@ class RoadKingCore {
     const double = this.random() < this.difficulty.doubleChance && active.length+2<=this.difficulty.maxActiveObstacles;
     const barrier = this.random() < this.difficulty.barrierChance;
     const waveSpeed = barrier ? 0 : 22 + Math.min(12, this.elapsed * 0.06);
-    const approachSpeed = this.difficulty.cruiseSpeed + 22;
+    const approachSpeed = roadSpeed(Math.max(this.speed,this.difficulty.cruiseSpeed + 22));
     const closing = (approachSpeed - waveSpeed) / 3.6 * 0.75;
     const farthest = active.reduce((z, car) => Math.max(z, car.z), -Infinity);
-    const z = Math.max(55, closing * this.difficulty.reactionTime, farthest + this._safeGap());
+    const z = Math.max(55, Math.min(138,closing * this.difficulty.reactionTime), farthest + this._safeGap());
     // Defer crowded spawns instead of placing hazards outside the visible road.
     if (z > 145) return false;
     const lanes = double ? blocked : [this._pick(blocked)];
@@ -302,7 +302,7 @@ class RoadKingCore {
     for (let index = this.traffic.length - 1; index >= 0; index--) {
       const car = this.traffic[index];
       if (car.changePending && !car.hit && !car.escaped) {
-        const warningDistance = Math.max(36, (this.speed - car.speed) / 3.6 * 0.75 * 2.1);
+        const warningDistance = Math.max(36, (roadSpeed(this.speed) - car.speed) / 3.6 * 0.75 * 2.1);
         if (!car.signalDirection && car.z <= warningDistance) {
           car.signalDirection = Math.sign(car.targetLane - car.lane);
           car.warningTimer = 1.1;
@@ -320,7 +320,7 @@ class RoadKingCore {
       }
       if (car.hit) car.speed = this.collisionStopped || car.kind === 'barrier' ? 0 : car.baseSpeed;
       const previousZ = car.z;
-      car.z += (car.speed - this.speed) / 3.6 * dt * 0.75;
+      car.z += (car.speed - roadSpeed(this.speed)) / 3.6 * dt * 0.75;
       const nextX = moveTowards(car.x, car.lane, dt * 4);
       if (nextX === car.x || this._trafficLaneClear(car, nextX, dt)) car.x = nextX;
       // Rear traffic queues behind the player instead of passing through it.
@@ -404,6 +404,9 @@ function validateStages(config){
   });
 }
 function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
+// Keep configured/HUD speeds unlimited while avoiding unobservable one-frame
+// traversal of the short rendered road at extreme tuning values.
+function roadSpeed(speed){return speed<=240?speed:240+36*Math.log1p((speed-240)/36);}
 function moveTowards(value, target, delta) {
   return Math.abs(target - value) <= delta ? target : value + Math.sign(target - value) * delta;
 }
