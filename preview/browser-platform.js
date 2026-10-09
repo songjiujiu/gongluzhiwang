@@ -86,7 +86,7 @@
       try {
         if (!sounds[name]) {
           sounds[name] = new Audio('/公路之王/audio/' + encodeURIComponent(name) + '.wav');
-          sounds[name].volume = .3;
+          sounds[name].volume = name === 'hit' ? .85 : .3;
         }
         sounds[name].pause();
         sounds[name].currentTime = 0;

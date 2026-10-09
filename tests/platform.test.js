@@ -76,6 +76,7 @@ test('audio contexts are cached by sound name, replay safely and stop on request
   assert.equal(audio[0].src, 'audio/pulse.wav'); assert.equal(audio[0].volume, 0.3);
   assert.equal(audio[0].plays, 2); assert.equal(audio[0].stops, 2);
   assert.equal(audio[1].plays, 1);
+  assert.equal(audio[1].volume, .85, 'collision cuts through the driving sound');
   platform.stopSound();
   assert.equal(audio[0].stops, 3); assert.equal(audio[1].stops, 2);
   assert.equal(typeof audio[0].error, 'function');

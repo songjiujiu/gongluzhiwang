@@ -60,7 +60,7 @@ module.exports = function createPlatform(api) {
     sound(name) {
       if (!api.createInnerAudioContext) return;
       try {
-        if (!audio[name]) { const a=api.createInnerAudioContext();a.src='audio/'+name+'.wav';a.volume=.3;if(a.onError)a.onError(()=>{});audio[name]=a; }
+        if (!audio[name]) { const a=api.createInnerAudioContext();a.src='audio/'+name+'.wav';a.volume=name==='hit'?.85:.3;if(a.onError)a.onError(()=>{});audio[name]=a; }
         audio[name].stop();audio[name].play();
       } catch(_) {}
     },
