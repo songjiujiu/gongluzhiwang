@@ -18,8 +18,8 @@
       {
         "src": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/audio/music-build.mp3",
         "paused": false,
-        "time": 0.119434,
-        "duration": 32,
+        "time": 0.176276,
+        "duration": 219.7522,
         "ready": 4
       }
     ]
@@ -32,14 +32,14 @@
         "src": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/audio/music-build.mp3",
         "paused": true,
         "time": 0,
-        "duration": 32,
+        "duration": 219.7522,
         "ready": 4
       },
       {
         "src": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/audio/music-climax.mp3",
         "paused": false,
-        "time": 0.116865,
-        "duration": 32,
+        "time": 0.148589,
+        "duration": 179.7522,
         "ready": 4
       }
     ]
@@ -52,14 +52,14 @@
         "src": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/audio/music-build.mp3",
         "paused": true,
         "time": 0,
-        "duration": 32,
+        "duration": 219.7522,
         "ready": 4
       },
       {
         "src": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/audio/music-climax.mp3",
         "paused": false,
-        "time": 0.069624,
-        "duration": 32,
+        "time": 0.058825,
+        "duration": 179.7522,
         "ready": 4
       }
     ]
@@ -72,14 +72,14 @@
         "src": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/audio/music-build.mp3",
         "paused": true,
         "time": 0,
-        "duration": 32,
+        "duration": 219.7522,
         "ready": 4
       },
       {
         "src": "http://127.0.0.1:4182/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/audio/music-climax.mp3",
         "paused": false,
-        "time": 0.140864,
-        "duration": 32,
+        "time": 0.12771,
+        "duration": 179.7522,
         "ready": 4
       }
     ]
