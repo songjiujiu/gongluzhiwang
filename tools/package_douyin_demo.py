@@ -68,7 +68,7 @@ report = {
     'files':names,
     'zipIntegrity':'passed',
     'platform':'Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD',
-    'verification':'29 Node tests; collision stop/recovery, editable Blender geometry and real-time WebGL browser asset/input checks. See research/blender-preview and README for scope.',
+    'verification':'34 Node tests; traffic merge clearance, collision stop/recovery, editable Blender geometry and real-time WebGL browser asset/input checks. See research/blender-preview and README for scope.',
     'notVerified':['Blender art version in Douyin IDE simulator','Android/iOS phone','live upload and publication','phone performance','audio listening'],
 }
 (target / 'delivery-manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')

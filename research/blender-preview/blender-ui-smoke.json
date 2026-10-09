@@ -70,16 +70,16 @@
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
             "complete": true
           },
-          "car-orange": {
-            "width": 256,
-            "height": 384,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
-            "complete": true
-          },
           "car-blue": {
             "width": 256,
             "height": 384,
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-blue.png",
+            "complete": true
+          },
+          "car-orange": {
+            "width": 256,
+            "height": 384,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
             "complete": true
           },
           "barrier": {
@@ -110,12 +110,25 @@
       },
       "screenshots": [
         "menu-390x844.png",
+        "merge-waits-for-neighbour-390x844.png",
+        "merge-after-neighbour-clears-390x844.png",
         "gameplay-390x844.png",
         "high-speed-155-390x844.png",
         "high-speed-390x844.png",
         "collision-stop-390x844.png",
         "result-390x844.png"
       ],
+      "blockedMerge": {
+        "x": -1,
+        "lane": -1,
+        "pending": true,
+        "signal": 1
+      },
+      "clearMerge": {
+        "x": 1,
+        "lane": 1,
+        "overlaps": 0
+      },
       "normalRun": {
         "elapsed": 12.000000000000036,
         "speed": 96.01291851514671,
@@ -303,28 +316,41 @@
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/tree.png",
             "complete": true
           },
-          "hero": {
-            "width": 768,
-            "height": 512,
-            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/hero.png",
-            "complete": true
-          },
           "rock": {
             "width": 256,
             "height": 192,
             "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/rock.png",
+            "complete": true
+          },
+          "hero": {
+            "width": 768,
+            "height": 512,
+            "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/hero.png",
             "complete": true
           }
         }
       },
       "screenshots": [
         "menu-320x568.png",
+        "merge-waits-for-neighbour-320x568.png",
+        "merge-after-neighbour-clears-320x568.png",
         "gameplay-320x568.png",
         "high-speed-155-320x568.png",
         "high-speed-320x568.png",
         "collision-stop-320x568.png",
         "result-320x568.png"
       ],
+      "blockedMerge": {
+        "x": -1,
+        "lane": -1,
+        "pending": true,
+        "signal": 1
+      },
+      "clearMerge": {
+        "x": 1,
+        "lane": 1,
+        "overlaps": 0
+      },
       "normalRun": {
         "elapsed": 12.000000000000036,
         "speed": 96.01291851514671,
@@ -487,6 +513,12 @@
           "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-silver.png",
           "complete": true
         },
+        "car-orange": {
+          "width": 256,
+          "height": 384,
+          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
+          "complete": true
+        },
         "car-blue": {
           "width": 256,
           "height": 384,
@@ -497,12 +529,6 @@
           "width": 384,
           "height": 256,
           "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/barrier.png",
-          "complete": true
-        },
-        "car-orange": {
-          "width": 256,
-          "height": 384,
-          "source": "http://127.0.0.1:4179/%E5%85%AC%E8%B7%AF%E4%B9%8B%E7%8E%8B/assets/blender/car-orange.png",
           "complete": true
         },
         "tree": {

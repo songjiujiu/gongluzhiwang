@@ -132,6 +132,35 @@ function assertAssets(assets) {
       const checks = { assets, screenshots: [] };
       checks.screenshots.push(await snapshot(page, 'menu-' + size));
       await click(page, '开始');
+      // Controlled reproduction of the reported cross-lane clipping. The long
+      // natural run below restarts afterward and uses only public driving inputs.
+      checks.blockedMerge = await page.evaluate(() => {
+        const app = roadKingApp, game = app.game;
+        game._nextTraffic = Infinity;
+        const moving = game._car(-1, 32, true), neighbour = game._car(0, 32);
+        Object.assign(moving, { changePending: true, targetLane: 1, signalDirection: 1, warningTimer: .01 });
+        game.traffic = [moving, neighbour];
+        game.update(.5); app.draw();
+        return { x: moving.x, lane: moving.lane, pending: moving.changePending, signal: moving.signalDirection };
+      });
+      assert.equal(checks.blockedMerge.x, -1);
+      assert.equal(checks.blockedMerge.pending, true);
+      checks.screenshots.push(await snapshot(page, 'merge-waits-for-neighbour-' + size));
+      checks.clearMerge = await page.evaluate(() => {
+        const app = roadKingApp, game = app.game;
+        const [moving, neighbour] = game.traffic;
+        neighbour.z = moving.z + 18;
+        let overlaps = 0;
+        for (let n = 0; n < 16; n++) {
+          game.update(.05);
+          if (Math.abs(moving.x - neighbour.x) < .76 && Math.abs(moving.z - neighbour.z) < 5.5) overlaps++;
+        }
+        app.draw(); return { x: moving.x, lane: moving.lane, overlaps };
+      });
+      assert.equal(checks.clearMerge.x, 1);
+      assert.equal(checks.clearMerge.overlaps, 0);
+      checks.screenshots.push(await snapshot(page, 'merge-after-neighbour-clears-' + size));
+      await page.evaluate(() => { roadKingApp.game.start(); roadKingApp.draw(); });
       checks.normalRun = await page.evaluate(driveSafely, { seconds: 12 });
       assert.equal(checks.normalRun.mode, 'playing');
       checks.screenshots.push(await snapshot(page, 'gameplay-' + size));

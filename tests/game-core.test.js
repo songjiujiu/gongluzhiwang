@@ -267,6 +267,13 @@ test('visible lane choices support six-minute runs across seeds as real traffic 
     for (let frame = 0; frame < 7200 && game.mode === 'playing'; frame++) {
       if (frame % 3 === 0) steerAroundVisibleTraffic(game);
       game.update(0.05);
+      for (let i = 0; i < game.traffic.length; i++) {
+        for (let j = i + 1; j < game.traffic.length; j++) {
+          const a = game.traffic[i], b = game.traffic[j];
+          assert.ok(Math.abs(a.x - b.x) >= .76 || Math.abs(a.z - b.z) >= 5.5 - 1e-8,
+            `seed ${seed}: traffic ${a.id}/${b.id} overlap during a merge`);
+        }
+      }
       for (const item of game.traffic) {
         assert.ok(Number.isFinite(item.z) && Number.isFinite(item.x), 'traffic coordinates remain finite');
         if (!item.hit && !item.escaped) assert.ok(Math.abs(item.x - item.safeLane) >= 0.9, 'moving traffic does not cross its reserved exit');
@@ -336,4 +343,61 @@ test('changing into a blocked neighbouring lane keeps the car stopped', () => {
   assert.equal(game.collisionStopped, true);
   game.changeLane(-1); game.update(.2);
   assert.equal(game.collisionStopped, false);
+});
+
+test('signalled traffic waits for an occupied destination, then merges when it clears', () => {
+  for (const kind of ['car', 'barrier']) {
+    const game = fresh(); noSpawns(game);
+    const merging = car(game, 0, 30), blocking = car(game, 1, 30);
+    blocking.kind = kind;
+    Object.assign(merging, { changePending: true, targetLane: 1, signalDirection: 1, warningTimer: .01 });
+    game.update(.5);
+    assert.equal(merging.lane, 0); assert.equal(merging.x, 0);
+    assert.equal(merging.changePending, true);
+    assert.equal(merging.signalDirection, 1);
+    assert.ok(merging.warningTimer > 0);
+    blocking.z = merging.z + 30;
+    game.update(.5);
+    assert.equal(merging.lane, 1); assert.equal(merging.x, 1);
+    assert.equal(merging.changePending, false);
+  }
+});
+
+test('a two-lane traffic change cannot cross a car in the intermediate lane', () => {
+  const game = fresh(); noSpawns(game);
+  const merging = car(game, -1, 30);
+  car(game, 0, 30);
+  Object.assign(merging, { changePending: true, targetLane: 1, signalDirection: 1, warningTimer: .01 });
+  game.update(1);
+  assert.equal(merging.lane, -1); assert.equal(merging.x, -1);
+});
+
+test('traffic reserves the merge corridor against a fast approaching neighbour', () => {
+  const game = fresh(); noSpawns(game);
+  const merging = car(game, 0, 30), approaching = car(game, 1, 20);
+  approaching.speed = approaching.baseSpeed = 100;
+  Object.assign(merging, { changePending: true, targetLane: 1, signalDirection: 1, warningTimer: .01 });
+  game.update(.05);
+  assert.equal(merging.lane, 0); assert.equal(merging.x, 0);
+});
+
+test('opposing simultaneous traffic changes never overlap at any simulation step', () => {
+  const game = fresh(); noSpawns(game);
+  const left = car(game, -1, 30), right = car(game, 1, 30);
+  Object.assign(left, { changePending: true, targetLane: 1, signalDirection: 1, warningTimer: .01 });
+  Object.assign(right, { changePending: true, targetLane: -1, signalDirection: -1, warningTimer: .01 });
+  for (let n = 0; n < 40; n++) {
+    game.update(.05);
+    assert.ok(Math.abs(left.x - right.x) >= .76 || Math.abs(left.z - right.z) >= 5.5);
+  }
+});
+
+test('fast following traffic cannot reorder itself through a stationary obstacle', () => {
+  const game = fresh(); noSpawns(game); game.lane = game.playerX = -1;
+  const obstacle = car(game, 0, 30), following = car(game, 0, 24.5);
+  obstacle.kind = 'barrier'; obstacle.speed = obstacle.baseSpeed = 0;
+  following.speed = following.baseSpeed = 700;
+  game.update(.05);
+  assert.ok(following.z <= obstacle.z - 5.5);
+  assert.equal(following.speed, 0);
 });

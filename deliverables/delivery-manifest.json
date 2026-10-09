@@ -1,7 +1,7 @@
 {
   "archive": "公路之王_实时三维版.zip",
-  "bytes": 12982076,
-  "sha256": "76ed59f8d6397d5f4961a9180b2605462ccf7dd4aa029bfb56a8f901b69c23b0",
+  "bytes": 14605959,
+  "sha256": "1308c87f0c721345115d828f1c36482bdb27f5ecc3ea62b3429c100a808fd096",
   "importDirectory": "公路之王",
   "files": [
     "art/blender/manifest.json",
@@ -31,6 +31,10 @@
     "research/blender-preview/high-speed-390x844.png",
     "research/blender-preview/menu-320x568.png",
     "research/blender-preview/menu-390x844.png",
+    "research/blender-preview/merge-after-neighbour-clears-320x568.png",
+    "research/blender-preview/merge-after-neighbour-clears-390x844.png",
+    "research/blender-preview/merge-waits-for-neighbour-320x568.png",
+    "research/blender-preview/merge-waits-for-neighbour-390x844.png",
     "research/blender-preview/realtime-game-320x568.png",
     "research/blender-preview/realtime-game-390x844.png",
     "research/blender-preview/realtime-load-error.png",
@@ -79,7 +83,7 @@
   ],
   "zipIntegrity": "passed",
   "platform": "Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD",
-  "verification": "29 Node tests; collision stop/recovery, editable Blender geometry and real-time WebGL browser asset/input checks. See research/blender-preview and README for scope.",
+  "verification": "34 Node tests; traffic merge clearance, collision stop/recovery, editable Blender geometry and real-time WebGL browser asset/input checks. See research/blender-preview and README for scope.",
   "notVerified": [
     "Blender art version in Douyin IDE simulator",
     "Android/iOS phone",

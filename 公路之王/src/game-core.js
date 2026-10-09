@@ -212,6 +212,20 @@ class RoadKingCore {
   _pick(items) { return items[Math.min(items.length - 1, Math.floor(clamp(this.random(), 0, 1) * items.length))]; }
   _safeGap() { return 22 + Math.min(240, this.difficulty.cruiseSpeed + 22) * 0.1; }
 
+  _trafficLaneClear(car, nextX, seconds) {
+    // Reserve the entire swept width, including the middle lane on a two-lane
+    // crossing. Predict relative motion so a closing car cannot enter mid-merge.
+    const left = Math.min(car.x, nextX), right = Math.max(car.x, nextX);
+    return !this.traffic.some(other => {
+      if (other === car) return false;
+      const otherLeft = Math.min(other.x, other.lane), otherRight = Math.max(other.x, other.lane);
+      if (otherRight < left - 0.76 || otherLeft > right + 0.76) return false;
+      const separation = other.z - car.z;
+      const predicted = separation + (other.speed - car.speed) / 3.6 * 0.75 * seconds;
+      return Math.min(separation, predicted) < 6.5 && Math.max(separation, predicted) > -6.5;
+    });
+  }
+
   _spawnTraffic() {
     const active = this.traffic.filter(car => !car.escaped && !car.hit && car.z > -8);
     if (active.length >= 10) return false;
@@ -249,6 +263,9 @@ class RoadKingCore {
 
   _updateTraffic(dt) {
     if (!Number.isFinite(dt) || dt <= 0) return;
+    // Preserve longitudinal order from before movement: sorting after movement
+    // would let a fast following vehicle jump through the one in front.
+    const trafficOrder = [...this.traffic].sort((a, b) => b.z - a.z);
     // Moving traffic slows behind the next wave. This preserves the spacing
     // around stationary roadblocks.
     const waves = new Map();
@@ -279,17 +296,20 @@ class RoadKingCore {
           this._emit('threat-warning', { carId: car.id, direction: car.signalDirection });
         } else if (car.signalDirection) {
           car.warningTimer = Math.max(0, car.warningTimer - dt);
-          if (car.warningTimer <= 1e-8) {
+          if (car.warningTimer <= 1e-8 && this._trafficLaneClear(car, car.targetLane, Math.abs(car.targetLane - car.x) / 4 + 0.1)) {
             car.lane = car.targetLane;
             car.changePending = false;
             car.signalDirection = 0;
+          } else if (car.warningTimer <= 1e-8) {
+            car.warningTimer = 0.1;
           }
         }
       }
       if (car.hit) car.speed = this.collisionStopped || car.kind === 'barrier' ? 0 : car.baseSpeed;
       const previousZ = car.z;
       car.z += (car.speed - this.speed) / 3.6 * dt * 0.75;
-      car.x = moveTowards(car.x, car.lane, dt * 4);
+      const nextX = moveTowards(car.x, car.lane, dt * 4);
+      if (nextX === car.x || this._trafficLaneClear(car, nextX, dt)) car.x = nextX;
       // Rear traffic queues behind the player instead of passing through it.
       // Damage immunity also keeps approaching traffic physically separated.
       if (Math.abs(car.x - this.playerX) < 0.65) {
@@ -324,11 +344,12 @@ class RoadKingCore {
       if (car.z < -32 || car.z > 175) this.traffic.splice(index, 1);
     }
     // Keep a bumper gap through queues, including behind the stopped crash car.
-    const ordered = [...this.traffic].sort((a, b) => b.z - a.z);
+    const ordered = trafficOrder.filter(car => this.traffic.includes(car));
     for (let i = 0; i < ordered.length; i++) {
       for (let j = 0; j < i; j++) {
-        if (Math.abs(ordered[i].x - ordered[j].x) < 0.65 && ordered[i].z > ordered[j].z - 5.5) {
+        if (Math.abs(ordered[i].x - ordered[j].x) < 0.76 && ordered[i].z > ordered[j].z - 5.5) {
           ordered[i].z = ordered[j].z - 5.5;
+          ordered[i].speed = Math.min(ordered[i].speed, ordered[j].speed);
         }
       }
       if (Math.abs(ordered[i].x - this.playerX) < 0.65 && ordered[i].z <= 0 && ordered[i].z > -4.7) ordered[i].z = -4.7;
