@@ -79,16 +79,20 @@ class RoadKingCore {
 
   _updateDifficulty() {
     const elapsed = this.elapsed;
-    const tier = Math.min(6, Math.floor((elapsed + 1e-8) / 30) + 1);
-    const labels = ['轻松起步', '车流渐密', '高速穿行', '连续闪避', '极限反应', '无尽挑战'];
+    const tier = Math.min(4, Math.floor((elapsed + 1e-8) / 30) + 1);
+    const labels = ['轻松起步', '变道提速', '密集高速', '极速挑战'];
+    const progress = clamp((elapsed - (tier - 1) * 30) / 30, 0, 1);
+    const cruiseSpeed = tier===1?76+12*progress:tier===2?112+33*progress:tier===3?162+36*progress:218+10*(1-Math.exp(-(elapsed-90)/60));
+    const spawnInterval = tier===1?4.6-.5*progress:tier===2?3.6-.6*progress:tier===3?2.5-.6*progress:1.1+.35*Math.exp(-(elapsed-90)/60);
     const previousTier = this.difficulty.tier;
     Object.assign(this.difficulty, {
       tier,
       label: labels[Math.min(tier - 1, labels.length - 1)],
-      progress: clamp((elapsed - (tier - 1) * 30) / 30, 0, 1),
-      cruiseSpeed: 76 + 152 * (1 - Math.exp(-elapsed / 85)),
-      spawnInterval: 1.1 + 2.7 * Math.exp(-elapsed / 70),
-      reactionTime: 2.6 + 2.4 * Math.exp(-elapsed / 80)
+      progress, cruiseSpeed, spawnInterval,
+      reactionTime: [5,4,3.2,2.6][tier-1],
+      mergeChance: [0,.65,.75,.85][tier-1],
+      doubleChance: [0,.2,.65,.85][tier-1],
+      barrierChance: [0,0,.3,.45][tier-1]
     });
     if (previousTier && previousTier !== tier) {
       this._message('强度 ' + tier + ' · ' + this.difficulty.label, 2.8);
@@ -228,11 +232,11 @@ class RoadKingCore {
 
   _spawnTraffic() {
     const active = this.traffic.filter(car => !car.escaped && !car.hit && car.z > -8);
-    if (active.length >= 10) return false;
+    if (active.length >= (this.difficulty.tier>=3?14:8)) return false;
     const safeLane = this._pick([-1, 0, 1].filter(lane => Math.abs(lane - this._safeLane) <= 1));
     const blocked = [-1, 0, 1].filter(lane => lane !== safeLane);
-    const double = this.elapsed >= 18 && this.random() < Math.min(0.82, 0.3 + (this.elapsed - 18) / 125);
-    const barrier = this.elapsed >= 25 && this.random() < 0.3;
+    const double = this.random() < this.difficulty.doubleChance;
+    const barrier = this.random() < this.difficulty.barrierChance;
     const waveSpeed = barrier ? 0 : 22 + Math.min(12, this.elapsed * 0.06);
     const approachSpeed = Math.min(240, this.difficulty.cruiseSpeed + 22);
     const closing = (approachSpeed - waveSpeed) / 3.6 * 0.75;
@@ -243,7 +247,7 @@ class RoadKingCore {
     const lanes = double ? blocked : [this._pick(blocked)];
     const waveId = ++this.waveCount;
     const stagger = double && this.elapsed >= 55 ? 7 : 0;
-    const canChange = !barrier && this.elapsed >= 40 && safeLane !== 0 && this.random() < 0.5;
+    const canChange = !barrier && safeLane !== 0 && this.random() < this.difficulty.mergeChance;
     const carIds = [];
     lanes.forEach((lane, index) => {
       const car = this._car(lane, z + index * stagger, canChange && index === 0);

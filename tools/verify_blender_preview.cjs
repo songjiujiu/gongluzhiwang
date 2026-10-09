@@ -167,7 +167,7 @@ function assertAssets(assets) {
       checks.lateRun = await page.evaluate(driveSafely, { seconds: 143 });
       assert.equal(checks.lateRun.mode, 'playing');
       assert.equal(checks.lateRun.health, 100);
-      assert.equal(checks.lateRun.tier, 6);
+      assert.equal(checks.lateRun.tier, 4);
       assert.ok(checks.lateRun.speed > 195);
       assert.ok(Math.abs(checks.lateRun.elapsed - 155) < .1);
       checks.screenshots.push(await snapshot(page, 'high-speed-155-' + size));

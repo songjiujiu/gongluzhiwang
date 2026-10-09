@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const port = Number(process.env.ROAD_KING_PORT || process.argv[2] || 4178);
-const types = { '.html': 'text/html; charset=utf-8', '.js': 'application/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.wav': 'audio/wav', '.png': 'image/png', '.json': 'application/json; charset=utf-8', '.bin':'application/octet-stream' };
+const types = { '.html': 'text/html; charset=utf-8', '.js': 'application/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.wav': 'audio/wav', '.mp3':'audio/mpeg', '.png': 'image/png', '.json': 'application/json; charset=utf-8', '.bin':'application/octet-stream' };
 const server = http.createServer((request, response) => {
   try {
     const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
