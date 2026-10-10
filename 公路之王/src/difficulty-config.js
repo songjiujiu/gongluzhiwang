@@ -14,6 +14,8 @@
 // | `barrierChance` | 一组生成固定路障的概率，0–1 |
 // | `maxActiveObstacles` | 同时存在的前方有效障碍上限，整数，至少 2
 module.exports={
+  // 开局强度：1/2/3/4。选 4 直接进入黑夜；其余档位按持续时间继续升级。
+  "startTier": 1,
   "stages": [
     {
       "label": "轻松起步",

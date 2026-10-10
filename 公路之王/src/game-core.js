@@ -6,7 +6,11 @@ const DifficultyConfig=require('./difficulty-config');
 class RoadKingCore {
   constructor(options = {}) {
     if (typeof options === 'function') options = { random: options };
-    this.stages=validateStages(options.difficultyConfig||DifficultyConfig);
+    const config=options.difficultyConfig||DifficultyConfig;
+    this.stages=validateStages(config);
+    this.startTier=config.startTier===undefined?1:config.startTier;
+    if(!Number.isInteger(this.startTier)||this.startTier<1||this.startTier>4)throw new Error('difficulty-config: startTier 必须是 1–4 的整数');
+    this.stageTimeOffset=this.stages.slice(0,this.startTier-1).reduce((sum,stage)=>sum+stage.durationSeconds,0);
     this.random = typeof options.random === 'function' ? options.random : Math.random;
     this.onEvent = typeof options.onEvent === 'function' ? options.onEvent : null;
     this.mode = 'menu';
@@ -18,7 +22,7 @@ class RoadKingCore {
     this.level = 0;
     this.elapsed = 0;
     this.distance = 0;
-    this.speed = this.stages[0].speedStart;
+    this.speed = this.stages[this.startTier-1].speedStart;
     this.maxSpeed = this.speed;
     this.health = 100;
     this.score = 0;
@@ -60,7 +64,7 @@ class RoadKingCore {
   start() {
     this._reset();
     this.mode = 'playing';
-    this._message('无尽公路 · 换道避障，速度会持续提升', 4.5);
+    this._message(this.startTier===1?'无尽公路 · 换道避障，速度会持续提升':'强度 '+this.startTier+' 开局 · '+this.difficulty.label, 4.5);
     this._emit('start', { level: 0 });
     return this;
   }
@@ -77,7 +81,7 @@ class RoadKingCore {
   }
 
   _updateDifficulty() {
-    const elapsed = this.elapsed;
+    const elapsed = this.elapsed+this.stageTimeOffset;
     let index=0,start=0;
     while(index<this.stages.length-1&&elapsed+1e-8>=start+this.stages[index].durationSeconds){start+=this.stages[index].durationSeconds;index++;}
     const stage=this.stages[index],tier=index+1;
@@ -100,7 +104,7 @@ class RoadKingCore {
     });
     if (previousTier && previousTier !== tier) {
       // Do not carry the gentle stage's long spawn wait into the harder stage.
-      if(Number.isFinite(this._nextTraffic))this._nextTraffic=Math.min(this._nextTraffic,elapsed+Math.min(.6,spawnInterval));
+      if(Number.isFinite(this._nextTraffic))this._nextTraffic=Math.min(this._nextTraffic,this.elapsed+Math.min(.6,spawnInterval));
       this._message('强度 ' + tier + ' · ' + this.difficulty.label, 2.8);
       this._emit('difficulty', { ...this.difficulty });
     }

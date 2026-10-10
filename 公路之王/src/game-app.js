@@ -224,7 +224,7 @@ class RoadKingApp {
     const c=this.ctx,fade=c.createLinearGradient(0,0,0,H);fade.addColorStop(0,'rgba(7,24,36,.98)');fade.addColorStop(.21,'rgba(8,27,39,.89)');fade.addColorStop(.41,'rgba(8,27,39,.50)');fade.addColorStop(.57,'rgba(8,27,39,.98)');fade.addColorStop(1,'rgba(8,27,39,1)');c.fillStyle=fade;c.fillRect(0,0,W,H);
     this.rr(28,28,6,17,3,C.orange);this.txt('驾考宝典',45,37,16,C.white,'bold');this.txt('ENDLESS DRIVE',514,37,12,C.mute,'normal','right');
     this.txt('驾考宝典之公路日常',26,108,48,C.white,'bold');this.txt('一条公路，没有终点。',30,165,23,'#d0ded6');
-    this.rr(28,202,151,31,15,'rgba(88,192,171,.14)','#3f736e');this.txt('日落海岸 · 无尽',103,218,15,C.cyan,'bold','center');
+    this.rr(28,202,151,31,15,'rgba(88,192,171,.14)','#3f736e');this.txt('开局强度 '+this.game.startTier,103,218,15,C.cyan,'bold','center');
     this.txt('越开越快',29,287,26,C.white,'bold');this.txt('越躲越险',29,327,26,C.white,'bold');this.line(30,355,65,355,C.orange,3);this.txt('下一公里，',29,385,16,'#d2ded4');this.txt('由你的反应决定。',29,409,16,'#d2ded4');
     if(this.art.hero){this.groundShadow(355,439,130,21);c.drawImage(this.art.hero,158,215,388,259);}else this.car(398,412,1.65,C.cyan,true,false);
     this.rr(24,458,492,91,17,'rgba(23,51,63,.96)','#476069');this.txt('个人最高分',43,482,14,C.mute);this.txt(Math.round(this.best.score),43,519,37,C.cyan,'bold');this.txt('最远 '+distance(this.best.distance),493,486,17,C.white,'bold','right');this.txt('最长 '+duration(this.best.elapsed),493,518,16,C.mute,'normal','right');

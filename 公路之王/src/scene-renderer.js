@@ -50,8 +50,9 @@ gl_FragColor=vec4(mix(c,night,uNight),1.);}`;
 
 function nightAmount(game){
   if(game.mode==='menu'||!game.difficulty||game.difficulty.tier<4)return 0;
+  if(game.startTier===4)return 1;
   const start=game.stages.slice(0,3).reduce((sum,stage)=>sum+stage.durationSeconds,0);
-  const t=Math.max(0,Math.min(1,(game.elapsed-start)/2.5));
+  const t=Math.max(0,Math.min(1,(game.elapsed+(game.stageTimeOffset||0)-start)/2.5));
   return t*t*(3-2*t);
 }
 

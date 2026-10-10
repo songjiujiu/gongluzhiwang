@@ -29,6 +29,14 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'research/blender-pre
    const reset=await page.evaluate(()=>{roadKingApp.start();roadKingApp.draw();return roadKingApp.scene.night;});assert.equal(reset,0);
    assert.deepEqual(errors,[]);report.screens.push({width,height,initial,night,errors});await page.close();
   }
+  const direct=await browser.newPage({viewport:{width:390,height:844}});
+  await direct.addInitScript(()=>{window.requestAnimationFrame=()=>1;});
+  await direct.route('**/src/difficulty-config.js',route=>route.fulfill({status:200,contentType:'application/javascript',body:fs.readFileSync(path.join(root,'公路之王/src/difficulty-config.js'),'utf8').replace(/"startTier":\s*\d+/, '"startTier": 4')}));
+  await direct.goto(process.env.ROAD_KING_PREVIEW_URL||'http://127.0.0.1:4191/');
+  await direct.waitForFunction(()=>window.roadKingReady,null,{polling:50});
+  report.selectedStart=await direct.evaluate(async()=>{const a=roadKingApp;await a.scene.ready;a.start();a.draw();return{tier:a.game.difficulty.tier,elapsed:a.game.elapsed,score:a.game.score,night:a.scene.night,glError:a.scene.gl.getError()};});
+  assert.deepEqual(report.selectedStart,{tier:4,elapsed:0,score:0,night:1,glError:0});
+  await direct.screenshot({path:path.join(out,'night-start-tier4.png')});await direct.close();
   report.passed=true;fs.writeFileSync(path.join(out,'night-scene.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1});

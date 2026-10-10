@@ -4,7 +4,7 @@
   "inputs": [
     {
       "file": "公路之王/src/scene-renderer.js",
-      "sha256": "706312b6fe12d59928cb2083a845425cd85308658b15ca9e6c579b5474a29934"
+      "sha256": "09d6e9940318c1d5e536ac9157a5a54709db31d87a26b7b5a263f5de8424cc95"
     },
     {
       "file": "公路之王/assets/scene/meshes.json",
@@ -50,5 +50,12 @@
       },
       "errors": []
     }
-  ]
+  ],
+  "selectedStart": {
+    "tier": 4,
+    "elapsed": 0,
+    "score": 0,
+    "night": 1,
+    "glError": 0
+  }
 }

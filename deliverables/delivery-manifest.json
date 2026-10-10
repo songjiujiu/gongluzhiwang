@@ -1,7 +1,7 @@
 {
   "archive": "驾考宝典之公路日常_实时三维版.zip",
-  "bytes": 20308199,
-  "sha256": "a81bf50779c7b833976c5164e58abe05aaf6b2e7d006280739ba6660f2609125",
+  "bytes": 20480643,
+  "sha256": "3e0dd003c6ea3efbbffcae81adbb8619a87587040b9c4ed3cede47e04d85c274",
   "importDirectory": "公路之王",
   "files": [
     "art/audio/collision-qubodup-151624.mp3",
@@ -58,6 +58,7 @@
     "research/blender-preview/night-game-320.png",
     "research/blender-preview/night-game-390.png",
     "research/blender-preview/night-scene.json",
+    "research/blender-preview/night-start-tier4.png",
     "research/blender-preview/realtime-driving-320x568.png",
     "research/blender-preview/realtime-driving-390x844.png",
     "research/blender-preview/realtime-game-320x568.png",
@@ -87,6 +88,7 @@
     "tests/platform.test.js",
     "tests/random-merge.test.js",
     "tests/sidebar.test.js",
+    "tests/start-tier.test.js",
     "tests/tier-music.test.js",
     "tools/blender/build_assets.py",
     "tools/blender/build_night_scene.py",
@@ -137,7 +139,7 @@
   ],
   "zipIntegrity": "passed",
   "platform": "Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD",
-  "verification": "64 Node tests; configurable tier-four night transition, Blender streetlamp and two-size WebGL night scene verified; pulse skill removed; former skill area swipe/hold and two-size driving UI checks; including randomized merge completion, direction, warning timing and short reaction distance checks; six seeded 120-second runs of the shipped difficulty cliff (easy tutorial, hard tier two, escalating later tiers); sidebar capability, navigation failure and hot-start checks; sidebar browser UI at 390x844 and 320x568 with mocked host APIs; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
+  "verification": "67 Node tests; configurable starting tiers, zeroed run statistics and direct tier-four night start verified; configurable tier-four night transition, Blender streetlamp and two-size WebGL night scene verified; pulse skill removed; former skill area swipe/hold and two-size driving UI checks; including randomized merge completion, direction, warning timing and short reaction distance checks; six seeded 120-second runs of the shipped difficulty cliff (easy tutorial, hard tier two, escalating later tiers); sidebar capability, navigation failure and hot-start checks; sidebar browser UI at 390x844 and 320x568 with mocked host APIs; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
   "notVerified": [
     "Blender art version in Douyin IDE simulator",
     "Android/iOS phone",
