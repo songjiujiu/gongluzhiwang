@@ -55,7 +55,10 @@ test('touch and lifecycle handlers bind directly to all six native callbacks', (
   platform.touches(start, move, end, cancel); platform.lifecycle(hide, show);
   assert.equal(events.onTouchStart, start); assert.equal(events.onTouchMove, move);
   assert.equal(events.onTouchEnd, end); assert.equal(events.onTouchCancel, cancel);
-  assert.equal(events.onHide, hide); assert.equal(events.onShow, show);
+  assert.equal(events.onHide, hide);
+  let latest;platform.lifecycle(hide,options=>{latest=options;});
+  const options={launch_from:'homepage',location:'sidebar_card'};events.onShow(options);
+  assert.equal(latest,options);assert.equal(platform.sidebar.state.fromSidebar,true);
 });
 
 test('storage round trips structured values and unavailable storage is nonfatal', () => {

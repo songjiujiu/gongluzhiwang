@@ -121,7 +121,7 @@ class RoadKingApp {
   draw(){
     const c=this.ctx,p=this.p;c.setTransform(1,0,0,1,0,0);c.fillStyle=C.ink;c.fillRect(0,0,p.canvas.width,p.canvas.height);
     c.setTransform(p.ratio*this.scale,0,0,p.ratio*this.scale,p.ratio*this.ox,p.ratio*this.oy);c.save();c.beginPath();c.rect(0,0,W,H);c.clip();this.buttons=[];this.drawWorld();
-    if(this.game.mode==='menu')this.drawMenu();else{this.drawHud();if(this.game.mode==='paused')this.drawPause();else if(this.game.mode==='result')this.drawResult();}c.restore();
+    if(this.game.mode==='menu')this.drawMenu();else{this.drawHud();if(this.game.mode==='paused')this.drawPause();else if(this.game.mode==='result')this.drawResult();}if(this.sidebarGuide)this.drawSidebarGuide();c.restore();
   }
   projection(z,x=0){const p=1/(1+Math.max(-8,z)/34),half=242*p;return{x:270+x*half*.66,y:208+530*p,p,half};}
   drawWorld(){
@@ -233,7 +233,22 @@ class RoadKingApp {
     const tips=[['01','长按加速','按住路面加速，松手恢复自动提速。'],['02','左右滑动','每次滑动换一条车道，连续滑动闪避。'],['03','点击气浪','点击气浪技能，推开近前车辆。']];
     tips.forEach((tip,i)=>{const y=581+i*58;this.rr(29,y-9,30,29,8,'#263e48');this.txt(tip[0],44,y+6,13,C.orange,'bold','center');this.txt(tip[1],78,y,19,C.white,'bold');this.txt(tip[2],78,y+26,16,C.mute);});
     this.button(24,775,492,76,'开始挑战  →',()=>this.start(),{primary:true,size:28});this.txt('车流越来越密 · 活得越久，得分越高',270,878,16,C.white,'normal','center');
-    this.button(24,904,148,35,this.muted?'音效：关':'音效：开',()=>this.toggleSound(),{size:14,radius:9});this.txt('单局无尽 · 随时再来一局',515,922,14,C.mute,'normal','right');
+    this.button(24,904,148,35,this.muted?'音效：关':'音效：开',()=>this.toggleSound(),{size:14,radius:9});
+    if(this.p.sidebar&&this.p.sidebar.state.supported)this.button(250,898,266,48,'侧边栏再来玩',()=>{this.sidebarGuide=true;this.sidebarMessage='';},{size:19,radius:12});
+    else this.txt('单局无尽 · 随时再来一局',515,922,14,C.mute,'normal','right');
+  }
+  drawSidebarGuide(){
+    this.scrim();this.rr(24,280,492,400,23,C.panel,'#43606a');
+    this.txt('从侧边栏，随时再来一局',270,325,26,C.white,'bold','center');
+    this.txt('1. 点击下方按钮，前往首页侧边栏',270,386,19,C.mute,'normal','center');
+    this.txt('2. 找到「驾考宝典之公路日常」',270,426,19,C.mute,'normal','center');
+    this.txt('3. 点击游戏图标，即可回来挑战',270,466,19,C.mute,'normal','center');
+    this.txt(this.sidebarMessage||(this.p.sidebar.state.fromSidebar?'欢迎从侧边栏回来！':'下次也可以从首页侧边栏找到游戏'),270,512,16,C.cyan,'normal','center');
+    this.button(50,546,440,58,'去首页侧边栏',()=>{
+      this.sidebarGuide=false;this.releaseHolds();
+      this.p.sidebar.open(message=>{if(message){this.sidebarMessage=message;this.sidebarGuide=true;}});
+    },{primary:true,size:23,disabled:this.p.sidebar.state.busy});
+    this.button(50,621,440,40,'返回游戏',()=>{this.sidebarGuide=false;},{size:18});
   }
   drawHud(){
     const g=this.game,c=this.ctx,playing=g.mode==='playing',difficulty=g.difficulty||{tier:1,label:'起步巡航',progress:0},danger=difficulty.tier>=4;

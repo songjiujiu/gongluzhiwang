@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "scope": "Browser UI with mocked Douyin APIs; native IDE upload and phone navigation not verified",
+  "results": [
+    {
+      "width": 390,
+      "height": 844,
+      "passed": true
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "passed": true
+    }
+  ]
+}

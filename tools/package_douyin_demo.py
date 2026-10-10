@@ -18,6 +18,8 @@ assert model_verification.get('passed') is True, 'Editable source geometry must 
 engine_verification=json.loads((root/'research/blender-preview/engine-playback.json').read_text(encoding='utf-8'))
 collision_verification=json.loads((root/'research/blender-preview/collision-audio.json').read_text(encoding='utf-8'))
 assert collision_verification.get('passed') is True, 'Collision audio playback must pass'
+sidebar_verification=json.loads((root/'research/blender-preview/sidebar-ui.json').read_text(encoding='utf-8'))
+assert sidebar_verification.get('passed') is True, 'Sidebar UI verification must pass'
 assert hashlib.sha256((root/'公路之王/audio/hit.wav').read_bytes()).hexdigest()==collision_verification['sha256'], 'Collision audio changed after verification'
 extreme_speed=json.loads((root/'research/blender-preview/extreme-speed.json').read_text(encoding='utf-8'))
 assert extreme_speed.get('passed') is True, 'Extreme speed spawning and collision checks must pass'
@@ -33,6 +35,8 @@ for folder in ('公路之王', 'preview', 'tests'):
 files.extend(root / p for p in (
     'docs/endless-mode.md',
     'docs/difficulty-config.md',
+    'docs/sidebar-return.md',
+    'tools/verify_sidebar_preview.cjs',
     'docs/blender-art.md',
     'docs/game-design.md',
     'tools/generate_audio.py',
@@ -85,7 +89,7 @@ report = {
     'files':names,
     'zipIntegrity':'passed',
     'platform':'Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD',
-    'verification':'53 Node tests; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.',
+    'verification':'57 Node tests; sidebar capability, navigation failure and hot-start checks; sidebar browser UI at 390x844 and 320x568 with mocked host APIs; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.',
     'notVerified':['Blender art version in Douyin IDE simulator','Android/iOS phone','live upload and publication','phone performance','audio listening'],
 }
 (target / 'delivery-manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')

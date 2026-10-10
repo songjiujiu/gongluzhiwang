@@ -1,7 +1,12 @@
 // Native Douyin adapter. Does not require a DOM, server, login or network.
 const createEngineAudio=require('./engine-audio');
+const createSidebar=require('./sidebar');
 
 module.exports = function createPlatform(api) {
+  const sidebar=createSidebar(api);
+  let showHandler=null;
+  // Register synchronously at game startup, before any asset loading.
+  if(typeof api.onShow==='function')api.onShow(options=>{sidebar.onShow(options);if(showHandler)showHandler(options);});
   const canvas = api.createCanvas(), info = api.getSystemInfoSync();
   const width = info.windowWidth || info.screenWidth || 375;
   const height = info.windowHeight || info.screenHeight || 667;
@@ -30,6 +35,7 @@ module.exports = function createPlatform(api) {
   }
   const images = Object.create(null);
   return {
+    sidebar,
     canvas,width,height,ratio,top:Math.max(30,safe.top||0),bottom:Math.max(10,height-(safe.bottom||height)),
     createRenderCanvas:()=>api.createCanvas(),
     async loadSceneData(){
@@ -40,7 +46,7 @@ module.exports = function createPlatform(api) {
     },
     now:()=>Date.now(), frame:fn=>requestAnimationFrame(fn),
     touches(start,move,end,cancel) { bind('onTouchStart',start);bind('onTouchMove',move);bind('onTouchEnd',end);bind('onTouchCancel',cancel); },
-    lifecycle(hide,show) { bind('onHide',hide);bind('onShow',show); },
+    lifecycle(hide,show) { bind('onHide',hide);showHandler=show; },
     loadImage(src) {
       if (images[src]) return images[src];
       const request = new Promise((resolve, reject) => {
