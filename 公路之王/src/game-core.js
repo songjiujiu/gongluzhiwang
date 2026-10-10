@@ -9,7 +9,7 @@ class RoadKingCore {
     const config=options.difficultyConfig||DifficultyConfig;
     this.stages=validateStages(config);
     this.startTier=config.startTier===undefined?1:config.startTier;
-    if(!Number.isInteger(this.startTier)||this.startTier<1||this.startTier>4)throw new Error('difficulty-config: startTier 必须是 1–4 的整数');
+    if(!Number.isInteger(this.startTier)||this.startTier<1||this.startTier>this.stages.length)throw new Error('difficulty-config: startTier 必须是 1–'+this.stages.length+' 的整数');
     this.stageTimeOffset=this.stages.slice(0,this.startTier-1).reduce((sum,stage)=>sum+stage.durationSeconds,0);
     this.random = typeof options.random === 'function' ? options.random : Math.random;
     this.onEvent = typeof options.onEvent === 'function' ? options.onEvent : null;
@@ -390,7 +390,7 @@ class RoadKingCore {
 }
 
 function validateStages(config){
-  if(!config||!Array.isArray(config.stages)||config.stages.length!==4)throw new Error('difficulty-config: stages 必须包含四档配置');
+  if(!config||!Array.isArray(config.stages)||config.stages.length<1||config.stages.length>9)throw new Error('difficulty-config: stages 必须包含 1–9 档配置');
   return config.stages.map((stage,index)=>{
     const invalid=field=>{throw new Error('difficulty-config: 强度 '+(index+1)+' 的 '+field+' 配置无效');};
     if(!stage||typeof stage.label!=='string'||!stage.label.trim())invalid('label');
@@ -402,7 +402,11 @@ function validateStages(config){
     const mergeWarningMax=stage.mergeWarningMax===undefined?1.1:stage.mergeWarningMax;
     if(!Number.isFinite(mergeWarningMin)||mergeWarningMin<=0)invalid('mergeWarningMin');
     if(!Number.isFinite(mergeWarningMax)||mergeWarningMax<mergeWarningMin)invalid('mergeWarningMax');
-    return {...stage,mergeWarningMin,mergeWarningMax};
+    const scene=stage.scene===undefined?(index>=5?'dawn':index>=3?'night':'sunset'):stage.scene;
+    if(!['sunset','night','dawn'].includes(scene))invalid('scene');
+    const fogDensity=stage.fogDensity===undefined?.014:stage.fogDensity;
+    if(!Number.isFinite(fogDensity)||fogDensity<0||fogDensity>.04)invalid('fogDensity');
+    return {...stage,mergeWarningMin,mergeWarningMax,scene,fogDensity};
   });
 }
 function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }

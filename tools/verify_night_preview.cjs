@@ -5,13 +5,14 @@ const {chromium}=require('C:/Users/songx/.cache/codex-runtimes/codex-primary-run
 const root=path.resolve(__dirname,'..'),out=path.join(root,'research/blender-preview');
 (async()=>{
  const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--enable-unsafe-swiftshader']});
- const files=['公路之王/src/scene-renderer.js','公路之王/assets/scene/meshes.json','公路之王/assets/scene/meshes.bin','art/blender/night-road.blend'];
+ const files=['公路之王/src/difficulty-config.js','公路之王/src/scene-renderer.js','公路之王/assets/scene/meshes.json','公路之王/assets/scene/meshes.bin','art/blender/night-road.blend'];
  const inputs=files.map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')}));
  const report={passed:false,scope:'Actual WebGL scene in Chromium; not phone performance verification',inputs,screens:[]};
  try{
   for(const [width,height] of [[390,844],[320,568]]){
    const page=await browser.newPage({viewport:{width,height},hasTouch:true}),errors=[];page.on('pageerror',e=>errors.push(e.message));
    await page.addInitScript(()=>{window.requestAnimationFrame=()=>1;});
+   await page.route('**/src/difficulty-config.js',route=>route.fulfill({status:200,contentType:'application/javascript',body:fs.readFileSync(path.join(root,'公路之王/src/difficulty-config.js'),'utf8').replace(/"startTier":\s*\d+/, '"startTier": 1')}));
    await page.goto(process.env.ROAD_KING_PREVIEW_URL||'http://127.0.0.1:4191/');
    await page.waitForFunction(()=>window.roadKingReady,null,{polling:50});
    const initial=await page.evaluate(async()=>{
@@ -26,8 +27,14 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'research/blender-pre
    const night=await page.evaluate(()=>{const a=roadKingApp;a.game.elapsed=73;a.game._updateDifficulty();a.draw();const gl=a.scene.gl,pixels=new Uint8Array(540*960*4);gl.readPixels(0,0,540,960,gl.RGBA,gl.UNSIGNED_BYTE,pixels);let lit=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i]+pixels[i+1]+pixels[i+2]>180)lit++;return{amount:a.scene.night,error:gl.getError(),litFraction:lit/(540*960)};});
    assert.equal(night.amount,1);assert.equal(night.error,0);assert.ok(night.litFraction>.05);
    await page.screenshot({path:path.join(out,`night-game-${width}.png`)});
+   const dawn=[];
+   for(const tier of [6,7,8,9]){
+    const state=await page.evaluate(tier=>{const a=roadKingApp;a.game.elapsed=a.game.stages.slice(0,tier-1).reduce((sum,s)=>sum+s.durationSeconds,0)+3;a.game._updateDifficulty();a.draw();return{tier:a.game.difficulty.tier,night:a.scene.night,dawn:a.scene.dawn,fog:a.scene.fog,error:a.scene.gl.getError()};},tier);
+    assert.equal(state.tier,tier);assert.equal(state.night,0);assert.equal(state.dawn,1);assert.ok(state.fog>0);assert.equal(state.error,0);dawn.push(state);
+    if(tier===6||tier===9)await page.screenshot({path:path.join(out,`dawn-tier${tier}-${width}.png`)});
+   }
    const reset=await page.evaluate(()=>{roadKingApp.start();roadKingApp.draw();return roadKingApp.scene.night;});assert.equal(reset,0);
-   assert.deepEqual(errors,[]);report.screens.push({width,height,initial,night,errors});await page.close();
+   assert.deepEqual(errors,[]);report.screens.push({width,height,initial,night,dawn,errors});await page.close();
   }
   const direct=await browser.newPage({viewport:{width:390,height:844}});
   await direct.addInitScript(()=>{window.requestAnimationFrame=()=>1;});

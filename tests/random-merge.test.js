@@ -1,3 +1,4 @@
+require('../公路之王/src/difficulty-config').startTier=1;
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict');
 const Core=require('../公路之王/src/game-core');

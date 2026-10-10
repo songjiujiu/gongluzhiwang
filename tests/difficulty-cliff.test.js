@@ -1,3 +1,4 @@
+require('../公路之王/src/difficulty-config').startTier=1;
 'use strict';
 // Exercise shipped tuning directly; do not load the legacy regression fixture.
 const test=require('node:test'),assert=require('node:assert/strict');

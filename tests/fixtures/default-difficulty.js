@@ -1,6 +1,7 @@
 // Pin the original tuning for regression tests, independent of local user edits.
 const config=require('../../公路之王/src/difficulty-config');
 config.startTier=1;
+config.stages=config.stages.slice(0,4);
 for(const stage of config.stages){stage.mergeWarningMin=1.1;stage.mergeWarningMax=1.1;}
 Object.assign(config.stages[0],{durationSeconds:30,speedStart:76,speedEnd:88,reactionSeconds:5,spawnStart:4.6,spawnEnd:4.1,mergeChance:0,doubleChance:0,barrierChance:0,maxActiveObstacles:8});
 Object.assign(config.stages[1],{durationSeconds:30,speedStart:112,speedEnd:145,reactionSeconds:4,spawnStart:3.6,spawnEnd:3,mergeChance:.65,doubleChance:.2,barrierChance:0,maxActiveObstacles:8});

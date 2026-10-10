@@ -253,7 +253,8 @@ class RoadKingApp {
     const hud=c.createLinearGradient(0,8,0,108);hud.addColorStop(0,'rgba(24,51,65,.97)');hud.addColorStop(1,'rgba(11,30,43,.97)');
     this.rr(12,8,516,100,18,hud,'#49616a');this.line(29,9,511,9,'rgba(232,235,201,.24)');this.txt('本局得分',29,31,14,C.mute);this.txt(Math.round(g.score),29,70,37,C.white,'bold');this.txt('耐久',190,31,14,C.mute);this.txt(Math.round(g.health)+'%',190,69,28,g.health>35?C.cyan:C.red,'bold');this.rr(190,93,75,3,1.5,'#34535a');if(g.health>0)this.rr(190,93,75*g.health/100,3,1.5,g.health>35?C.cyan:C.red);this.txt('速度 km/h',312,31,13,C.mute);this.txt(Math.round(g.speed),312,71,34,danger?C.orange:C.cyan,'bold');this.button(433,23,76,67,'Ⅱ',()=>{this.releaseHolds();g.pause();},{disabled:!playing,size:25});
     this.rr(12,117,516,65,14,'rgba(13,34,45,.94)','#3d5861');this.txt('存活 '+duration(g.elapsed),27,139,18,C.white,'bold');this.txt(distance(g.distance),510,139,19,C.white,'bold','right');this.txt('强度 '+difficulty.tier+' · '+difficulty.label,27,166,14,danger?C.orange:C.cyan,'bold');
-    for(let i=0;i<6;i++)this.rr(382+i*22,161,16,6,3,i<difficulty.tier?danger?C.orange:C.cyan:'#3a515b');
+    const tierCount=g.stages.length,tierStep=130/tierCount;
+    for(let i=0;i<tierCount;i++)this.rr(382+i*tierStep,161,tierStep-4,6,3,i<difficulty.tier?danger?C.orange:C.cyan:'#3a515b');
     if(playing&&g.messageTimer>0&&g.message){const message=String(g.message);this.rr(20,199,500,42,12,'rgba(10,27,38,.93)');this.txt(message,270,220,message.length>27?13:16,C.white,'bold','center');}
     if(playing&&this.scene.status!=='ready'){this.rr(20,199,500,42,12,'rgba(10,27,38,.96)');this.txt(this.scene.status==='failed'?'画面加载失败 · 请重新编译':'正在加载三维场景…',270,220,16,C.orange,'bold','center');}
     if(playing&&g.elapsed<7){this.rr(111,276,318,42,12,'rgba(10,27,38,.88)');this.txt('← 左右滑动，连续闪避 →',270,297,18,C.white,'bold','center');}

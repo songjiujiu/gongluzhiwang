@@ -3,8 +3,12 @@
   "scope": "Actual WebGL scene in Chromium; not phone performance verification",
   "inputs": [
     {
+      "file": "公路之王/src/difficulty-config.js",
+      "sha256": "8ff7492e410c0a61558df9396611ff94332457e7d5e043e1a41774e5860e5e6a"
+    },
+    {
       "file": "公路之王/src/scene-renderer.js",
-      "sha256": "09d6e9940318c1d5e536ac9157a5a54709db31d87a26b7b5a263f5de8424cc95"
+      "sha256": "11793fd57ea581602b226b15d92aae758d5d9150b92838473a1deaf15dc9818b"
     },
     {
       "file": "公路之王/assets/scene/meshes.json",
@@ -33,6 +37,36 @@
         "error": 0,
         "litFraction": 0.3589679783950617
       },
+      "dawn": [
+        {
+          "tier": 6,
+          "night": 0,
+          "dawn": 1,
+          "fog": 0.014,
+          "error": 0
+        },
+        {
+          "tier": 7,
+          "night": 0,
+          "dawn": 1,
+          "fog": 0.018,
+          "error": 0
+        },
+        {
+          "tier": 8,
+          "night": 0,
+          "dawn": 1,
+          "fog": 0.021,
+          "error": 0
+        },
+        {
+          "tier": 9,
+          "night": 0,
+          "dawn": 1,
+          "fog": 0.024,
+          "error": 0
+        }
+      ],
       "errors": []
     },
     {
@@ -48,6 +82,36 @@
         "error": 0,
         "litFraction": 0.3589679783950617
       },
+      "dawn": [
+        {
+          "tier": 6,
+          "night": 0,
+          "dawn": 1,
+          "fog": 0.014,
+          "error": 0
+        },
+        {
+          "tier": 7,
+          "night": 0,
+          "dawn": 1,
+          "fog": 0.018,
+          "error": 0
+        },
+        {
+          "tier": 8,
+          "night": 0,
+          "dawn": 1,
+          "fog": 0.021,
+          "error": 0
+        },
+        {
+          "tier": 9,
+          "night": 0,
+          "dawn": 1,
+          "fog": 0.024,
+          "error": 0
+        }
+      ],
       "errors": []
     }
   ],
