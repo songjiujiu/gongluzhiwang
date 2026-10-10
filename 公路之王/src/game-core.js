@@ -100,6 +100,8 @@ class RoadKingCore {
       maxActiveObstacles: stage.maxActiveObstacles
     });
     if (previousTier && previousTier !== tier) {
+      // Do not carry the gentle stage's long spawn wait into the harder stage.
+      if(Number.isFinite(this._nextTraffic))this._nextTraffic=Math.min(this._nextTraffic,elapsed+Math.min(.6,spawnInterval));
       this._message('强度 ' + tier + ' · ' + this.difficulty.label, 2.8);
       this._emit('difficulty', { ...this.difficulty });
     }

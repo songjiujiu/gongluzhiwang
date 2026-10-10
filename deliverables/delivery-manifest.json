@@ -1,7 +1,7 @@
 {
   "archive": "驾考宝典之公路日常_实时三维版.zip",
-  "bytes": 18854535,
-  "sha256": "265c5326116807336851aa60cd2dbaf4ecac89ffc78ecf5df217a29dabc7aded",
+  "bytes": 18856842,
+  "sha256": "72860f39c4b266676e40bd3830fbf3d92ae0962bfd242e50d5e14de3b606e411",
   "importDirectory": "公路之王",
   "files": [
     "art/audio/collision-qubodup-151624.mp3",
@@ -68,6 +68,7 @@
     "research/blender-preview/sidebar-home-320.png",
     "research/blender-preview/sidebar-home-390.png",
     "research/blender-preview/sidebar-ui.json",
+    "tests/difficulty-cliff.test.js",
     "tests/difficulty-config.test.js",
     "tests/engine-audio.test.js",
     "tests/fixtures/default-difficulty.js",
@@ -124,7 +125,7 @@
   ],
   "zipIntegrity": "passed",
   "platform": "Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD",
-  "verification": "57 Node tests; sidebar capability, navigation failure and hot-start checks; sidebar browser UI at 390x844 and 320x568 with mocked host APIs; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
+  "verification": "60 Node tests including six seeded 120-second runs of the shipped difficulty cliff (easy tutorial, hard tier two, escalating later tiers); sidebar capability, navigation failure and hot-start checks; sidebar browser UI at 390x844 and 320x568 with mocked host APIs; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
   "notVerified": [
     "Blender art version in Douyin IDE simulator",
     "Android/iOS phone",
