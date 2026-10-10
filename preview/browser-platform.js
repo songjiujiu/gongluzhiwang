@@ -178,14 +178,13 @@
   window.addEventListener('keydown', event => {
     const game = core();
     if (!game) return;
-    const keys = ['KeyA', 'KeyD', 'KeyW', 'KeyF', 'KeyR', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'Escape', 'Enter'];
+    const keys = ['KeyA', 'KeyD', 'KeyW', 'KeyR', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'Escape', 'Enter'];
     if (!keys.includes(event.code)) return;
     event.preventDefault();
     held.add(event.code); updateHeld();
     if (event.repeat) return;
     if (event.code === 'KeyA' || event.code === 'ArrowLeft') window.roadKingApp.changeLane(-1);
     else if (event.code === 'KeyD' || event.code === 'ArrowRight') window.roadKingApp.changeLane(1);
-    else if (event.code === 'KeyF') game.pulse();
     else if (event.code === 'Escape') {
       window.roadKingApp.releaseHolds();
       game.mode === 'paused' ? game.resume() : game.pause();

@@ -74,9 +74,9 @@ test('storage round trips structured values and unavailable storage is nonfatal'
 
 test('audio contexts are cached by sound name, replay safely and stop on request', () => {
   const { platform, audio } = fixture();
-  platform.sound('pulse'); platform.sound('pulse'); platform.sound('hit');
+  platform.sound('signal'); platform.sound('signal'); platform.sound('hit');
   assert.equal(audio.length, 2);
-  assert.equal(audio[0].src, 'audio/pulse.wav'); assert.equal(audio[0].volume, 0.3);
+  assert.equal(audio[0].src, 'audio/signal.wav'); assert.equal(audio[0].volume, 0.3);
   assert.equal(audio[0].plays, 2); assert.equal(audio[0].stops, 2);
   assert.equal(audio[1].plays, 1);
   assert.equal(audio[1].volume, .85, 'collision cuts through the driving sound');

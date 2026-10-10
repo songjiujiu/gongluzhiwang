@@ -46,7 +46,7 @@ fs.mkdirSync(out, { recursive: true });
       const g = roadKingApp.game;
       return { mode: g.mode, elapsed: g.elapsed, lane: g.lane, speed: g.speed, distance: g.distance,
         score: g.score, health: g.health, throttle: g.throttle,
-        pulseCooldown: g.pulseCooldown, difficulty: g.difficulty, best: roadKingApp.best };
+        difficulty: g.difficulty, best: roadKingApp.best };
     });
     await page.goto('http://127.0.0.1:4179/');
     await ready();
@@ -82,13 +82,8 @@ fs.mkdirSync(out, { recursive: true });
     checks.noBrake = true;
     await page.mouse.move(swipe.x, swipe.y); await page.mouse.down();
     await page.mouse.move(swipe.x, swipe.y - swipe.dx); await page.mouse.up();
-    assert.equal((await state()).pulseCooldown, 0);
-    await click('气浪技能');
-    assert.ok((await state()).pulseCooldown > 0);
-    assert.equal(await page.evaluate(() => roadKingApp.buttons.find(b => b.key==='气浪技能').disabled), true);
-    checks.clickPulseAndCooldown = true;
-    assert.equal(await page.evaluate(() => roadKingApp.buttons.length), 2);
-    checks.onlyPauseAndSkillButtons = true;
+    assert.equal(await page.evaluate(() => roadKingApp.buttons.length), 1);
+    checks.onlyPauseButton = true;
     await snapshot('gameplay');
     await page.keyboard.press('Escape');
     const beforePause = await state(); await advance(20);

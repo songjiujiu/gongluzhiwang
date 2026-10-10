@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-09",
+  "date": "2026-10-10",
   "kind": "Actual game WebGL scene composited with Canvas HUD; not Douyin IDE or phone verification",
   "meshInputs": [
     {
@@ -31,8 +31,9 @@
       "mode": "playing",
       "input": {
         "lane": -1,
-        "pulse": 10,
-        "disabled": true,
+        "buttons": [
+          "Ⅱ"
+        ],
         "carBounds": [
           40.56350648022182,
           315.88729870395565
@@ -58,8 +59,9 @@
       "mode": "playing",
       "input": {
         "lane": -1,
-        "pulse": 10,
-        "disabled": true,
+        "buttons": [
+          "Ⅱ"
+        ],
         "carBounds": [
           40.56350648022182,
           315.88729870395565

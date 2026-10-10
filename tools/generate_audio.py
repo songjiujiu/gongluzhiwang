@@ -1,4 +1,4 @@
-"""Build the licensed collision effect and three original PCM effects."""
+"""Build the licensed collision effect and two original PCM effects."""
 import math
 import struct
 import wave
@@ -29,7 +29,6 @@ def generate(name, duration, sample):
 def main():
     DESTINATION.mkdir(parents=True, exist_ok=True)
     generate_collision()
-    generate('pulse', 0.42, lambda t, d: (math.sin(2 * math.pi * (280 * t - 220 * t * t)) + 0.25 * math.sin(2 * math.pi * 54 * t)) * (1 - t / d) ** 1.6)
 
     def success(t, duration):
         notes = [(0, 659.25), (0.075, 830.61), (0.15, 987.77)]

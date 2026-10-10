@@ -34,8 +34,6 @@ class RoadKingCore {
     this.signalDirection = 0;
     this.signalTimer = 0;
     this.signalRewardCooldown = 0;
-    this.pulseCooldown = 0;
-    this.pulseLife = 0;
     this.invulnerability = 0;
     this.collisionStopped = false;
     this.collisionX = 0;
@@ -46,7 +44,6 @@ class RoadKingCore {
     this.resultReason = '';
     this.stars = 0;
     this.signalsUsed = 0;
-    this.pulsesUsed = 0;
     this.throttle = false;
 
     this._nextTraffic = 1.4;
@@ -113,7 +110,7 @@ class RoadKingCore {
     if (this.health <= 0) { this._finish(false, '车辆耐久耗尽'); return; }
     this.elapsed += dt;
     this._updateDifficulty();
-    for (const key of ['invulnerability', 'laneChangeCooldown', 'signalRewardCooldown', 'pulseCooldown', 'pulseLife', 'messageTimer'])
+    for (const key of ['invulnerability', 'laneChangeCooldown', 'signalRewardCooldown', 'messageTimer'])
       this[key] = Math.max(0, this[key] - dt);
     if (this.signalDirection !== 0) {
       this.signalTimer += dt;
@@ -175,26 +172,6 @@ class RoadKingCore {
     this.signalTimer = 0;
     this.signalsUsed++;
     this._emit('signal', { direction: dir });
-    return true;
-  }
-
-  pulse() {
-    if (this.mode !== 'playing' || this.pulseCooldown > 1e-8) return false;
-    this.pulseCooldown = 10;
-    this.pulseLife = 0.8;
-    this.pulsesUsed++;
-    const carIds = [];
-    for (const car of this.traffic) {
-      if (car.kind === 'barrier' || car.hit || car.escaped || car.z < -4 || car.z > 36) continue;
-      car.z += 12;
-      car.speed = Math.max(150, roadSpeed(this.speed) + 70);
-      car.escaped = true;
-      car.signalDirection = 0;
-      car.warningTimer = 0;
-      carIds.push(car.id);
-    }
-    this._emit('pulse', { countered: carIds.length > 0, carIds, cooldown: 10 });
-    this._message(carIds.length ? '气浪已推开近处车辆 · 路障仍需换道' : '气浪已释放 · 近处车辆可推开，路障需避让', 2.8);
     return true;
   }
 

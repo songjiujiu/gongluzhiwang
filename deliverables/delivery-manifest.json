@@ -1,7 +1,7 @@
 {
   "archive": "驾考宝典之公路日常_实时三维版.zip",
-  "bytes": 18859287,
-  "sha256": "691ea18002d16994ccb8e626f20b79374bbf138b3cc088ac450771e01543bea4",
+  "bytes": 19110859,
+  "sha256": "3bae531db5b87da775a83814873ccd29d691d549731b70979965229fbe811e60",
   "importDirectory": "公路之王",
   "files": [
     "art/audio/collision-qubodup-151624.mp3",
@@ -51,6 +51,8 @@
     "research/blender-preview/merge-after-neighbour-clears-390x844.png",
     "research/blender-preview/merge-waits-for-neighbour-320x568.png",
     "research/blender-preview/merge-waits-for-neighbour-390x844.png",
+    "research/blender-preview/realtime-driving-320x568.png",
+    "research/blender-preview/realtime-driving-390x844.png",
     "research/blender-preview/realtime-game-320x568.png",
     "research/blender-preview/realtime-game-390x844.png",
     "research/blender-preview/realtime-load-error.png",
@@ -108,7 +110,6 @@
     "公路之王/audio/engine-idle.wav",
     "公路之王/audio/engine.wav",
     "公路之王/audio/hit.wav",
-    "公路之王/audio/pulse.wav",
     "公路之王/audio/signal.wav",
     "公路之王/audio/success.wav",
     "公路之王/game.js",
@@ -126,7 +127,7 @@
   ],
   "zipIntegrity": "passed",
   "platform": "Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD",
-  "verification": "63 Node tests including randomized merge completion, direction, warning timing and short reaction distance checks; six seeded 120-second runs of the shipped difficulty cliff (easy tutorial, hard tier two, escalating later tiers); sidebar capability, navigation failure and hot-start checks; sidebar browser UI at 390x844 and 320x568 with mocked host APIs; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
+  "verification": "62 Node tests; pulse skill removed; former skill area swipe/hold and two-size driving UI checks; including randomized merge completion, direction, warning timing and short reaction distance checks; six seeded 120-second runs of the shipped difficulty cliff (easy tutorial, hard tier two, escalating later tiers); sidebar capability, navigation failure and hot-start checks; sidebar browser UI at 390x844 and 320x568 with mocked host APIs; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.",
   "notVerified": [
     "Blender art version in Douyin IDE simulator",
     "Android/iOS phone",

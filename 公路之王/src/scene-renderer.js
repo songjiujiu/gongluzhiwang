@@ -20,7 +20,6 @@ void main(){vec3 n=normalize(vNormal),view=normalize(uEye-vWorld),light=normaliz
 if(uKind>0.5&&uKind<1.5){float grain=noise(vec2(vWorld.x*28.,(vWorld.z+uTravel)*28.));base=vec3(.105,.115,.125)*(0.80+grain*.30);float lane=abs(abs(vWorld.x)-1.55);float dash=step(3.,mod(-vWorld.z-uTravel,6.));if(lane<.055&&dash>.5||abs(vWorld.x)>4.48)base=vec3(.84,.82,.71);rough=.9;}
 if(uKind>1.5&&uKind<2.5){float wave=sin(vWorld.x*1.8+uTravel*.03)*sin(vWorld.z*.8+uTravel*.06);n=normalize(vec3(wave*.08,1.,cos(vWorld.x*3.+vWorld.z)*.11));base=vec3(.025,.19,.24);rough=.16;metal=.35;}
 if(uKind>2.5&&uKind<3.5){float r=length((vWorld.xz-uPosition.xz)/uScale.xz);gl_FragColor=vec4(.015,.02,.025,.38*(1.-smoothstep(.45,1.,r)));return;}
-if(uKind>3.5&&uKind<4.5){float r=length((vWorld.xz-uPosition.xz)/uScale.xz);float a=1.-smoothstep(.035,.075,abs(r-.8));gl_FragColor=vec4(.25,1.,.78,a*.65);return;}
 vec3 h=normalize(light+view);float diffuse=max(dot(n,light),0.);float spec=pow(max(dot(n,h),0.),mix(110.,7.,rough));float fresnel=pow(1.-max(dot(n,view),0.),5.);
 vec3 ambient=mix(vec3(.14,.19,.24),vec3(.56,.69,.76),n.y*.5+.5);
 vec3 color=base*(ambient*.75+vec3(1.,.73,.44)*diffuse*.85)+mix(vec3(.45),base,metal)*spec*(.3+metal*.8);
@@ -77,7 +76,6 @@ class SceneRenderer{
     g.enable(g.BLEND);g.blendFunc(g.SRC_ALPHA,g.ONE_MINUS_SRC_ALPHA);g.depthMask(false);
     for(const car of cars){if(car.z> -5&&car.z<150)this.draw(this.ground,[car.x*3.1,.015,-car.z],[1.3,1,2.5],null,3);}
     if(!menu)this.draw(this.ground,[game.playerX*3.1,.018,0],[1.35,1,2.6],null,3);
-    if(game.pulseLife>0){const r=1+(1-game.pulseLife/.8)*12;this.draw(this.ground,[game.playerX*3.1,.022,0],[r,1,r],null,4);}
     g.depthMask(true);g.disable(g.BLEND);
     for(const car of cars){if(car.z< -5||car.z>180)continue;const x=car.x*3.1,z=-car.z;this.model(car.kind==='barrier'?'barrier':car.threat?'player':car.id%2?'suv':'player',[x,.035,z],car.threat?[.76,.18,.035]:car.id%2?[.48,.51,.53]:[.035,.12,.30]);}
     if(!menu)this.model('player',[game.playerX*3.1,.035,0],[.012,.36,.41]);

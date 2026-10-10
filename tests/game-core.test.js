@@ -134,7 +134,7 @@ test('a run settles once on the fourth hit and retry resets all challenge resour
   const events = [];
   const game = fresh(137, (type, data) => events.push({ type, data }));
   noSpawns(game);
-  game.update(80); game.pulse(); game.setSignal(1); game.update(0.5);
+  game.update(80); game.setSignal(1); game.update(0.5);
   for (let i = 0; i < 4; i++) { game.traffic = []; game.collisionStopped = false; game.invulnerability = 0; car(game); game._updateTraffic(0.001); }
   game.update(0.01);
   assert.equal(game.mode, 'result');
@@ -145,7 +145,7 @@ test('a run settles once on the fourth hit and retry resets all challenge resour
   assert.equal(JSON.stringify(game), result);
   assert.equal(events.filter(event => event.type === 'result').length, 1);
   game.start(2);
-  for (const name of ['score', 'elapsed', 'distance', 'collisions', 'dodged', 'waveCount', 'clearedEvents', 'eventCount', 'pulseCooldown', 'signalRewardCooldown'])
+  for (const name of ['score', 'elapsed', 'distance', 'collisions', 'dodged', 'waveCount', 'clearedEvents', 'eventCount', 'signalRewardCooldown'])
     assert.equal(game[name], 0, name);
   assert.equal(game.level, 0);
   assert.equal(game.health, 100);
@@ -161,13 +161,12 @@ test('a run settles once on the fourth hit and retry resets all challenge resour
 test('pause freezes clocks and cars; resume and menu obey mode guards', () => {
   const game = fresh(); noSpawns(game);
   car(game, 1, 15);
-  game.setSignal(-1); game.pulse(); game.update(0.5);
+  game.setSignal(-1); game.update(0.5);
   game.setThrottle(true); game.pause();
   const before = JSON.stringify(game);
   game.update(25);
   assert.equal(JSON.stringify(game), before);
   assert.equal(game.changeLane(-1), false);
-  assert.equal(game.pulse(), false);
   assert.equal(game.setSignal(1), false);
   assert.equal(game.throttle, false);
   assert.equal(game.resume(), true);
@@ -195,24 +194,6 @@ test('signal reward still requires a full second, correct direction and a clear 
       assert.equal(game.score, secondScore, 'cooldown prevents another signal bonus');
     }
   }
-});
-
-test('pulse has a ten-second cooldown and affects only cars in its visible range', () => {
-  const game = fresh(); noSpawns(game);
-  const near = car(game, 1, 20);
-  const far = car(game, -1, 50);
-  assert.equal(game.pulse(), true);
-  assert.equal(game.pulseCooldown, 10);
-  assert.equal(near.escaped, true);
-  assert.equal(near.z, 32);
-  assert.equal(far.escaped, false);
-  assert.equal(game.pulse(), false);
-  assert.equal(game.pulsesUsed, 1);
-  game.update(9.99);
-  assert.equal(game.pulse(), false);
-  game.update(0.02);
-  assert.equal(game.pulse(), true);
-  assert.equal(game.pulsesUsed, 2);
 });
 
 test('brake API and energy reserve are removed', () => {
@@ -284,7 +265,6 @@ test('visible lane choices support six-minute runs across seeds as real traffic 
     close(game.elapsed, 360);
     assert.equal(game.health, 100, `seed ${seed}: readable traffic should be avoidable`);
     assert.equal(game.collisions, 0);
-    assert.equal(game.pulsesUsed, 0, 'basic survival does not require an emergency ability');
     assert.ok(game.dodged > 100);
     const early = waves.filter(wave => wave.elapsed < 30);
     const late = waves.filter(wave => wave.elapsed >= 300 && wave.elapsed < 330);
