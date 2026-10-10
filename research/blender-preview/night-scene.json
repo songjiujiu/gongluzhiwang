@@ -4,11 +4,11 @@
   "inputs": [
     {
       "file": "公路之王/src/difficulty-config.js",
-      "sha256": "8ff7492e410c0a61558df9396611ff94332457e7d5e043e1a41774e5860e5e6a"
+      "sha256": "41d50c625104f047d69a0334e1ed6046019a9726ad8c86f7decad839d213c48a"
     },
     {
       "file": "公路之王/src/scene-renderer.js",
-      "sha256": "11793fd57ea581602b226b15d92aae758d5d9150b92838473a1deaf15dc9818b"
+      "sha256": "46a32f8d461376d38bf202c861c62a7b054ebb4e7ca1d9ea58854c34a9556724"
     },
     {
       "file": "公路之王/assets/scene/meshes.json",
@@ -35,7 +35,7 @@
       "night": {
         "amount": 1,
         "error": 0,
-        "litFraction": 0.3589679783950617
+        "litFraction": 0.31433482241865474
       },
       "dawn": [
         {
@@ -80,7 +80,7 @@
       "night": {
         "amount": 1,
         "error": 0,
-        "litFraction": 0.3589679783950617
+        "litFraction": 0.3430056844260848
       },
       "dawn": [
         {

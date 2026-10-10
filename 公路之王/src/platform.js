@@ -13,6 +13,12 @@ module.exports = function createPlatform(api) {
   const ratio = Math.min(info.pixelRatio || 1, 2);
   canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
   const safe = info.safeArea || {top:0,bottom:height};
+  let top=Math.max(30,safe.top||0);
+  // Native mini-game capsule coordinates are CSS pixels, like safeArea.
+  try{
+    const menu=typeof api.getMenuButtonLayout==='function'?api.getMenuButtonLayout():null;
+    if(menu&&Number.isFinite(menu.bottom)&&menu.bottom>0&&menu.bottom<height*.3)top=Math.max(top,menu.bottom+6);
+  }catch(_){}
   const bind = (name, cb) => { if (typeof api[name] === 'function') api[name](cb); };
   const audio = {};
   let engine = null, engineIdle = null, enginePlaying = false;
@@ -36,7 +42,7 @@ module.exports = function createPlatform(api) {
   const images = Object.create(null);
   return {
     sidebar,
-    canvas,width,height,ratio,top:Math.max(30,safe.top||0),bottom:Math.max(10,height-(safe.bottom||height)),
+    canvas,width,height,ratio,top,bottom:Math.max(10,height-(safe.bottom||height)),
     createRenderCanvas:()=>api.createCanvas(),
     async loadSceneData(){
       const fs=api.getFileSystemManager();

@@ -6,7 +6,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const source = fs.readFileSync(path.join(__dirname, '../公路之王/src/platform.js'), 'utf8');
 
-function fixture(info = {}) {
+function fixture(info = {}, overrides = {}) {
   const events = {}, storage = new Map(), audio = [], images = [], canvas = {}, frames = [];
   const api = {
     createCanvas: () => canvas,
@@ -22,6 +22,7 @@ function fixture(info = {}) {
   };
   for (const name of ['onTouchStart', 'onTouchMove', 'onTouchEnd', 'onTouchCancel', 'onHide', 'onShow'])
     api[name] = callback => { events[name] = callback; };
+  Object.assign(api,overrides);
   const module = { exports: {} };
   vm.runInNewContext(source, { module, require:name=>require('../公路之王/src/'+name.replace('./','')), requestAnimationFrame: callback => { frames.push(callback); return frames.length; }, Date });
   return { platform: module.exports(api), api, events, storage, audio, images, canvas, frames };
@@ -47,6 +48,12 @@ test('Douyin canvas uses CSS dimensions, caps backing scale at two and respects 
   const fallback = fixture({ windowWidth: 0, windowHeight: 0, screenWidth: 375, screenHeight: 667, pixelRatio: 1, safeArea: undefined }).platform;
   assert.equal(fallback.width, 375); assert.equal(fallback.height, 667);
   assert.equal(fallback.top, 30); assert.equal(fallback.bottom, 10);
+});
+
+test('native capsule is reserved and unavailable or invalid layout safely falls back',()=>{
+  assert.equal(fixture({}, {getMenuButtonLayout:()=>({bottom:94})}).platform.top,100);
+  for(const menu of [null,{}, {bottom:NaN}, {bottom:900}, {bottom:-3}])assert.equal(fixture({}, {getMenuButtonLayout:()=>menu}).platform.top,47);
+  assert.equal(fixture({}, {getMenuButtonLayout:()=>{throw new Error('unsupported');}}).platform.top,47);
 });
 
 test('touch and lifecycle handlers bind directly to all six native callbacks', () => {

@@ -11,7 +11,9 @@ class RoadKingApp {
   constructor(p){
     this.p=p;this.ctx=p.canvas.getContext('2d');
     this.scale=Math.min(p.width/W,(p.height-p.top-p.bottom)/H);
-    this.ox=(p.width-W*this.scale)/2;this.oy=p.top+(p.height-p.top-p.bottom-H*this.scale)/2;
+    this.ox=(p.width-W*this.scale)/2;this.oy=p.top;
+    this.viewHeight=(p.height-p.top-p.bottom)/this.scale;
+    this.sceneHeight=p.height/this.scale;
     this.buttons=[];this.touchMap={};this.keyboard={};this.queuedLane=null;this.clock=0;this.shake=0;this.newBest=false;
     // Blender renders are optional at startup: a missing image keeps its vector fallback.
     this.art={};this.artLoaded=0;this.artErrors=[];
@@ -22,6 +24,7 @@ class RoadKingApp {
     const saved=p.read(BEST_KEY)||{};this.best={score:number(saved.score),distance:number(saved.distance),elapsed:number(saved.elapsed)};
     this.game=new Core({onEvent:(type,data)=>this.onEvent(type,data)});
     this.scene=new SceneRenderer(p);
+    this.scene.setView(W,this.sceneHeight,this.oy/this.scale);
     p.touches(e=>this.touchStart(e),e=>this.touchMove(e),e=>this.touchEnd(e),()=>this.releaseHolds());
     p.lifecycle(()=>{this.hidden=true;this.releaseHolds();this.game.pause();p.stopSound();this.syncEngine();},()=>{this.hidden=false;this.last=p.now();this.syncEngine();});
     this.last=p.now();
@@ -71,7 +74,7 @@ class RoadKingApp {
     (e.changedTouches||e.touches||[]).forEach(t=>{
       const pt=this.point(t),b=this.buttons.slice().reverse().find(b=>!b.disabled&&this.inside(pt,b)),id=t.identifier==null?0:t.identifier;
       if(b){this.touchMap[id]={button:b,pt};if(b.hold)this.updateHolds();else{b.action();this.draw();}}
-      else if(this.game.mode==='playing'&&pt.x>=0&&pt.x<=W&&pt.y>=185&&pt.y<=H&&!Object.values(this.touchMap).some(item=>item.swipe))this.touchMap[id]={pt,swipe:true,axis:null,used:false,heldTime:0,holdEligible:true};
+      else if(this.game.mode==='playing'&&pt.x>=0&&pt.x<=W&&pt.y>=156&&pt.y<=this.viewHeight&&!Object.values(this.touchMap).some(item=>item.swipe))this.touchMap[id]={pt,swipe:true,axis:null,used:false,heldTime:0,holdEligible:true};
     });
   }
   touchMove(e){
@@ -119,13 +122,14 @@ class RoadKingApp {
   }
   draw(){
     const c=this.ctx,p=this.p;c.setTransform(1,0,0,1,0,0);c.fillStyle=C.ink;c.fillRect(0,0,p.canvas.width,p.canvas.height);
-    c.setTransform(p.ratio*this.scale,0,0,p.ratio*this.scale,p.ratio*this.ox,p.ratio*this.oy);c.save();c.beginPath();c.rect(0,0,W,H);c.clip();this.buttons=[];this.drawWorld();
+    c.setTransform(p.ratio*this.scale,0,0,p.ratio*this.scale,p.ratio*this.ox,p.ratio*this.oy);c.save();this.buttons=[];this.drawWorld();c.beginPath();c.rect(0,-this.oy/this.scale,W,this.sceneHeight);c.clip();
     if(this.game.mode==='menu')this.drawMenu();else{this.drawHud();if(this.game.mode==='paused')this.drawPause();else if(this.game.mode==='result')this.drawResult();}if(this.sidebarGuide)this.drawSidebarGuide();c.restore();
   }
   projection(z,x=0){const p=1/(1+Math.max(-8,z)/34),half=242*p;return{x:270+x*half*.66,y:208+530*p,p,half};}
   drawWorld(){
     if(this.scene.render(this.game,this.clock)){
-      this.ctx.drawImage(this.scene.canvas,0,0,W,H);
+      this.ctx.imageSmoothingEnabled=true;
+      this.ctx.drawImage(this.scene.canvas,0,-this.oy/this.scale,W,this.sceneHeight);
       for(const car of this.game.traffic){if(car.warningTimer>0&&car.signalDirection&&car.z>0&&car.z<120){const a=this.scene.project([car.x*3.1,2.3,-car.z]);if(a){this.rr(a.x-32,a.y-24,64,24,7,C.orange);this.txt(car.signalDirection<0?'← 变线':'变线 →',a.x,a.y-12,13,C.ink,'bold','center');}}}
       return;
     }
@@ -221,7 +225,7 @@ class RoadKingApp {
     this.rr(-28*p,-60*p,9*p,9*p,3*p,'#fff0ad');this.rr(19*p,-60*p,9*p,9*p,3*p,'#fff0ad');c.restore();
   }
   drawMenu(){
-    const c=this.ctx,fade=c.createLinearGradient(0,0,0,H);fade.addColorStop(0,'rgba(7,24,36,.98)');fade.addColorStop(.21,'rgba(8,27,39,.89)');fade.addColorStop(.41,'rgba(8,27,39,.50)');fade.addColorStop(.57,'rgba(8,27,39,.98)');fade.addColorStop(1,'rgba(8,27,39,1)');c.fillStyle=fade;c.fillRect(0,0,W,H);
+    const c=this.ctx,fade=c.createLinearGradient(0,0,0,H);fade.addColorStop(0,'rgba(7,24,36,.98)');fade.addColorStop(.21,'rgba(8,27,39,.89)');fade.addColorStop(.41,'rgba(8,27,39,.50)');fade.addColorStop(.57,'rgba(8,27,39,.98)');fade.addColorStop(1,'rgba(8,27,39,1)');c.fillStyle=fade;c.fillRect(0,-this.oy/this.scale,W,this.sceneHeight);
     this.rr(28,28,6,17,3,C.orange);this.txt('驾考宝典',45,37,16,C.white,'bold');this.txt('ENDLESS DRIVE',514,37,12,C.mute,'normal','right');
     this.txt('驾考宝典之公路日常',26,108,48,C.white,'bold');this.txt('一条公路，没有终点。',30,165,23,'#d0ded6');
     this.rr(28,202,151,31,15,'rgba(88,192,171,.14)','#3f736e');this.txt('开局强度 '+this.game.startTier,103,218,15,C.cyan,'bold','center');
@@ -250,19 +254,25 @@ class RoadKingApp {
   }
   drawHud(){
     const g=this.game,c=this.ctx,playing=g.mode==='playing',difficulty=g.difficulty||{tier:1,label:'起步巡航',progress:0},danger=difficulty.tier>=4;
-    const hud=c.createLinearGradient(0,8,0,108);hud.addColorStop(0,'rgba(24,51,65,.97)');hud.addColorStop(1,'rgba(11,30,43,.97)');
-    this.rr(12,8,516,100,18,hud,'#49616a');this.line(29,9,511,9,'rgba(232,235,201,.24)');this.txt('本局得分',29,31,14,C.mute);this.txt(Math.round(g.score),29,70,37,C.white,'bold');this.txt('耐久',190,31,14,C.mute);this.txt(Math.round(g.health)+'%',190,69,28,g.health>35?C.cyan:C.red,'bold');this.rr(190,93,75,3,1.5,'#34535a');if(g.health>0)this.rr(190,93,75*g.health/100,3,1.5,g.health>35?C.cyan:C.red);this.txt('速度 km/h',312,31,13,C.mute);this.txt(Math.round(g.speed),312,71,34,danger?C.orange:C.cyan,'bold');this.button(433,23,76,67,'Ⅱ',()=>{this.releaseHolds();g.pause();},{disabled:!playing,size:25});
-    this.rr(12,117,516,65,14,'rgba(13,34,45,.94)','#3d5861');this.txt('存活 '+duration(g.elapsed),27,139,18,C.white,'bold');this.txt(distance(g.distance),510,139,19,C.white,'bold','right');this.txt('强度 '+difficulty.tier+' · '+difficulty.label,27,166,14,danger?C.orange:C.cyan,'bold');
-    const tierCount=g.stages.length,tierStep=130/tierCount;
-    for(let i=0;i<tierCount;i++)this.rr(382+i*tierStep,161,tierStep-4,6,3,i<difficulty.tier?danger?C.orange:C.cyan:'#3a515b');
-    if(playing&&g.messageTimer>0&&g.message){const message=String(g.message);this.rr(20,199,500,42,12,'rgba(10,27,38,.93)');this.txt(message,270,220,message.length>27?13:16,C.white,'bold','center');}
-    if(playing&&this.scene.status!=='ready'){this.rr(20,199,500,42,12,'rgba(10,27,38,.96)');this.txt(this.scene.status==='failed'?'画面加载失败 · 请重新编译':'正在加载三维场景…',270,220,16,C.orange,'bold','center');}
-    if(playing&&g.elapsed<7){this.rr(111,276,318,42,12,'rgba(10,27,38,.88)');this.txt('← 左右滑动，连续闪避 →',270,297,18,C.white,'bold','center');}
-    const controls=c.createLinearGradient(0,844,0,H);controls.addColorStop(0,'#163747');controls.addColorStop(1,'#0b202e');c.fillStyle=controls;c.fillRect(0,844,W,116);this.line(0,844,W,844,'#769082');
-    this.txt('←',99,875,34,C.cyan,'bold','center');this.txt('滑动驾驶',270,872,24,C.white,'bold','center');this.txt('→',441,875,34,C.cyan,'bold','center');this.txt('左右滑动换道 · 长按路面加速',270,901,16,C.mute,'normal','center');
-    this.txt(g.collisionStopped?'碰撞停车 · 滑到旁边车道重新起步':g.throttle?'正在加速 · 松手恢复巡航':'自动提速 · 长按路面加速',270,934,15,C.mute,'normal','center');
+    const hud=c.createLinearGradient(0,8,0,94);hud.addColorStop(0,'rgba(24,51,65,.91)');hud.addColorStop(1,'rgba(11,30,43,.88)');
+    this.rr(12,8,516,86,16,hud,'#49616a');this.txt('得分',29,28,14,C.mute);this.txt(Math.round(g.score),29,61,34,C.white,'bold');
+    this.txt('耐久',190,28,14,C.mute);this.txt(Math.round(g.health)+'%',190,60,27,g.health>35?C.cyan:C.red,'bold');this.rr(190,81,75,3,1.5,'#34535a');if(g.health>0)this.rr(190,81,75*g.health/100,3,1.5,g.health>35?C.cyan:C.red);
+    this.txt('速度 km/h',312,28,13,C.mute);this.txt(Math.round(g.speed),312,61,32,danger?C.orange:C.cyan,'bold');this.button(439,20,66,62,'Ⅱ',()=>{this.releaseHolds();g.pause();},{disabled:!playing,size:25});
+    this.rr(12,101,516,52,12,'rgba(13,34,45,.86)','#3d5861');this.txt('强度 '+difficulty.tier+' · '+difficulty.label,27,119,15,danger?C.orange:C.cyan,'bold');
+    this.txt(duration(g.elapsed)+'  /  '+distance(g.distance),510,119,16,C.white,'bold','right');
+    const tierCount=g.stages.length,tierStep=480/tierCount;
+    for(let i=0;i<tierCount;i++)this.rr(28+i*tierStep,138,tierStep-5,4,2,i<difficulty.tier?danger?C.orange:C.cyan:'#3a515b');
+    const controlsY=this.viewHeight-76;
+    const controls=c.createLinearGradient(0,controlsY,0,this.viewHeight+this.p.bottom/this.scale);controls.addColorStop(0,'rgba(16,43,56,.84)');controls.addColorStop(1,'#0b202e');c.fillStyle=controls;c.fillRect(0,controlsY,W,76+this.p.bottom/this.scale);this.line(0,controlsY,W,controlsY,'#47626c');
+    let title='左右滑动换道',hint='长按路面加速 · 松手恢复巡航';
+    if(g.collisionStopped){title='碰撞停车';hint='滑到旁边空车道，重新起步';}
+    else if(g.throttle){title='正在加速';hint='松手恢复巡航 · 左右滑动避障';}
+    else if(playing&&g.messageTimer>0&&g.message){title=String(g.message);}
+    if(playing&&this.scene.status!=='ready'){title=this.scene.status==='failed'?'画面加载失败':'正在加载三维场景';hint=this.scene.status==='failed'?'请重新编译后再试':'稍等片刻';}
+    this.txt('←',60,controlsY+30,27,C.cyan,'bold','center');this.txt(title,270,controlsY+27,title.length>22?15:19,C.white,'bold','center');this.txt('→',480,controlsY+30,27,C.cyan,'bold','center');
+    this.txt(hint,270,controlsY+55,15,C.mute,'normal','center');
   }
-  scrim(){this.ctx.fillStyle='rgba(3,12,19,.83)';this.ctx.fillRect(0,0,W,H);this.buttons=[];}
+  scrim(){this.ctx.fillStyle='rgba(3,12,19,.83)';this.ctx.fillRect(0,-this.oy/this.scale,W,this.sceneHeight);this.buttons=[];}
   drawPause(){
     this.scrim();this.rr(24,263,492,434,23,C.panel,'#43606a');this.txt('稍停片刻',270,321,35,C.white,'bold','center');this.txt('公路在等你，准备好再出发。',270,371,18,C.mute,'normal','center');
     this.button(50,424,440,66,'继续挑战',()=>{this.releaseHolds();this.game.resume();},{primary:true});this.button(50,507,211,58,'重新开始',()=>this.start(),{size:20});this.button(279,507,211,58,'返回首页',()=>{this.releaseHolds();this.game.menu();},{size:20});this.button(50,593,440,52,this.muted?'音效：关':'音效：开',()=>this.toggleSound(),{size:18});

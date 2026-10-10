@@ -24,7 +24,7 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'research/blender-pre
    assert.equal(initial.status,'ready');assert.equal(initial.night,0);assert.ok(initial.vertices>500);
    await page.screenshot({path:path.join(out,`night-before-${width}.png`)});
    // Keep the same visible obstacles/camera to compare lighting alone.
-   const night=await page.evaluate(()=>{const a=roadKingApp;a.game.elapsed=73;a.game._updateDifficulty();a.draw();const gl=a.scene.gl,pixels=new Uint8Array(540*960*4);gl.readPixels(0,0,540,960,gl.RGBA,gl.UNSIGNED_BYTE,pixels);let lit=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i]+pixels[i+1]+pixels[i+2]>180)lit++;return{amount:a.scene.night,error:gl.getError(),litFraction:lit/(540*960)};});
+   const night=await page.evaluate(()=>{const a=roadKingApp;a.game.elapsed=73;a.game._updateDifficulty();a.draw();const gl=a.scene.gl,pixels=new Uint8Array(gl.drawingBufferWidth*gl.drawingBufferHeight*4);gl.readPixels(0,0,gl.drawingBufferWidth,gl.drawingBufferHeight,gl.RGBA,gl.UNSIGNED_BYTE,pixels);let lit=0;for(let i=0;i<pixels.length;i+=4)if(pixels[i]+pixels[i+1]+pixels[i+2]>180)lit++;return{amount:a.scene.night,error:gl.getError(),litFraction:lit/(gl.drawingBufferWidth*gl.drawingBufferHeight)};});
    assert.equal(night.amount,1);assert.equal(night.error,0);assert.ok(night.litFraction>.05);
    await page.screenshot({path:path.join(out,`night-game-${width}.png`)});
    const dawn=[];

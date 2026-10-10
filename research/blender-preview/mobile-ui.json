@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "scope": "Chromium with simulated 393x852 CSS pixels, DPR 3, safe area and native capsule; not a phone performance measurement",
+  "inputs": [
+    {
+      "file": "公路之王/src/game-app.js",
+      "sha256": "9494d38ffa540cb890ea5ef241580dc125086810ed568fedb8c7855f97784f30"
+    },
+    {
+      "file": "公路之王/src/platform.js",
+      "sha256": "4bcc38134346cdd0f01b8b5bf982c22ed8a6f49b7e0f8d1ae2d18b779a7a2b48"
+    },
+    {
+      "file": "公路之王/src/scene-renderer.js",
+      "sha256": "46a32f8d461376d38bf202c861c62a7b054ebb4e7ca1d9ea58854c34a9556724"
+    }
+  ],
+  "cases": [
+    {
+      "variant": "before",
+      "status": "ready",
+      "top": 83.16666666666669,
+      "hudTop": 88.98888888888891,
+      "scale": 0.7277777777777777,
+      "buffer": [
+        540,
+        960
+      ],
+      "glError": 0,
+      "night": 1,
+      "dawn": 0,
+      "errors": []
+    },
+    {
+      "variant": "night",
+      "status": "ready",
+      "top": 100,
+      "hudTop": 105.82222222222222,
+      "viewHeight": 986.5648854961833,
+      "scale": 0.7277777777777777,
+      "buffer": [
+        786,
+        1704
+      ],
+      "glError": 0,
+      "night": 1,
+      "dawn": 0,
+      "controls": {
+        "paused": true,
+        "resumed": true,
+        "lane": -1,
+        "throttle": true,
+        "released": true
+      },
+      "errors": []
+    },
+    {
+      "variant": "dawn",
+      "status": "ready",
+      "top": 100,
+      "hudTop": 105.82222222222222,
+      "viewHeight": 986.5648854961833,
+      "scale": 0.7277777777777777,
+      "buffer": [
+        786,
+        1704
+      ],
+      "glError": 0,
+      "night": 0,
+      "dawn": 1,
+      "controls": {
+        "paused": true,
+        "resumed": true,
+        "lane": -1,
+        "throttle": true,
+        "released": true
+      },
+      "errors": []
+    },
+    {
+      "variant": "fallback-precision",
+      "status": "ready",
+      "top": 100,
+      "hudTop": 105.82222222222222,
+      "viewHeight": 986.5648854961833,
+      "scale": 0.7277777777777777,
+      "buffer": [
+        786,
+        1704
+      ],
+      "glError": 0,
+      "night": 1,
+      "dawn": 0,
+      "controls": {
+        "paused": true,
+        "resumed": true,
+        "lane": -1,
+        "throttle": true,
+        "released": true
+      },
+      "errors": []
+    }
+  ]
+}

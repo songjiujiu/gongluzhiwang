@@ -21,6 +21,10 @@ assert collision_verification.get('passed') is True, 'Collision audio playback m
 sidebar_verification=json.loads((root/'research/blender-preview/sidebar-ui.json').read_text(encoding='utf-8'))
 assert sidebar_verification.get('passed') is True, 'Sidebar UI verification must pass'
 night_verification=json.loads((root/'research/blender-preview/night-scene.json').read_text(encoding='utf-8'))
+mobile_verification=json.loads((root/'research/blender-preview/mobile-ui.json').read_text(encoding='utf-8'))
+assert mobile_verification.get('passed') is True, 'Phone-aspect UI verification must pass'
+for item in mobile_verification['inputs']:
+    assert hashlib.sha256((root/item['file']).read_bytes()).hexdigest()==item['sha256'], 'Mobile rendering changed after verification'
 assert night_verification.get('passed') is True, 'Night scene verification must pass'
 for item in night_verification['inputs']:
     assert hashlib.sha256((root/item['file']).read_bytes()).hexdigest()==item['sha256'], 'Night scene changed after verification'
@@ -39,6 +43,8 @@ for folder in ('公路之王', 'preview', 'tests'):
 files.extend(root / p for p in (
     'docs/endless-mode.md',
     'docs/difficulty-config.md',
+    'docs/mobile-rendering.md',
+    'tools/verify_mobile_preview.cjs',
     'docs/sidebar-return.md',
     'tools/verify_sidebar_preview.cjs',
     'docs/blender-art.md',
@@ -97,7 +103,7 @@ report = {
     'files':names,
     'zipIntegrity':'passed',
     'platform':'Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD',
-    'verification':'71 Node tests; nine configurable stages, night tiers 4–5 and dawn fog tiers 6–9, adjustable density, gradual transitions, high-speed visible obstacles and two-size WebGL dawn rendering verified; configurable starting tiers, zeroed run statistics and direct tier-four night start verified; configurable tier-four night transition, Blender streetlamp and two-size WebGL night scene verified; pulse skill removed; former skill area swipe/hold and two-size driving UI checks; including randomized merge completion, direction, warning timing and short reaction distance checks; six seeded 120-second runs of the shipped difficulty cliff (easy tutorial, hard tier two, escalating later tiers); sidebar capability, navigation failure and hot-start checks; sidebar browser UI at 390x844 and 320x568 with mocked host APIs; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, nine difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.',
+    'verification':'74 Node tests; full-window phone rendering, capsule-safe compact HUD, DPR-aware buffer, night reflections, bottom gestures and low-precision shader fallback verified; nine configurable stages, night tiers 4–5 and dawn fog tiers 6–9, adjustable density, gradual transitions, high-speed visible obstacles and two-size WebGL dawn rendering verified; configurable starting tiers, zeroed run statistics and direct tier-four night start verified; configurable tier-four night transition, Blender streetlamp and two-size WebGL night scene verified; pulse skill removed; former skill area swipe/hold and two-size driving UI checks; including randomized merge completion, direction, warning timing and short reaction distance checks; six seeded 120-second runs of the shipped difficulty cliff (easy tutorial, hard tier two, escalating later tiers); sidebar capability, navigation failure and hot-start checks; sidebar browser UI at 390x844 and 320x568 with mocked host APIs; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, nine difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.',
     'notVerified':['Blender art version in Douyin IDE simulator','Android/iOS phone','live upload and publication','phone performance','audio listening'],
 }
 (target / 'delivery-manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
