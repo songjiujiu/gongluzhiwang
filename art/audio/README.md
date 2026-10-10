@@ -1,4 +1,15 @@
-# Lotus V8 实录素材
+# 游戏音效来源
+
+## 汽车碰撞拟音
+
+作者：**qubodup (Iwan Gabovitch)**。来源：[Clank Car Crash Collision](https://freesound.org/people/qubodup/sounds/151624/)，授权：[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)。来源页于 2026-10-10 核验。作者为 Trigger Rally 制作的拟音，并非真实事故现场录音。
+
+- `collision-qubodup-151624.mp3`：来源页公开高质量预览，https://cdn.freesound.org/previews/151/151624_71257-hq.mp3 。
+- `collision-source.wav`：上述文件以 FFmpeg 解码为单声道 22050 Hz 16 位 PCM，无其他处理。
+- `python tools/generate_collision_audio.py`：裁掉开头静音、45 Hz 去低频偏移、4800 Hz 柔化高频、轻微增强 220 Hz 以下车体共振，峰值归一至 0.88，尾部淡出 20 ms，生成游戏 `hit.wav`。
+- `python tools/generate_audio.py` 同样调用该处理脚本，避免重新生成时恢复旧合成碰撞声。
+
+## Lotus V8 实录素材
 
 作者：**wikusv**。授权：[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。
 

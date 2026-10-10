@@ -2,6 +2,24 @@ const test=require('node:test');
 require('./fixtures/default-difficulty');
 const assert=require('node:assert/strict');
 const App=require('../公路之王/src/game-app');
+
+for(const fatal of [false,true])for(const muted of [false,true]){
+ test(`collision audio plays once without result overlap: fatal=${fatal}, muted=${muted}`,()=>{
+  const {a,p}=fixture(),sounds=[];p.sound=name=>sounds.push(name);a.muted=muted;
+  a.game._nextTraffic=Infinity;a.game.health=fatal?26:100;
+  a.game.score=1000;a.best.score=0;
+  a.game.traffic.push(a.game._car(0,0));a.update(.01);
+  assert.equal(a.game.collisionStopped,true);
+  assert.deepEqual(sounds,muted?[]:['hit']);
+  assert.equal(a.game.mode,fatal?'result':'playing');
+ });
+}
+test('fatal collision below personal best does not restart the impact',()=>{
+ const {a,p}=fixture(),sounds=[];p.sound=name=>sounds.push(name);
+ a.game._nextTraffic=Infinity;a.game.health=26;a.best.score=99999;
+ a.game.traffic.push(a.game._car(0,0));a.update(.01);
+ assert.equal(a.game.mode,'result');assert.deepEqual(sounds,['hit']);
+});
 function fixture(){
  const p={engineStates:[],setEngine(state){this.engineStates.push(state)},width:540,height:960,top:0,bottom:0,canvas:{getContext:()=>({})},read:()=>null,write(){},now:()=>0,frame(){},loadImage:()=>Promise.resolve({}),touches(...handlers){this.handlers=handlers},lifecycle(...handlers){this.life=handlers},stopSound(){},sound(){},vibrate(){}};
  const a=new App(p);a.start();

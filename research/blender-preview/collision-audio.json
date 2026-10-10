@@ -1,0 +1,11 @@
+{
+  "duration": 0.5397708333333333,
+  "channels": 1,
+  "peak": 0.8895961046218872,
+  "rms": 0.15139193620963048,
+  "firstAudible": 0.0000625,
+  "playbackEnded": true,
+  "sha256": "8812bd7647df4dbf41e10687e2a64f1da0cc328379add0f12a28001412777a79",
+  "passed": true,
+  "scope": "Chromium decoding, signal levels and playback completion; not subjective listening or phone verification"
+}

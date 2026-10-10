@@ -1,9 +1,9 @@
-"""Generate four original, compact mono PCM effects using only Python's standard library."""
+"""Build the licensed collision effect and three original PCM effects."""
 import math
-import random
 import struct
 import wave
 from pathlib import Path
+from generate_collision_audio import generate_collision
 
 RATE = 22050
 DESTINATION = Path(__file__).resolve().parents[1] / '公路之王' / 'audio'
@@ -28,23 +28,7 @@ def generate(name, duration, sample):
 
 def main():
     DESTINATION.mkdir(parents=True, exist_ok=True)
-    rng = random.Random(137)
-    # Body impact, resonant crumpling metal and a short road scrape.
-    # Separate seeded noise keeps this asset reproducible without changing other effects.
-    crash_rng = random.Random(902)
-    low_noise = 0.0
-    def collision(t, duration):
-        nonlocal low_noise
-        noise = crash_rng.uniform(-1, 1)
-        low_noise = .88 * low_noise + .12 * noise
-        thump = 1.05 * math.sin(2 * math.pi * (88 * t - 28 * t * t)) * math.exp(-t * 13)
-        crack = .85 * noise * math.exp(-t * 44)
-        metal = sum(.14 * math.sin(2 * math.pi * f * t) * math.exp(-t * decay)
-                    for f, decay in [(347, 8), (593, 10), (1097, 15)])
-        crumple = .62 * noise * math.exp(-t * 7) * (.5 + .5 * math.sin(2 * math.pi * 31 * t) ** 2)
-        scrape = .55 * (noise - low_noise) * min(1, t / .055) * math.exp(-t * 5)
-        return thump + crack + metal + crumple + scrape
-    generate('hit', .85, collision)
+    generate_collision()
     generate('pulse', 0.42, lambda t, d: (math.sin(2 * math.pi * (280 * t - 220 * t * t)) + 0.25 * math.sin(2 * math.pi * 54 * t)) * (1 - t / d) ** 1.6)
 
     def success(t, duration):

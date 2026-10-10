@@ -36,7 +36,8 @@ class RoadKingApp {
     if(type==='result'){
       const g=this.game;this.releaseHolds();this.newBest=g.score>this.best.score;
       this.best={score:Math.max(this.best.score,number(g.score)),distance:Math.max(this.best.distance,number(g.distance)),elapsed:Math.max(this.best.elapsed,number(g.elapsed))};
-      this.p.write(BEST_KEY,this.best);if(!this.muted)this.p.sound(this.newBest?'success':'hit');
+      // A fatal collision already started its impact sound. Let it finish.
+      this.p.write(BEST_KEY,this.best);if(!this.muted&&this.newBest&&!this.game.collisionStopped)this.p.sound('success');
     }
   }
   start(){this.releaseHolds();this.newBest=false;this.game.start(0);}

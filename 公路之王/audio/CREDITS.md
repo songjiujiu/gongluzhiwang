@@ -1,4 +1,12 @@
-# 跑车引擎录音署名
+# 音效素材署名
+
+## 碰撞音效
+
+`hit.wav` 使用 **qubodup (Iwan Gabovitch)** 的 [Clank Car Crash Collision](https://freesound.org/people/qubodup/sounds/151624/)，授权为 [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/)。这是为赛车游戏制作的碰撞拟音。
+
+修改：公开高质量 MP3 解码为单声道 22050 Hz PCM；去除开头静音、滤除低频偏移、柔化高频、增强车体低频共振、调整峰值及末尾淡出。原素材和可重复生成脚本见 `art/audio/` 与 `tools/generate_collision_audio.py`。
+
+## 跑车引擎录音
 
 Recordings by **wikusv**, from the **V8 Lotus** pack on Freesound.
 
