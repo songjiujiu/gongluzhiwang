@@ -40,10 +40,10 @@ test('missing native scene file rejects instead of returning empty geometry',asy
   await assert.rejects(platform.loadSceneData(),/missing scene/);
 });
 
-test('Douyin canvas uses CSS dimensions, caps backing scale at two and respects safe area', () => {
+test('Douyin canvas uses CSS dimensions, caps backing scale at three and respects safe area', () => {
   const { platform, canvas } = fixture();
-  assert.equal(platform.width, 390); assert.equal(platform.height, 844); assert.equal(platform.ratio, 2);
-  assert.equal(canvas.width, 780); assert.equal(canvas.height, 1688);
+  assert.equal(platform.width, 390); assert.equal(platform.height, 844); assert.equal(platform.ratio, 3);
+  assert.equal(canvas.width, 1170); assert.equal(canvas.height, 2532);
   assert.equal(platform.top, 47); assert.equal(platform.bottom, 34);
   const fallback = fixture({ windowWidth: 0, windowHeight: 0, screenWidth: 375, screenHeight: 667, pixelRatio: 1, safeArea: undefined }).platform;
   assert.equal(fallback.width, 375); assert.equal(fallback.height, 667);

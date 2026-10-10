@@ -11,9 +11,9 @@ test('tall phone uses safe-area top and bottom with working bottom-area gestures
  a.touchStart(event(270,y));a.update(.35);assert.equal(a.game.throttle,true);a.touchEnd(event(270,y));assert.equal(a.game.throttle,false);
 });
 test('render buffer follows phone pixels and retains a mobile pixel budget',()=>{
- for(const [width,height,ratio]of[[393,852,2],[430,932,3],[768,1024,2]]){
+ for(const [width,height,ratio]of[[393,852,3],[430,932,3],[768,1024,2]]){
   const s=new Scene({width,height,ratio});s.canvas={};s.setView(540,height/width*540,50);
-  assert.ok(s.canvas.width>540);assert.ok(s.canvas.width<=864);assert.ok(s.canvas.width*s.canvas.height<1502000);
+  assert.ok(s.canvas.width>540);assert.ok(s.canvas.width<=1080);assert.ok(s.canvas.width*s.canvas.height<2002000);
   assert.ok(Math.abs(s.canvas.width/s.canvas.height-width/height)<.002);
  }
 });

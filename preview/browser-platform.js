@@ -5,7 +5,7 @@
   const phone = window.innerWidth <= 480;
   const width = phone ? window.innerWidth : Math.min(395, window.innerWidth - 32);
   const height = phone ? window.innerHeight : Math.max(480, Math.min(852, window.innerHeight - 64));
-  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  const ratio = Math.min(window.devicePixelRatio || 1, 3);
   canvas.style.width = width + 'px';
   canvas.style.height = height + 'px';
   canvas.width = Math.round(width * ratio);

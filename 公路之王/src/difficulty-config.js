@@ -17,7 +17,7 @@
 // | `maxActiveObstacles` | 同时存在的前方有效障碍上限，整数，至少 2
 module.exports={
   // 开局强度：1–9。4/5 直接黑夜，6–9 直接清晨雾景。
-  "startTier":1,
+  "startTier":2,
   "stages": [
     {
       "label": "轻松起步",

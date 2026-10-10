@@ -10,7 +10,7 @@ module.exports = function createPlatform(api) {
   const canvas = api.createCanvas(), info = api.getSystemInfoSync();
   const width = info.windowWidth || info.screenWidth || 375;
   const height = info.windowHeight || info.screenHeight || 667;
-  const ratio = Math.min(info.pixelRatio || 1, 2);
+  const ratio = Math.min(info.pixelRatio || 1, 3);
   canvas.width = Math.round(width * ratio); canvas.height = Math.round(height * ratio);
   const safe = info.safeArea || {top:0,bottom:height};
   let top=Math.max(30,safe.top||0);

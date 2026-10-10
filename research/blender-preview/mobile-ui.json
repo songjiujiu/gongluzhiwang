@@ -8,31 +8,16 @@
     },
     {
       "file": "公路之王/src/platform.js",
-      "sha256": "4bcc38134346cdd0f01b8b5bf982c22ed8a6f49b7e0f8d1ae2d18b779a7a2b48"
+      "sha256": "6b0c909f2c30e67ed6bdead4a1950f355852f7bc38e38d32cd0ac6eb0f786300"
     },
     {
       "file": "公路之王/src/scene-renderer.js",
-      "sha256": "46a32f8d461376d38bf202c861c62a7b054ebb4e7ca1d9ea58854c34a9556724"
+      "sha256": "5d6a0738993505dd4917ce69047adab76c924e8593e173dfb9328f616cd1ae59"
     }
   ],
   "cases": [
     {
       "variant": "before",
-      "status": "ready",
-      "top": 83.16666666666669,
-      "hudTop": 88.98888888888891,
-      "scale": 0.7277777777777777,
-      "buffer": [
-        540,
-        960
-      ],
-      "glError": 0,
-      "night": 1,
-      "dawn": 0,
-      "errors": []
-    },
-    {
-      "variant": "night",
       "status": "ready",
       "top": 100,
       "hudTop": 105.82222222222222,
@@ -45,6 +30,26 @@
       "glError": 0,
       "night": 1,
       "dawn": 0,
+      "aa": false,
+      "derivatives": false,
+      "errors": []
+    },
+    {
+      "variant": "night",
+      "status": "ready",
+      "top": 100,
+      "hudTop": 105.82222222222222,
+      "viewHeight": 986.5648854961833,
+      "scale": 0.7277777777777777,
+      "buffer": [
+        960,
+        2082
+      ],
+      "glError": 0,
+      "night": 1,
+      "dawn": 0,
+      "aa": true,
+      "derivatives": true,
       "controls": {
         "paused": true,
         "resumed": true,
@@ -62,12 +67,14 @@
       "viewHeight": 986.5648854961833,
       "scale": 0.7277777777777777,
       "buffer": [
-        786,
-        1704
+        960,
+        2082
       ],
       "glError": 0,
       "night": 0,
       "dawn": 1,
+      "aa": true,
+      "derivatives": true,
       "controls": {
         "paused": true,
         "resumed": true,
@@ -85,12 +92,89 @@
       "viewHeight": 986.5648854961833,
       "scale": 0.7277777777777777,
       "buffer": [
-        786,
-        1704
+        960,
+        2082
       ],
       "glError": 0,
       "night": 1,
       "dawn": 0,
+      "aa": true,
+      "derivatives": true,
+      "controls": {
+        "paused": true,
+        "resumed": true,
+        "lane": -1,
+        "throttle": true,
+        "released": true
+      },
+      "errors": []
+    },
+    {
+      "variant": "no-derivatives",
+      "status": "ready",
+      "top": 100,
+      "hudTop": 105.82222222222222,
+      "viewHeight": 986.5648854961833,
+      "scale": 0.7277777777777777,
+      "buffer": [
+        960,
+        2082
+      ],
+      "glError": 0,
+      "night": 1,
+      "dawn": 0,
+      "aa": true,
+      "derivatives": false,
+      "controls": {
+        "paused": true,
+        "resumed": true,
+        "lane": -1,
+        "throttle": true,
+        "released": true
+      },
+      "errors": []
+    },
+    {
+      "variant": "no-aa",
+      "status": "ready",
+      "top": 100,
+      "hudTop": 105.82222222222222,
+      "viewHeight": 986.5648854961833,
+      "scale": 0.7277777777777777,
+      "buffer": [
+        960,
+        2082
+      ],
+      "glError": 0,
+      "night": 1,
+      "dawn": 0,
+      "aa": false,
+      "derivatives": true,
+      "controls": {
+        "paused": true,
+        "resumed": true,
+        "lane": -1,
+        "throttle": true,
+        "released": true
+      },
+      "errors": []
+    },
+    {
+      "variant": "low-limits",
+      "status": "ready",
+      "top": 100,
+      "hudTop": 105.82222222222222,
+      "viewHeight": 986.5648854961833,
+      "scale": 0.7277777777777777,
+      "buffer": [
+        945,
+        2048
+      ],
+      "glError": 0,
+      "night": 1,
+      "dawn": 0,
+      "aa": true,
+      "derivatives": true,
       "controls": {
         "paused": true,
         "resumed": true,
@@ -100,5 +184,10 @@
       },
       "errors": []
     }
-  ]
+  ],
+  "antialias": {
+    "changed": 50152,
+    "meanChannelDifference": 0.14875086722168854,
+    "glError": 0
+  }
 }
