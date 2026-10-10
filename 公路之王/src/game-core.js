@@ -94,6 +94,8 @@ class RoadKingCore {
       label: stage.label,
       progress, cruiseSpeed, spawnInterval,
       reactionTime: stage.reactionSeconds,
+      mergeWarningMin:stage.mergeWarningMin,
+      mergeWarningMax:stage.mergeWarningMax,
       mergeChance: stage.mergeChance,
       doubleChance: stage.doubleChance,
       barrierChance: stage.barrierChance,
@@ -249,24 +251,36 @@ class RoadKingCore {
     const double = this.random() < this.difficulty.doubleChance && active.length+2<=this.difficulty.maxActiveObstacles;
     const barrier = this.random() < this.difficulty.barrierChance;
     const waveSpeed = barrier ? 0 : 22 + Math.min(12, this.elapsed * 0.06);
-    const approachSpeed = roadSpeed(Math.max(this.speed,this.difficulty.cruiseSpeed + 22));
+    const approachSpeed = roadSpeed(Math.max(this.speed,1));
     const closing = (approachSpeed - waveSpeed) / 3.6 * 0.75;
     const farthest = active.reduce((z, car) => Math.max(z, car.z), -Infinity);
-    const z = Math.max(55, Math.min(138,closing * this.difficulty.reactionTime), farthest + this._safeGap());
+    const intense=this.difficulty.mergeChance>0;
+    const reaction=this.difficulty.reactionTime*(intense?.8+this.random()*.2:1);
+    const minimum=intense?Math.max(18,closing*.55):55;
+    const z = Math.max(minimum, Math.min(138,closing * reaction), farthest + this._safeGap());
     // Defer crowded spawns instead of placing hazards outside the visible road.
     if (z > 145) return false;
     const lanes = double ? blocked : [this._pick(blocked)];
-    const waveId = ++this.waveCount;
-    const stagger = double && this.difficulty.tier >= 3 ? 7 : 0;
+    if(intense&&double&&this.random()<.5)lanes.reverse();
     const canChange = !barrier && safeLane !== 0 && this.random() < this.difficulty.mergeChance;
+    // Offset paired cars enough that either can genuinely merge without
+    // crossing its neighbour; never cross the wave's reserved exit lane.
+    const stagger=double&&canChange&&intense?10+this.random()*6:double&&this.difficulty.tier>=3?7:0;
+    if(z+stagger>145)return false;
+    const waveId = ++this.waveCount;
+    const mergeIndex=canChange&&intense?Math.floor(this.random()*lanes.length):0;
     const carIds = [];
     lanes.forEach((lane, index) => {
-      const car = this._car(lane, z + index * stagger, canChange && index === 0);
+      const changePending=canChange&&index===mergeIndex;
+      const warning=this.difficulty.mergeWarningMin+this.random()*(this.difficulty.mergeWarningMax-this.difficulty.mergeWarningMin);
+      const targetLane=blocked.find(other => other !== lane);
+      const car = this._car(lane, z + index * stagger, changePending);
       Object.assign(car, {
         waveId, safeLane, kind: barrier ? 'barrier' : 'car',
         speed: waveSpeed, baseSpeed: waveSpeed,
-        changePending: canChange && index === 0,
-        targetLane: blocked.find(other => other !== lane)
+        changePending,targetLane,
+        mergeWarningSeconds:warning,
+        mergeLeadSeconds:intense?warning+Math.abs(targetLane-lane)/4+.12+this.random()*.25:2.1
       });
       carIds.push(car.id);
       this.traffic.push(car);
@@ -304,10 +318,11 @@ class RoadKingCore {
     for (let index = this.traffic.length - 1; index >= 0; index--) {
       const car = this.traffic[index];
       if (car.changePending && !car.hit && !car.escaped) {
-        const warningDistance = Math.max(36, (roadSpeed(this.speed) - car.speed) / 3.6 * 0.75 * 2.1);
+        const lead=car.mergeLeadSeconds||2.1;
+        const warningDistance = Math.max(lead<2.1?8:36, (roadSpeed(this.speed) - car.speed) / 3.6 * 0.75 * lead);
         if (!car.signalDirection && car.z <= warningDistance) {
           car.signalDirection = Math.sign(car.targetLane - car.lane);
-          car.warningTimer = 1.1;
+          car.warningTimer = car.mergeWarningSeconds||1.1;
           this._emit('threat-warning', { carId: car.id, direction: car.signalDirection });
         } else if (car.signalDirection) {
           car.warningTimer = Math.max(0, car.warningTimer - dt);
@@ -402,7 +417,11 @@ function validateStages(config){
     for(const key of ['speedStart','speedEnd'])if(!Number.isFinite(stage[key])||stage[key]<=0)invalid(key);
     for(const key of ['mergeChance','doubleChance','barrierChance'])if(!Number.isFinite(stage[key])||stage[key]<0||stage[key]>1)invalid(key);
     if(!Number.isInteger(stage.maxActiveObstacles)||stage.maxActiveObstacles<2)invalid('maxActiveObstacles');
-    return {...stage};
+    const mergeWarningMin=stage.mergeWarningMin===undefined?1.1:stage.mergeWarningMin;
+    const mergeWarningMax=stage.mergeWarningMax===undefined?1.1:stage.mergeWarningMax;
+    if(!Number.isFinite(mergeWarningMin)||mergeWarningMin<=0)invalid('mergeWarningMin');
+    if(!Number.isFinite(mergeWarningMax)||mergeWarningMax<mergeWarningMin)invalid('mergeWarningMax');
+    return {...stage,mergeWarningMin,mergeWarningMax};
   });
 }
 function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
