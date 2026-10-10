@@ -59,7 +59,7 @@ module.exports={
       "maxActiveObstacles": 14
     },
     {
-      "label": "绝境狂飙",
+      "label": "黑夜狂飙",
       "durationSeconds": 60,
       "speedStart": 560,
       "speedEnd": 760,

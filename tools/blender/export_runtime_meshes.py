@@ -59,3 +59,5 @@ for name,(prefix,origin) in sources.items():
 (OUT/'meshes.bin').write_bytes(buffer)
 (OUT/'meshes.json').write_text(json.dumps(manifest,separators=(',',':')),encoding='utf-8')
 print('RUNTIME_EXPORT_COMPLETE',len(buffer),'bytes',flush=True)
+import runpy
+runpy.run_path(str(ROOT/'tools/blender/build_night_scene.py'),run_name='__main__')

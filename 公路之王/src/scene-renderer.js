@@ -13,7 +13,7 @@ function cameraMatrix(eye,target,aspect){
 }
 const vertex=`attribute vec3 aPosition;attribute vec3 aNormal;uniform mat4 uCamera;uniform mediump vec3 uPosition;uniform mediump vec3 uScale;varying mediump vec3 vWorld;varying mediump vec3 vNormal;
 void main(){vWorld=aPosition*uScale+uPosition;vNormal=normalize(aNormal/uScale);gl_Position=uCamera*vec4(vWorld,1.0);}`;
-const fragment=`precision highp float;varying mediump vec3 vWorld;varying mediump vec3 vNormal;uniform vec3 uEye;uniform vec3 uColor;uniform mediump vec3 uPosition;uniform mediump vec3 uScale;uniform float uMetal;uniform float uRough;uniform float uEmission;uniform float uKind;uniform float uTravel;
+const fragment=`precision highp float;varying mediump vec3 vWorld;varying mediump vec3 vNormal;uniform vec3 uEye;uniform vec3 uColor;uniform mediump vec3 uPosition;uniform mediump vec3 uScale;uniform float uMetal;uniform float uRough;uniform float uEmission;uniform float uKind;uniform float uTravel;uniform float uNight;uniform float uPlayerX;
 float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),f.x),f.y);}
 void main(){vec3 n=normalize(vNormal),view=normalize(uEye-vWorld),light=normalize(vec3(-.6,.85,.3));vec3 base=uColor;float rough=uRough,metal=uMetal;float alpha=1.;
@@ -26,12 +26,34 @@ vec3 color=base*(ambient*.75+vec3(1.,.73,.44)*diffuse*.85)+mix(vec3(.45),base,me
 vec3 reflection=reflect(-view,n);vec3 environment=mix(vec3(.14,.11,.075),vec3(.60,.76,.89),smoothstep(-.15,.4,reflection.y));
 float band=1.-smoothstep(.02,.20,abs(reflection.y-.28));environment+=vec3(.90,.79,.59)*band*.65;
 color+=environment*mix(vec3(.04),base,metal)*(.12+fresnel*.7)*(1.-rough*.7);
-color+=vec3(.72,.81,.86)*band*metal*.36;color+=base*uEmission*.65;
-float fog=1.-exp(-length(uEye-vWorld)*.0028);color=mix(color,vec3(.76,.69,.56),fog);color=pow(color/(color+vec3(.7)),vec3(.4545));
+color+=vec3(.72,.81,.86)*band*metal*.36;
+// Bounded analytic light pools keep the mobile shader independent of lamp count.
+float lampZ=abs(mod(vWorld.z-mod(uTravel,28.)-10.+14.,28.)-14.);
+float lampPool=exp(-pow(lampZ/6.,2.)-pow((abs(vWorld.x)-3.95)/3.2,2.));
+float ahead=-vWorld.z,beamWidth=1.1+max(ahead,0.)*.085;
+float beam=(exp(-pow((vWorld.x-uPlayerX-.7)/beamWidth,2.))+exp(-pow((vWorld.x-uPlayerX+.7)/beamWidth,2.)))*smoothstep(1.,4.,ahead)*(1.-smoothstep(18.,46.,ahead));
+float roadMask=1.-smoothstep(5.,8.,abs(vWorld.x));
+vec3 nightColor=base*(vec3(.065,.10,.19)+vec3(.10,.14,.22)*diffuse);
+nightColor+=base*vec3(1.,.65,.30)*lampPool*.95*roadMask;
+nightColor+=base*vec3(.65,.79,1.)*beam*.85;
+nightColor+=vec3(.09,.15,.25)*spec*(.3+metal)+base*fresnel*.12;
+color=mix(color,nightColor,uNight)+base*uEmission*(uKind>4.5?uNight*1.8:mix(.65,1.8,uNight));
+float fog=1.-exp(-length(uEye-vWorld)*mix(.0028,.004,uNight));color=mix(color,mix(vec3(.76,.69,.56),vec3(.015,.028,.065),uNight),fog);color=pow(color/(color+vec3(.7)),vec3(.4545));
 gl_FragColor=vec4(color,alpha);}`;
 const skyVertex=`attribute vec2 aPosition;varying vec2 vUv;void main(){vUv=aPosition*.5+.5;gl_Position=vec4(aPosition,.999,1.);}`;
-const skyFragment=`precision mediump float;varying vec2 vUv;uniform float uAspect;
-void main(){vec3 c=mix(vec3(.95,.78,.54),vec3(.25,.43,.58),smoothstep(.36,1.,vUv.y));vec2 d=(vUv-vec2(.77,.65))*vec2(uAspect,1.);float sun=1.-smoothstep(.034,.04,length(d));float glow=exp(-length(d)*15.);c+=vec3(.17,.10,.025)*glow;c=mix(c,vec3(1.,.94,.73),sun);gl_FragColor=vec4(c,1.);}`;
+const skyFragment=`precision mediump float;varying vec2 vUv;uniform float uAspect;uniform float uNight;
+void main(){vec3 c=mix(vec3(.95,.78,.54),vec3(.25,.43,.58),smoothstep(.36,1.,vUv.y));vec2 d=(vUv-vec2(.77,.65))*vec2(uAspect,1.);float sun=1.-smoothstep(.034,.04,length(d));float glow=exp(-length(d)*15.);c+=vec3(.17,.10,.025)*glow;c=mix(c,vec3(1.,.94,.73),sun);
+vec3 night=mix(vec3(.055,.085,.16),vec3(.006,.013,.045),smoothstep(.35,1.,vUv.y));
+float moon=1.-smoothstep(.023,.026,length(d));night+=vec3(.08,.13,.23)*exp(-length(d)*21.);night=mix(night,vec3(.78,.86,1.),moon);
+vec2 grid=vUv*vec2(85.,135.);vec2 cell=floor(grid);float seed=fract(sin(dot(cell,vec2(12.9898,78.233)))*437.5453);float star=(1.-smoothstep(.02,.10,length(fract(grid)-.5)))*step(.975,seed)*smoothstep(.48,.60,vUv.y);night+=vec3(.55,.70,1.)*star;
+gl_FragColor=vec4(mix(c,night,uNight),1.);}`;
+
+function nightAmount(game){
+  if(game.mode==='menu'||!game.difficulty||game.difficulty.tier<4)return 0;
+  const start=game.stages.slice(0,3).reduce((sum,stage)=>sum+stage.durationSeconds,0);
+  const t=Math.max(0,Math.min(1,(game.elapsed-start)/2.5));
+  return t*t*(3-2*t);
+}
 
 class SceneRenderer{
   constructor(p){
@@ -42,7 +64,7 @@ class SceneRenderer{
       if(!gl)throw new Error('WebGL unavailable');
       const supportsHigh=gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER,gl.HIGH_FLOAT).precision>0;
       this.program=this.programFor(vertex,supportsHigh?fragment:fragment.replace('precision highp float','precision mediump float'));this.sky=this.programFor(skyVertex,skyFragment);
-      this.locations={};for(const name of['uCamera','uPosition','uScale','uColor','uEye','uRough','uMetal','uEmission','uKind','uTravel'])this.locations[name]=gl.getUniformLocation(this.program,name);
+      this.locations={};for(const name of['uCamera','uPosition','uScale','uColor','uEye','uRough','uMetal','uEmission','uKind','uTravel','uNight','uPlayerX'])this.locations[name]=gl.getUniformLocation(this.program,name);
       this.attributes={aPosition:gl.getAttribLocation(this.program,'aPosition'),aNormal:gl.getAttribLocation(this.program,'aNormal')};
       this.skyBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,this.skyBuffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
       const {manifest,binary}=await p.loadSceneData();this.models={};
@@ -65,13 +87,16 @@ class SceneRenderer{
   project(point){const m=this.camera;if(!m)return null;const clip=[0,0,0,0];for(let r=0;r<4;r++)clip[r]=m[r]*point[0]+m[4+r]*point[1]+m[8+r]*point[2]+m[12+r];if(clip[3]<=0)return null;return{x:(clip[0]/clip[3]+1)*270,y:(1-clip[1]/clip[3])*480};}
   render(game,clock){
     if(this.status!=='ready')return false;const g=this.gl,menu=game.mode==='menu',travel=menu?clock*9:game.distance;
+    const night=this.night=nightAmount(game);
     const follow=game.playerX*2.4,eye=[follow,3.3,8.8],target=[follow,1.05,-15];
-    g.viewport(0,0,540,960);g.clearColor(.2,.3,.4,1);g.clear(g.COLOR_BUFFER_BIT|g.DEPTH_BUFFER_BIT);g.disable(g.DEPTH_TEST);g.useProgram(this.sky);g.bindBuffer(g.ARRAY_BUFFER,this.skyBuffer);const a=g.getAttribLocation(this.sky,'aPosition');g.enableVertexAttribArray(a);g.vertexAttribPointer(a,2,g.FLOAT,false,0,0);g.uniform1f(g.getUniformLocation(this.sky,'uAspect'),540/960);g.drawArrays(g.TRIANGLES,0,6);
+    g.viewport(0,0,540,960);g.clearColor(.2,.3,.4,1);g.clear(g.COLOR_BUFFER_BIT|g.DEPTH_BUFFER_BIT);g.disable(g.DEPTH_TEST);g.useProgram(this.sky);g.bindBuffer(g.ARRAY_BUFFER,this.skyBuffer);const a=g.getAttribLocation(this.sky,'aPosition');g.enableVertexAttribArray(a);g.vertexAttribPointer(a,2,g.FLOAT,false,0,0);g.uniform1f(g.getUniformLocation(this.sky,'uAspect'),540/960);g.uniform1f(g.getUniformLocation(this.sky,'uNight'),night);g.drawArrays(g.TRIANGLES,0,6);
     g.enable(g.DEPTH_TEST);g.depthFunc(g.LEQUAL);g.disable(g.CULL_FACE);g.useProgram(this.program);this.camera=cameraMatrix(eye,target,540/960);g.uniformMatrix4fv(g.getUniformLocation(this.program,'uCamera'),false,this.camera);this.uniform('uEye','vec',eye);this.uniform('uTravel','float',travel);
+    this.uniform('uNight','float',night);this.uniform('uPlayerX','float',game.playerX*3.1);
     this.draw(this.ground,[70,-.6,-120],[65,1,190],[.025,.18,.25],2);this.draw(this.ground,[-18,-.08,-130],[14,1,200],[.19,.20,.105]);this.draw(this.ground,[6.6,-.07,-130],[2,1,200],[.40,.33,.21]);this.draw(this.ground,[0,0,-140],[4.65,1,210],null,1);
     for(let i=0;i<11;i++)this.draw(this.mountain,[-17-i*.9,0,-25-i*26],[11+i*.6,8+i*.9,22],[.28,.245,.16]);
     for(const side of[-1,1]){this.draw(this.cube,[side*4.96,.73,-130],[.12,.24,300],[.44,.44,.39]);for(let i=0;i<48;i++){const z=i*6-travel%6-15;this.draw(this.cube,[side*4.96,.40,-z],[.10,.8,.12],[.38,.39,.37]);}}
     for(let i=0;i<15;i++){const z=i*18-travel%18-8;this.model('tree',[-6.8,.02,-z],null,1.25);if(i%3===0)this.model('tree',[8.0,-.03,-z-9],null,1.1);this.model('rock',[-5.8,.0,-z-6],null,.7);}
+    for(let i=0;i<9;i++){const z=i*28-travel%28-10;for(const side of[-1,1])for(const batch of this.models.streetlamp||[])this.draw(batch,[side*5.8,.02,-z],[side,1,1],null,5);}
     const cars=menu?[{x:-1,z:21},{x:1,z:36,threat:true},{x:0,z:67,kind:'barrier'}]:game.traffic;
     g.enable(g.BLEND);g.blendFunc(g.SRC_ALPHA,g.ONE_MINUS_SRC_ALPHA);g.depthMask(false);
     for(const car of cars){if(car.z> -5&&car.z<150)this.draw(this.ground,[car.x*3.1,.015,-car.z],[1.3,1,2.5],null,3);}
@@ -83,3 +108,4 @@ class SceneRenderer{
   }
 }
 module.exports=SceneRenderer;
+module.exports.nightAmount=nightAmount;

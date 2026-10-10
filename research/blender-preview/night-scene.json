@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "scope": "Actual WebGL scene in Chromium; not phone performance verification",
+  "inputs": [
+    {
+      "file": "公路之王/src/scene-renderer.js",
+      "sha256": "706312b6fe12d59928cb2083a845425cd85308658b15ca9e6c579b5474a29934"
+    },
+    {
+      "file": "公路之王/assets/scene/meshes.json",
+      "sha256": "283f54417febf1e5d2ac0c8ee4532c1c0f5ef8940c06cb3374238a28c05678d6"
+    },
+    {
+      "file": "公路之王/assets/scene/meshes.bin",
+      "sha256": "f6948f00e5babc50f2fa9db6f5ee23fd1067670056e3f7bf33982b39ef9f6c74"
+    },
+    {
+      "file": "art/blender/night-road.blend",
+      "sha256": "9af180daf5d896308f76664deeffe0abd8a740f41ea6c637383cb3805ab6aa4f"
+    }
+  ],
+  "screens": [
+    {
+      "width": 390,
+      "height": 844,
+      "initial": {
+        "status": "ready",
+        "night": 0,
+        "vertices": 1692
+      },
+      "night": {
+        "amount": 1,
+        "error": 0,
+        "litFraction": 0.3589679783950617
+      },
+      "errors": []
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "initial": {
+        "status": "ready",
+        "night": 0,
+        "vertices": 1692
+      },
+      "night": {
+        "amount": 1,
+        "error": 0,
+        "litFraction": 0.3589679783950617
+      },
+      "errors": []
+    }
+  ]
+}

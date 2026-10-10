@@ -20,6 +20,10 @@ collision_verification=json.loads((root/'research/blender-preview/collision-audi
 assert collision_verification.get('passed') is True, 'Collision audio playback must pass'
 sidebar_verification=json.loads((root/'research/blender-preview/sidebar-ui.json').read_text(encoding='utf-8'))
 assert sidebar_verification.get('passed') is True, 'Sidebar UI verification must pass'
+night_verification=json.loads((root/'research/blender-preview/night-scene.json').read_text(encoding='utf-8'))
+assert night_verification.get('passed') is True, 'Night scene verification must pass'
+for item in night_verification['inputs']:
+    assert hashlib.sha256((root/item['file']).read_bytes()).hexdigest()==item['sha256'], 'Night scene changed after verification'
 assert hashlib.sha256((root/'公路之王/audio/hit.wav').read_bytes()).hexdigest()==collision_verification['sha256'], 'Collision audio changed after verification'
 extreme_speed=json.loads((root/'research/blender-preview/extreme-speed.json').read_text(encoding='utf-8'))
 assert extreme_speed.get('passed') is True, 'Extreme speed spawning and collision checks must pass'
@@ -47,6 +51,10 @@ files.extend(root / p for p in (
     'tools/verify_engine_preview.cjs',
     'tools/verify_extreme_speed_preview.cjs',
     'art/blender/roadking-assets.blend',
+    'art/blender/night-road.blend',
+    'art/blender/night-road.png',
+    'tools/blender/build_night_scene.py',
+    'tools/verify_night_preview.cjs',
     'art/blender/manifest.json',
     'art/blender/README.md',
     'art/blender/showcase.png',
@@ -89,7 +97,7 @@ report = {
     'files':names,
     'zipIntegrity':'passed',
     'platform':'Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD',
-    'verification':'62 Node tests; pulse skill removed; former skill area swipe/hold and two-size driving UI checks; including randomized merge completion, direction, warning timing and short reaction distance checks; six seeded 120-second runs of the shipped difficulty cliff (easy tutorial, hard tier two, escalating later tiers); sidebar capability, navigation failure and hot-start checks; sidebar browser UI at 390x844 and 320x568 with mocked host APIs; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.',
+    'verification':'64 Node tests; configurable tier-four night transition, Blender streetlamp and two-size WebGL night scene verified; pulse skill removed; former skill area swipe/hold and two-size driving UI checks; including randomized merge completion, direction, warning timing and short reaction distance checks; six seeded 120-second runs of the shipped difficulty cliff (easy tutorial, hard tier two, escalating later tiers); sidebar capability, navigation failure and hot-start checks; sidebar browser UI at 390x844 and 320x568 with mocked host APIs; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, four difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.',
     'notVerified':['Blender art version in Douyin IDE simulator','Android/iOS phone','live upload and publication','phone performance','audio listening'],
 }
 (target / 'delivery-manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
