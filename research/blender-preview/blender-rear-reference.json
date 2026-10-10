@@ -1,0 +1,42 @@
+{
+  "source": "art/blender/roadking-assets.blend",
+  "sourceSha256": "9642388811d36f91932d9effa22730a46b6b0a19803c671a6de8d7bd9c754f13",
+  "cameraBlender": {
+    "eye": [
+      0.0,
+      -9.300000190734863,
+      3.299999952316284
+    ],
+    "target": [
+      0.0,
+      15.0,
+      1.0499999523162842
+    ],
+    "horizontalFovDegrees": 31.986,
+    "shiftY": 0.08674999326467514,
+    "fullFrame": [
+      960,
+      2082
+    ]
+  },
+  "crop": {
+    "alphaBounds": [
+      230,
+      1258,
+      730,
+      1701
+    ],
+    "crop": [
+      206,
+      1234,
+      754,
+      1725
+    ],
+    "size": [
+      548,
+      491
+    ]
+  },
+  "renderer": "Cycles 48 samples / source studio area lights and world / AgX Medium High Contrast",
+  "scope": "Actual Blender car; matching chase view, perspective and framing before transparent crop. Lighting is the source studio/day setup."
+}

@@ -1,0 +1,5605 @@
+{
+  "source": "art/blender/roadking-assets.blend",
+  "sourceSha256": "9642388811d36f91932d9effa22730a46b6b0a19803c671a6de8d7bd9c754f13",
+  "blenderVersion": "5.2.1 LTS",
+  "packing": "Int16 position/normal tuples + Uint16 triangle indices",
+  "normalValidation": "finite, normalized corner normals before quantization",
+  "models": {
+    "player": {
+      "parts": [
+        {
+          "name": "Continuous sculpted body / wheel-arch cutouts",
+          "sourceTriangles": 9798,
+          "evaluatedTrianglesAfter": 1566,
+          "exportedTriangles": 1566,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Underbody",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Curved tinted glazing / fastback cabin",
+          "sourceTriangles": 2400,
+          "evaluatedTrianglesAfter": 384,
+          "exportedTriangles": 384,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Curved painted roof panel",
+          "sourceTriangles": 2096,
+          "evaluatedTrianglesAfter": 334,
+          "exportedTriangles": 334,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Flush A pillar",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Fastback C pillar panel",
+          "sourceTriangles": 156,
+          "evaluatedTrianglesAfter": 156,
+          "exportedTriangles": 156,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Black side sill",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Door panel seam",
+          "sourceTriangles": 1536,
+          "evaluatedTrianglesAfter": 244,
+          "exportedTriangles": 244,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Flush door handle",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Mirror mounting arm",
+          "sourceTriangles": 140,
+          "evaluatedTrianglesAfter": 140,
+          "exportedTriangles": 140,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Aerodynamic body-color mirror",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Mirror glass",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rounded performance tire",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Alloy rim",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel dark barrel",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake rotor",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake caliper",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.001",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.002",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.003",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.004",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.005",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.006",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.007",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.008",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.009",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel hub",
+          "sourceTriangles": 380,
+          "evaluatedTrianglesAfter": 60,
+          "exportedTriangles": 60,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rounded performance tire.001",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Alloy rim.001",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel dark barrel.001",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake rotor.001",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake caliper.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.010",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.011",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.012",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.013",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.014",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.015",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.016",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.017",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.018",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.019",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel hub.001",
+          "sourceTriangles": 380,
+          "evaluatedTrianglesAfter": 60,
+          "exportedTriangles": 60,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Flush A pillar.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 184,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 4,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Fastback C pillar panel.001",
+          "sourceTriangles": 156,
+          "evaluatedTrianglesAfter": 156,
+          "exportedTriangles": 152,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 4,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Black side sill.001",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Door panel seam.001",
+          "sourceTriangles": 1536,
+          "evaluatedTrianglesAfter": 244,
+          "exportedTriangles": 244,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Flush door handle.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Mirror mounting arm.001",
+          "sourceTriangles": 140,
+          "evaluatedTrianglesAfter": 140,
+          "exportedTriangles": 140,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Aerodynamic body-color mirror.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Mirror glass.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rounded performance tire.002",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Alloy rim.002",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel dark barrel.002",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake rotor.002",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake caliper.002",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.020",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.021",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.022",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.023",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.024",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.025",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.026",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.027",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.028",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.029",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel hub.002",
+          "sourceTriangles": 380,
+          "evaluatedTrianglesAfter": 60,
+          "exportedTriangles": 60,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rounded performance tire.003",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Alloy rim.003",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel dark barrel.003",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake rotor.003",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake caliper.003",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.030",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.031",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.032",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.033",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.034",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.035",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.036",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.037",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.038",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.039",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel hub.003",
+          "sourceTriangles": 380,
+          "evaluatedTrianglesAfter": 60,
+          "exportedTriangles": 60,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rear fascia dark inset",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 156,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 32,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Full-width red LED connection",
+          "sourceTriangles": 1536,
+          "evaluatedTrianglesAfter": 244,
+          "exportedTriangles": 244,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Smoked swept tail lamp lens",
+          "sourceTriangles": 3,
+          "evaluatedTrianglesAfter": 3,
+          "exportedTriangles": 3,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Angular red LED blade lens",
+          "sourceTriangles": 16,
+          "evaluatedTrianglesAfter": 16,
+          "exportedTriangles": 16,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tail lamp lower signature",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 121,
+          "exportedTriangles": 121,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Front narrow LED headlamp",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Front bumper air intake",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Hood character crease",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Dark exhaust aperture",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Polished oval exhaust lip",
+          "sourceTriangles": 7680,
+          "evaluatedTrianglesAfter": 1228,
+          "exportedTriangles": 1228,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rear bumper corner vent",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Smoked swept tail lamp lens.001",
+          "sourceTriangles": 3,
+          "evaluatedTrianglesAfter": 3,
+          "exportedTriangles": 3,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Angular red LED blade lens.001",
+          "sourceTriangles": 16,
+          "evaluatedTrianglesAfter": 16,
+          "exportedTriangles": 16,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tail lamp lower signature.001",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 121,
+          "exportedTriangles": 121,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Front narrow LED headlamp.001",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Front bumper air intake.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Hood character crease.001",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Dark exhaust aperture.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Polished oval exhaust lip.001",
+          "sourceTriangles": 7680,
+          "evaluatedTrianglesAfter": 1228,
+          "exportedTriangles": 1228,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rear bumper corner vent.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Broad rear lower diffuser",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Diffuser aero fin",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Diffuser aero fin.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Diffuser aero fin.002",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Diffuser aero fin.003",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Diffuser aero fin.004",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Integrated black deck spoiler",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Front central grille",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Grille horizontal slat",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Grille horizontal slat.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Grille horizontal slat.002",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Grille horizontal slat.003",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Front splitter",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        }
+      ],
+      "sourceTriangles": 68860,
+      "newTriangles": 23942
+    },
+    "suv": {
+      "parts": [
+        {
+          "name": "Continuous sculpted body / wheel-arch cutouts.001",
+          "sourceTriangles": 9544,
+          "evaluatedTrianglesAfter": 1526,
+          "exportedTriangles": 1526,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Underbody.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Curved tinted glazing / fastback cabin.001",
+          "sourceTriangles": 2400,
+          "evaluatedTrianglesAfter": 384,
+          "exportedTriangles": 384,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Curved painted roof panel.001",
+          "sourceTriangles": 2096,
+          "evaluatedTrianglesAfter": 334,
+          "exportedTriangles": 334,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Flush A pillar.002",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 186,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 2,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Fastback C pillar panel.002",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 184,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 4,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Black side sill.002",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Door panel seam.002",
+          "sourceTriangles": 1536,
+          "evaluatedTrianglesAfter": 244,
+          "exportedTriangles": 244,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Flush door handle.002",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Mirror mounting arm.002",
+          "sourceTriangles": 140,
+          "evaluatedTrianglesAfter": 140,
+          "exportedTriangles": 140,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Aerodynamic body-color mirror.002",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Mirror glass.002",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "B pillar",
+          "sourceTriangles": 384,
+          "evaluatedTrianglesAfter": 60,
+          "exportedTriangles": 60,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rounded performance tire.004",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Alloy rim.004",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel dark barrel.004",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake rotor.004",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake caliper.004",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.040",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.041",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.042",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.043",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.044",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.045",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.046",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.047",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.048",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.049",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel hub.004",
+          "sourceTriangles": 380,
+          "evaluatedTrianglesAfter": 60,
+          "exportedTriangles": 60,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "SUV wheel arch trim",
+          "sourceTriangles": 4608,
+          "evaluatedTrianglesAfter": 736,
+          "exportedTriangles": 736,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rounded performance tire.005",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Alloy rim.005",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel dark barrel.005",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake rotor.005",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake caliper.005",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.050",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.051",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.052",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.053",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.054",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.055",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.056",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.057",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.058",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.059",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel hub.005",
+          "sourceTriangles": 380,
+          "evaluatedTrianglesAfter": 60,
+          "exportedTriangles": 60,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "SUV wheel arch trim.001",
+          "sourceTriangles": 4608,
+          "evaluatedTrianglesAfter": 736,
+          "exportedTriangles": 736,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Flush A pillar.003",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Fastback C pillar panel.003",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 184,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 4,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Black side sill.003",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Door panel seam.003",
+          "sourceTriangles": 1536,
+          "evaluatedTrianglesAfter": 244,
+          "exportedTriangles": 244,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Flush door handle.003",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Mirror mounting arm.003",
+          "sourceTriangles": 140,
+          "evaluatedTrianglesAfter": 140,
+          "exportedTriangles": 140,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Aerodynamic body-color mirror.003",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Mirror glass.003",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "B pillar.001",
+          "sourceTriangles": 384,
+          "evaluatedTrianglesAfter": 60,
+          "exportedTriangles": 60,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rounded performance tire.006",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Alloy rim.006",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel dark barrel.006",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake rotor.006",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake caliper.006",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.060",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.061",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.062",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.063",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.064",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.065",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.066",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.067",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.068",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.069",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel hub.006",
+          "sourceTriangles": 380,
+          "evaluatedTrianglesAfter": 60,
+          "exportedTriangles": 60,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "SUV wheel arch trim.002",
+          "sourceTriangles": 4608,
+          "evaluatedTrianglesAfter": 736,
+          "exportedTriangles": 736,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rounded performance tire.007",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Alloy rim.007",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel dark barrel.007",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake rotor.007",
+          "sourceTriangles": 572,
+          "evaluatedTrianglesAfter": 90,
+          "exportedTriangles": 90,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake caliper.007",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.070",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.071",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.072",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.073",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.074",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.075",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.076",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.077",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.078",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Forged split wheel spoke.079",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Wheel hub.007",
+          "sourceTriangles": 380,
+          "evaluatedTrianglesAfter": 60,
+          "exportedTriangles": 60,
+          "simplificationRatio": 0.16,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "SUV wheel arch trim.003",
+          "sourceTriangles": 4608,
+          "evaluatedTrianglesAfter": 736,
+          "exportedTriangles": 736,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rear fascia dark inset.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 156,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 32,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Full-width red LED connection.001",
+          "sourceTriangles": 1536,
+          "evaluatedTrianglesAfter": 244,
+          "exportedTriangles": 244,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Smoked swept tail lamp lens.002",
+          "sourceTriangles": 3,
+          "evaluatedTrianglesAfter": 3,
+          "exportedTriangles": 3,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Angular red LED blade lens.002",
+          "sourceTriangles": 16,
+          "evaluatedTrianglesAfter": 16,
+          "exportedTriangles": 16,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tail lamp lower signature.002",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 121,
+          "exportedTriangles": 121,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Front narrow LED headlamp.002",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Front bumper air intake.002",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Hood character crease.002",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Dark exhaust aperture.002",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Polished oval exhaust lip.002",
+          "sourceTriangles": 7680,
+          "evaluatedTrianglesAfter": 1228,
+          "exportedTriangles": 1228,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rear bumper corner vent.002",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Smoked swept tail lamp lens.003",
+          "sourceTriangles": 3,
+          "evaluatedTrianglesAfter": 3,
+          "exportedTriangles": 3,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Angular red LED blade lens.003",
+          "sourceTriangles": 16,
+          "evaluatedTrianglesAfter": 16,
+          "exportedTriangles": 16,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tail lamp lower signature.003",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 121,
+          "exportedTriangles": 121,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Front narrow LED headlamp.003",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Front bumper air intake.003",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Hood character crease.003",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Dark exhaust aperture.003",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Polished oval exhaust lip.003",
+          "sourceTriangles": 7680,
+          "evaluatedTrianglesAfter": 1228,
+          "exportedTriangles": 1228,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rear bumper corner vent.003",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Broad rear lower diffuser.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Diffuser aero fin.005",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Diffuser aero fin.006",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Diffuser aero fin.007",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Diffuser aero fin.008",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Diffuser aero fin.009",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Integrated black deck spoiler.001",
+          "sourceTriangles": 220,
+          "evaluatedTrianglesAfter": 220,
+          "exportedTriangles": 220,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Front central grille.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Grille horizontal slat.004",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Grille horizontal slat.005",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Grille horizontal slat.006",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Grille horizontal slat.007",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Front splitter.001",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Roof rail",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Roof rail.001",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        }
+      ],
+      "sourceTriangles": 89406,
+      "newTriangles": 27272
+    },
+    "barrier": {
+      "parts": [
+        {
+          "name": "Weighted road foot",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Galvanized support post",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Weighted road foot.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Galvanized support post.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Upper warning board",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Lower warning board",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Orange diagonal safety stripe",
+          "sourceTriangles": 2,
+          "evaluatedTrianglesAfter": 2,
+          "exportedTriangles": 2,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Orange diagonal safety stripe.001",
+          "sourceTriangles": 3,
+          "evaluatedTrianglesAfter": 3,
+          "exportedTriangles": 3,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Orange diagonal safety stripe.002",
+          "sourceTriangles": 2,
+          "evaluatedTrianglesAfter": 2,
+          "exportedTriangles": 2,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Orange diagonal safety stripe.003",
+          "sourceTriangles": 2,
+          "evaluatedTrianglesAfter": 2,
+          "exportedTriangles": 2,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Orange diagonal safety stripe.004",
+          "sourceTriangles": 2,
+          "evaluatedTrianglesAfter": 2,
+          "exportedTriangles": 2,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Orange diagonal safety stripe.005",
+          "sourceTriangles": 2,
+          "evaluatedTrianglesAfter": 2,
+          "exportedTriangles": 2,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Orange diagonal safety stripe.006",
+          "sourceTriangles": 3,
+          "evaluatedTrianglesAfter": 3,
+          "exportedTriangles": 3,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Orange diagonal safety stripe.007",
+          "sourceTriangles": 2,
+          "evaluatedTrianglesAfter": 2,
+          "exportedTriangles": 2,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Warning beacon base",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Amber warning beacon",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Metal cap bolt",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Warning beacon base.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Amber warning beacon.001",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Metal cap bolt.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        }
+      ],
+      "sourceTriangles": 2466,
+      "newTriangles": 2466
+    },
+    "tree": {
+      "parts": [
+        {
+          "name": "Tapered palm trunk section",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Bark growth ring",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tapered palm trunk section.001",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Bark growth ring.001",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tapered palm trunk section.002",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Bark growth ring.002",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tapered palm trunk section.003",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Bark growth ring.003",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tapered palm trunk section.004",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Bark growth ring.004",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tapered palm trunk section.005",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Bark growth ring.005",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tapered palm trunk section.006",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Bark growth ring.006",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tapered palm trunk section.007",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Bark growth ring.007",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tapered palm trunk section.008",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Bark growth ring.008",
+          "sourceTriangles": 284,
+          "evaluatedTrianglesAfter": 284,
+          "exportedTriangles": 284,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Folded sculpted palm frond",
+          "sourceTriangles": 752,
+          "evaluatedTrianglesAfter": 120,
+          "exportedTriangles": 120,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.001",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.002",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.003",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.004",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.005",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.006",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.007",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.008",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.009",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.010",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.011",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.012",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.013",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.014",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.015",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.016",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.017",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.018",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.019",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.020",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.021",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.022",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.023",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.024",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.025",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Folded sculpted palm frond.001",
+          "sourceTriangles": 752,
+          "evaluatedTrianglesAfter": 120,
+          "exportedTriangles": 120,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.026",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.027",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.028",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.029",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.030",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.031",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.032",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.033",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.034",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.035",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.036",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.037",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.038",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.039",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.040",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.041",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.042",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.043",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.044",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.045",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.046",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.047",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.048",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.049",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.050",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.051",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Folded sculpted palm frond.002",
+          "sourceTriangles": 752,
+          "evaluatedTrianglesAfter": 120,
+          "exportedTriangles": 120,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.052",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.053",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.054",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.055",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.056",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.057",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.058",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.059",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.060",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.061",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.062",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.063",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.064",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.065",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.066",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.067",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.068",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.069",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.070",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.071",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.072",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.073",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.074",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.075",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.076",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.077",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Folded sculpted palm frond.003",
+          "sourceTriangles": 752,
+          "evaluatedTrianglesAfter": 120,
+          "exportedTriangles": 120,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.078",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.079",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.080",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.081",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.082",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.083",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.084",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.085",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.086",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.087",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.088",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.089",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.090",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.091",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.092",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.093",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.094",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.095",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.096",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.097",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.098",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.099",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.100",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.101",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.102",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.103",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Folded sculpted palm frond.004",
+          "sourceTriangles": 752,
+          "evaluatedTrianglesAfter": 120,
+          "exportedTriangles": 120,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.104",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.105",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.106",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.107",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.108",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.109",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.110",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.111",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.112",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.113",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.114",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.115",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.116",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.117",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.118",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.119",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.120",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.121",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.122",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.123",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.124",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.125",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.126",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.127",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.128",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.129",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Folded sculpted palm frond.005",
+          "sourceTriangles": 752,
+          "evaluatedTrianglesAfter": 120,
+          "exportedTriangles": 120,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.130",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.131",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.132",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.133",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.134",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.135",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.136",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.137",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.138",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.139",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.140",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.141",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.142",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.143",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.144",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.145",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.146",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.147",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.148",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.149",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.150",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.151",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.152",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.153",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.154",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.155",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Folded sculpted palm frond.006",
+          "sourceTriangles": 752,
+          "evaluatedTrianglesAfter": 120,
+          "exportedTriangles": 120,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.156",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.157",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.158",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.159",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.160",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.161",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.162",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.163",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.164",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.165",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.166",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.167",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.168",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.169",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.170",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.171",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.172",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.173",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.174",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.175",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.176",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.177",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.178",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.179",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.180",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.181",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Folded sculpted palm frond.007",
+          "sourceTriangles": 752,
+          "evaluatedTrianglesAfter": 120,
+          "exportedTriangles": 120,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.182",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.183",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.184",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.185",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.186",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.187",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.188",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.189",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.190",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.191",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.192",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.193",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.194",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.195",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.196",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.197",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.198",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.199",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.200",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.201",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.202",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.203",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.204",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.205",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.206",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.207",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Folded sculpted palm frond.008",
+          "sourceTriangles": 752,
+          "evaluatedTrianglesAfter": 120,
+          "exportedTriangles": 120,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.208",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.209",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.210",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.211",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.212",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.213",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.214",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.215",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.216",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.217",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.218",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.219",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.220",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.221",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.222",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.223",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.224",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.225",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.226",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.227",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.228",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.229",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.230",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.231",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.232",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm leaflet.233",
+          "sourceTriangles": 1,
+          "evaluatedTrianglesAfter": 1,
+          "exportedTriangles": 1,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm coconut",
+          "sourceTriangles": 80,
+          "evaluatedTrianglesAfter": 80,
+          "exportedTriangles": 80,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm coconut.001",
+          "sourceTriangles": 80,
+          "evaluatedTrianglesAfter": 80,
+          "exportedTriangles": 80,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Palm coconut.002",
+          "sourceTriangles": 80,
+          "evaluatedTrianglesAfter": 80,
+          "exportedTriangles": 80,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        }
+      ],
+      "sourceTriangles": 12354,
+      "newTriangles": 6666
+    },
+    "rock": {
+      "parts": [
+        {
+          "name": "Faceted coastal boulder",
+          "sourceTriangles": 80,
+          "evaluatedTrianglesAfter": 80,
+          "exportedTriangles": 80,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Faceted coastal boulder.001",
+          "sourceTriangles": 80,
+          "evaluatedTrianglesAfter": 80,
+          "exportedTriangles": 80,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Faceted coastal boulder.002",
+          "sourceTriangles": 80,
+          "evaluatedTrianglesAfter": 80,
+          "exportedTriangles": 80,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        }
+      ],
+      "sourceTriangles": 240,
+      "newTriangles": 240
+    },
+    "playerHero": {
+      "parts": [
+        {
+          "name": "Continuous sculpted body / wheel-arch cutouts",
+          "sourceTriangles": 9798,
+          "evaluatedTrianglesAfter": 9798,
+          "exportedTriangles": 9246,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 2,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Curved tinted glazing / fastback cabin",
+          "sourceTriangles": 2400,
+          "evaluatedTrianglesAfter": 2400,
+          "exportedTriangles": 2400,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Curved painted roof panel",
+          "sourceTriangles": 2096,
+          "evaluatedTrianglesAfter": 2096,
+          "exportedTriangles": 2096,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Flush A pillar",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Fastback C pillar panel",
+          "sourceTriangles": 156,
+          "evaluatedTrianglesAfter": 156,
+          "exportedTriangles": 156,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Aerodynamic body-color mirror",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Mirror glass",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rounded performance tire",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 382,
+          "exportedTriangles": 382,
+          "simplificationRatio": 0.5,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake caliper",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rounded performance tire.001",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 382,
+          "exportedTriangles": 382,
+          "simplificationRatio": 0.5,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake caliper.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Flush A pillar.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 184,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 4,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Fastback C pillar panel.001",
+          "sourceTriangles": 156,
+          "evaluatedTrianglesAfter": 156,
+          "exportedTriangles": 152,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 4,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Aerodynamic body-color mirror.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Mirror glass.001",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rounded performance tire.002",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 382,
+          "exportedTriangles": 382,
+          "simplificationRatio": 0.5,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake caliper.002",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Rounded performance tire.003",
+          "sourceTriangles": 764,
+          "evaluatedTrianglesAfter": 382,
+          "exportedTriangles": 382,
+          "simplificationRatio": 0.5,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Brake caliper.003",
+          "sourceTriangles": 188,
+          "evaluatedTrianglesAfter": 188,
+          "exportedTriangles": 188,
+          "simplificationRatio": 1,
+          "customNormals": true,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Full-width red LED connection",
+          "sourceTriangles": 1536,
+          "evaluatedTrianglesAfter": 1536,
+          "exportedTriangles": 1536,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Angular red LED blade lens",
+          "sourceTriangles": 16,
+          "evaluatedTrianglesAfter": 16,
+          "exportedTriangles": 16,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tail lamp lower signature",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 768,
+          "exportedTriangles": 768,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Hood character crease",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Angular red LED blade lens.001",
+          "sourceTriangles": 16,
+          "evaluatedTrianglesAfter": 16,
+          "exportedTriangles": 16,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Tail lamp lower signature.001",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 768,
+          "exportedTriangles": 768,
+          "simplificationRatio": 1,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        },
+        {
+          "name": "Hood character crease.001",
+          "sourceTriangles": 768,
+          "evaluatedTrianglesAfter": 122,
+          "exportedTriangles": 122,
+          "simplificationRatio": 0.16,
+          "customNormals": false,
+          "degenerateTrianglesSkipped": 0,
+          "cornerNormalsRepaired": 0
+        }
+      ],
+      "sourceTriangles": 24182,
+      "newTriangles": 20802,
+      "sharedMaterials": [
+        "Graphite aero trim",
+        "Diamond cut alloy",
+        "Warm white running lights"
+      ],
+      "runtimeTriangles": 39106
+    }
+  },
+  "binaryBytes": 1303080,
+  "binarySha256": "957514063f82ab9b452f5ca36e2b1e23db23c678718c263c6a5375390babab61",
+  "manifestSha256": "87567d0cbaa8185068dbeb6441fb7ae15c901af9e0b53e2fb3352fd07ab99f4c",
+  "passed": true
+}

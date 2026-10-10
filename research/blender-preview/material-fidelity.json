@@ -1,0 +1,164 @@
+{
+  "passed": true,
+  "scope": "Actual Chromium WebGL, identical chase camera and fixed traffic; not a phone performance measurement or a pixel-identical Cycles comparison",
+  "beforeCommit": "8dacb43",
+  "inputs": [
+    {
+      "file": "公路之王/src/scene-renderer.js",
+      "sha256": "3185fa6275c13b6c6d10c99cf990acbdad41016cbfa20c27385a536cfaff0ab3"
+    },
+    {
+      "file": "公路之王/assets/scene/meshes.json",
+      "sha256": "87567d0cbaa8185068dbeb6441fb7ae15c901af9e0b53e2fb3352fd07ab99f4c"
+    },
+    {
+      "file": "公路之王/assets/scene/meshes.bin",
+      "sha256": "957514063f82ab9b452f5ca36e2b1e23db23c678718c263c6a5375390babab61"
+    },
+    {
+      "file": "公路之王/assets/scene/vehicle-materials.jpg",
+      "sha256": "bedcdd9fd4d04a1e21b765fd7856aa535f3ac54d9753af032bb6b5cc0f3cb212"
+    },
+    {
+      "file": "公路之王/assets/scene/vehicle-materials.json",
+      "sha256": "51f1b3968db2c7a54b1f838ea71b6b83a77daa816d181de867454769d5827991"
+    },
+    {
+      "file": "art/blender/roadking-assets.blend",
+      "sha256": "9642388811d36f91932d9effa22730a46b6b0a19803c671a6de8d7bd9c754f13"
+    }
+  ],
+  "cases": [
+    {
+      "variant": "before",
+      "status": "ready",
+      "materialTexture": false,
+      "materialError": null,
+      "hero": false,
+      "glError": 0,
+      "flipY": false,
+      "buffer": [
+        960,
+        2082
+      ],
+      "night": 0,
+      "dawn": 0,
+      "controls": {
+        "lane": -1,
+        "mode": "playing",
+        "glError": 0
+      },
+      "errors": []
+    },
+    {
+      "variant": "day",
+      "status": "ready",
+      "materialTexture": true,
+      "materialError": null,
+      "hero": true,
+      "glError": 0,
+      "flipY": false,
+      "buffer": [
+        960,
+        2082
+      ],
+      "night": 0,
+      "dawn": 0,
+      "controls": {
+        "lane": -1,
+        "mode": "playing",
+        "glError": 0
+      },
+      "errors": []
+    },
+    {
+      "variant": "night",
+      "status": "ready",
+      "materialTexture": true,
+      "materialError": null,
+      "hero": true,
+      "glError": 0,
+      "flipY": false,
+      "buffer": [
+        960,
+        2082
+      ],
+      "night": 1,
+      "dawn": 0,
+      "controls": {
+        "lane": -1,
+        "mode": "playing",
+        "glError": 0
+      },
+      "errors": []
+    },
+    {
+      "variant": "dawn",
+      "status": "ready",
+      "materialTexture": true,
+      "materialError": null,
+      "hero": true,
+      "glError": 0,
+      "flipY": false,
+      "buffer": [
+        960,
+        2082
+      ],
+      "night": 0,
+      "dawn": 1,
+      "controls": {
+        "lane": -1,
+        "mode": "playing",
+        "glError": 0
+      },
+      "errors": []
+    },
+    {
+      "variant": "missing-material",
+      "status": "ready",
+      "materialTexture": false,
+      "materialError": "Unable to load assets/scene/vehicle-materials.jpg",
+      "hero": true,
+      "glError": 0,
+      "flipY": false,
+      "buffer": [
+        960,
+        2082
+      ],
+      "night": 0,
+      "dawn": 0,
+      "controls": {
+        "lane": -1,
+        "mode": "playing",
+        "glError": 0
+      },
+      "errors": []
+    },
+    {
+      "variant": "upload-error",
+      "status": "ready",
+      "materialTexture": false,
+      "materialError": "Simulated texture upload failure",
+      "hero": true,
+      "glError": 0,
+      "flipY": false,
+      "buffer": [
+        960,
+        2082
+      ],
+      "night": 0,
+      "dawn": 0,
+      "controls": {
+        "lane": -1,
+        "mode": "playing",
+        "glError": 0
+      },
+      "errors": []
+    }
+  ],
+  "geometry": {
+    "playerTriangles": 23942,
+    "heroTriangles": 39106,
+    "binaryBytes": 1303080
+  }
+}

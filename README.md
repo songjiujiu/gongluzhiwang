@@ -6,6 +6,8 @@
 
 实际游戏截图见 `research/blender-preview/realtime-game-390x844.png`。独立 Blender 展示图不代表游戏效果；实时材质仍与参考效果图有差异，尚未达到照片级渲染。
 
+当前主车保留 Blender 的车身、玻璃、车顶和尾灯曲面，日/夜车漆与玻璃使用原材质烘焙图集。索引网格约 1.3 MB，材质约 175 KB。相同跟车视角的前后对照与缺图降级检查见 `research/blender-preview/material-fidelity.json`；原 Blender 同方向参考为 `blender-rear-reference.png`。
+
 请在抖音开发者工具中导入 **`公路之王/` 子目录**，入口为 `公路之王/game.js`。
 
 - [导入、操作与验证说明](公路之王/README.md)

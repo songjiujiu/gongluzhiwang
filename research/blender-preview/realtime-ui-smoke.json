@@ -4,24 +4,25 @@
   "meshInputs": [
     {
       "name": "meshes.json",
-      "bytes": 6766,
-      "sha256": "283f54417febf1e5d2ac0c8ee4532c1c0f5ef8940c06cb3374238a28c05678d6"
+      "bytes": 11298,
+      "sha256": "87567d0cbaa8185068dbeb6441fb7ae15c901af9e0b53e2fb3352fd07ab99f4c"
     },
     {
       "name": "meshes.bin",
-      "bytes": 2204352,
-      "sha256": "f6948f00e5babc50f2fa9db6f5ee23fd1067670056e3f7bf33982b39ef9f6c74"
+      "bytes": 1303080,
+      "sha256": "957514063f82ab9b452f5ca36e2b1e23db23c678718c263c6a5375390babab61"
     }
   ],
   "viewports": {
     "390x844": {
       "status": "ready",
       "vertices": {
-        "player": 71946,
-        "suv": 81942,
+        "player": 71826,
+        "suv": 81816,
         "barrier": 7398,
         "tree": 19998,
         "rock": 720,
+        "playerHero": 117318,
         "streetlamp": 1692
       },
       "playerScreenPoint": {
@@ -46,11 +47,12 @@
     "320x568": {
       "status": "ready",
       "vertices": {
-        "player": 71946,
-        "suv": 81942,
+        "player": 71826,
+        "suv": 81816,
         "barrier": 7398,
         "tree": 19998,
         "rock": 720,
+        "playerHero": 117318,
         "streetlamp": 1692
       },
       "playerScreenPoint": {

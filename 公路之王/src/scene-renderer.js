@@ -14,7 +14,7 @@ function cameraMatrix(eye,target,aspect){
 }
 const vertex=`attribute vec3 aPosition;attribute vec3 aNormal;uniform mat4 uCamera;uniform mediump vec3 uPosition;uniform mediump vec3 uScale;varying highp vec3 vWorld;varying mediump vec3 vNormal;
 void main(){vWorld=aPosition*uScale+uPosition;vNormal=normalize(aNormal/uScale);gl_Position=uCamera*vec4(vWorld,1.0);}`;
-const fragment=`precision highp float;varying highp vec3 vWorld;varying mediump vec3 vNormal;uniform vec3 uEye;uniform vec3 uColor;uniform mediump vec3 uPosition;uniform mediump vec3 uScale;uniform float uMetal;uniform float uRough;uniform float uEmission;uniform float uKind;uniform float uTravel;uniform float uNight;uniform float uDawn;uniform float uFog;uniform float uPlayerX;uniform float uSurface;
+const fragment=`precision highp float;varying highp vec3 vWorld;varying mediump vec3 vNormal;uniform vec3 uEye;uniform vec3 uColor;uniform mediump vec3 uPosition;uniform mediump vec3 uScale;uniform float uMetal;uniform float uRough;uniform float uEmission;uniform float uKind;uniform float uTravel;uniform float uNight;uniform float uDawn;uniform float uFog;uniform float uPlayerX;uniform float uSurface;uniform sampler2D uMatcap;uniform float uMatcapReady;uniform float uMatcapIndex;
 float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),f.x),f.y);}
 void main(){vec3 n=normalize(vNormal),view=normalize(uEye-vWorld),light=normalize(vec3(-.6,.85,.3));vec3 base=uColor;float rough=uRough,metal=uMetal;float alpha=1.;
@@ -58,7 +58,7 @@ vec3 dawnColor=base*(vec3(.43,.53,.59)+vec3(.95,.72,.50)*diffuse*.55)+vec3(.55,.
 dawnColor+=environment*mix(vec3(.04),base,metal)*(.12+fresnel*.4)+base*vec3(.75,.83,1.)*beam*.18;
 color=mix(mix(color,dawnColor,uDawn),nightColor,uNight)+base*uEmission*(uKind>4.5?(uNight+uDawn*.18)*1.8:mix(.65,1.8,uNight));
 // Separate lacquer and glazing instead of lighting every surface like matte paint.
-if(uSurface>.5){
+if(uSurface>.5&&(uMatcapReady<.5||uMatcapIndex<0.)){
  float nv=max(dot(n,view),0.),f=pow(1.-nv,5.);
  float localHeight=(vWorld.y-uPosition.y)/uScale.y;
  vec3 envDay=mix(vec3(.10,.115,.13),vec3(.48,.65,.78),smoothstep(-.20,.65,reflection.y));
@@ -88,7 +88,27 @@ float drift=.88+.12*noise(vec2(vWorld.x*.12,(vWorld.z+uTravel*.07)*.035));
 float fogDepth=distanceToEye*mix(.0028,.004,uNight)+max(distanceToEye-14.,0.)*uFog*lowMist*drift;
 float fog=1.-exp(-fogDepth);
 vec3 fogColor=mix(mix(vec3(.76,.69,.56),vec3(.66,.76,.79),uDawn),vec3(.015,.028,.065),uNight);
-color=mix(color,fogColor,fog);color=pow(color/(color+vec3(.7)),vec3(.4545));
+// Blender tiles already contain Principled coat, area lights and AgX/sRGB.
+// Apply fog in display space for these surfaces; never tone-map them twice.
+#ifdef BAKED_MATERIALS
+if(uMatcapReady>.5&&uMatcapIndex>=0.){
+ vec3 right=normalize(cross(vec3(0.,1.,0.),view)),up=cross(view,right);
+ vec2 uv=vec2(dot(n,right),dot(n,up));uv=uv/2.02+.5;
+ vec2 tile=vec2((uMatcapIndex+uv.x)/8.,uv.y*.5);
+ vec3 dayPaint=texture2D(uMatcap,tile+vec2(0.,.5)).rgb;
+ vec3 nightPaint=texture2D(uMatcap,tile).rgb;
+ color=mix(dayPaint,nightPaint,uNight);
+ float localHeight=(vWorld.y-uPosition.y)/uScale.y;
+ color*=mix(.85,1.,smoothstep(.18,.82,localHeight));
+ // Passing streetlights gently modulate the baked lacquer without flattening it.
+ color*=1.+uNight*lampPool*.10;
+ vec3 displayFog=pow(fogColor/(fogColor+vec3(.7)),vec3(.4545));
+ color=mix(color,displayFog,fog);
+}else
+#endif
+{
+ color=mix(color,fogColor,fog);color=pow(color/(color+vec3(.7)),vec3(.4545));
+}
 gl_FragColor=vec4(color,alpha);}`;
 const skyVertex=`attribute vec2 aPosition;varying vec2 vUv;void main(){vUv=aPosition*.5+.5;gl_Position=vec4(aPosition,.999,1.);}`;
 const skyFragment=`precision mediump float;varying vec2 vUv;uniform float uAspect;uniform float uNight;uniform float uDawn;uniform float uFog;
@@ -148,20 +168,38 @@ class SceneRenderer{
       const supportsHigh=gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER,gl.HIGH_FLOAT).precision>0;
       const precision=source=>supportsHigh?source:source.replace(/highp/g,'mediump');
       this.derivativeAA=!!gl.getExtension('OES_standard_derivatives');
-      const materialSource=(this.derivativeAA?'#extension GL_OES_standard_derivatives : enable\n#define HAS_DERIVATIVES\n':'')+fragment;
-      this.program=this.programFor(precision(vertex),precision(materialSource));this.sky=this.programFor(skyVertex,skyFragment);
       try{this.aaProgram=this.programFor(skyVertex,precision(aaFragment));this.aaTexture=gl.createTexture();}catch(error){this.aaError=String(error);this.aaProgram=null;}
-      this.locations={};for(const name of['uCamera','uPosition','uScale','uColor','uEye','uRough','uMetal','uEmission','uKind','uTravel','uNight','uDawn','uFog','uPlayerX','uSurface'])this.locations[name]=gl.getUniformLocation(this.program,name);
+      await this.loadMaterialTexture();
+      const materialSource=(this.derivativeAA?'#extension GL_OES_standard_derivatives : enable\n#define HAS_DERIVATIVES\n':'')+(this.materialTexture?'#define BAKED_MATERIALS\n':'')+fragment;
+      this.program=this.programFor(precision(vertex),precision(materialSource));this.sky=this.programFor(skyVertex,skyFragment);
+      this.locations={};for(const name of['uCamera','uPosition','uScale','uColor','uEye','uRough','uMetal','uEmission','uKind','uTravel','uNight','uDawn','uFog','uPlayerX','uSurface','uMatcapIndex','uMatcapReady','uMatcap'])this.locations[name]=gl.getUniformLocation(this.program,name);
       this.attributes={aPosition:gl.getAttribLocation(this.program,'aPosition'),aNormal:gl.getAttribLocation(this.program,'aNormal')};
       this.skyBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,this.skyBuffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
-      const {manifest,binary}=await p.loadSceneData();this.models={};
+      const {manifest,binary}=await p.loadSceneData();this.models={};const shared=new Map();
       for(const name of Object.keys(manifest.models))this.models[name]=manifest.models[name].map(b=>{
-        const packed=new Int16Array(binary,b.offset,b.count*6),vertices=new Float32Array(packed.length);
+        const key=[b.offset,b.vertexCount||b.count,b.indexOffset,b.count].join(':');if(shared.has(key))return shared.get(key);
+        const packed=new Int16Array(binary,b.offset,(b.vertexCount||b.count)*6),vertices=new Float32Array(packed.length);
         for(let i=0;i<packed.length;i++)vertices[i]=packed[i]/(i%6<3?manifest.positionScale:manifest.normalScale);
-        return this.buffer(vertices,b.material);
+        const batch=this.buffer(vertices,b.material,b.indexOffset==null?null:new Uint16Array(binary,b.indexOffset,b.count));shared.set(key,batch);return batch;
       });
       this.cube=this.boxBuffer();this.ground=this.planeBuffer();this.mountain=this.mountainBuffer();this.status='ready';
     }).catch(e=>{this.error=String(e.message||e);this.status='failed';});
+  }
+  async loadMaterialTexture(){
+    const g=this.gl;let texture=null;
+    try{
+      const image=await this.platform.loadImage('assets/scene/vehicle-materials.jpg');
+      texture=g.createTexture();if(!texture)throw new Error('Material texture unavailable');
+      g.activeTexture(g.TEXTURE1);g.bindTexture(g.TEXTURE_2D,texture);
+      g.texParameteri(g.TEXTURE_2D,g.TEXTURE_MIN_FILTER,g.LINEAR);g.texParameteri(g.TEXTURE_2D,g.TEXTURE_MAG_FILTER,g.LINEAR);
+      g.texParameteri(g.TEXTURE_2D,g.TEXTURE_WRAP_S,g.CLAMP_TO_EDGE);g.texParameteri(g.TEXTURE_2D,g.TEXTURE_WRAP_T,g.CLAMP_TO_EDGE);
+      g.pixelStorei(g.UNPACK_FLIP_Y_WEBGL,true);
+      g.texImage2D(g.TEXTURE_2D,0,g.RGB,g.RGB,g.UNSIGNED_BYTE,image);
+      g.pixelStorei(g.UNPACK_FLIP_Y_WEBGL,false);
+      if(g.getError()!==g.NO_ERROR)throw new Error('Unable to upload Blender materials');
+      this.materialTexture=texture;
+    }catch(error){if(texture)g.deleteTexture(texture);this.materialError=String(error.message||error);this.materialTexture=null;}
+    finally{g.pixelStorei(g.UNPACK_FLIP_Y_WEBGL,false);g.activeTexture(g.TEXTURE0);}
   }
   setView(width,height,topInset=0){this.viewWidth=width;this.viewHeight=height;this.topInset=topInset;if(this.canvas)this.resizeBuffer();}
   resizeBuffer(){
@@ -172,12 +210,16 @@ class SceneRenderer{
     this.canvas.width=Math.round(width);this.canvas.height=Math.round(width/aspect);
   }
   programFor(vs,fs){const g=this.gl,program=g.createProgram();for(const [type,source]of[[g.VERTEX_SHADER,vs],[g.FRAGMENT_SHADER,fs]]){const s=g.createShader(type);g.shaderSource(s,source);g.compileShader(s);if(!g.getShaderParameter(s,g.COMPILE_STATUS))throw new Error(g.getShaderInfoLog(s));g.attachShader(program,s);}g.linkProgram(program);if(!g.getProgramParameter(program,g.LINK_STATUS))throw new Error(g.getProgramInfoLog(program));return program;}
-  buffer(vertices,material={}){const g=this.gl,b=g.createBuffer();g.bindBuffer(g.ARRAY_BUFFER,b);g.bufferData(g.ARRAY_BUFFER,vertices,g.STATIC_DRAW);return{buffer:b,count:vertices.length/6,material};}
+  buffer(vertices,material={},indices=null){const g=this.gl,b=g.createBuffer();g.bindBuffer(g.ARRAY_BUFFER,b);g.bufferData(g.ARRAY_BUFFER,vertices,g.STATIC_DRAW);let indexBuffer=null;if(indices){indexBuffer=g.createBuffer();g.bindBuffer(g.ELEMENT_ARRAY_BUFFER,indexBuffer);g.bufferData(g.ELEMENT_ARRAY_BUFFER,indices,g.STATIC_DRAW);}return{buffer:b,indexBuffer,count:indices?indices.length:vertices.length/6,material};}
   planeBuffer(){return this.buffer(new Float32Array([-1,0,-1,0,1,0,1,0,-1,0,1,0,-1,0,1,0,1,0,-1,0,1,0,1,0,1,0,-1,0,1,0,1,0,1,0,1,0]));}
   boxBuffer(){const vertices=[];for(const [n,u,v]of[[[1,0,0],[0,1,0],[0,0,1]],[[-1,0,0],[0,1,0],[0,0,-1]],[[0,1,0],[1,0,0],[0,0,-1]],[[0,-1,0],[1,0,0],[0,0,1]],[[0,0,1],[1,0,0],[0,1,0]],[[0,0,-1],[-1,0,0],[0,1,0]]]){const point=(a,b)=>n.map((x,i)=>x*.5+u[i]*a*.5+v[i]*b*.5);for(const[a,b]of[[-1,-1],[1,-1],[-1,1],[-1,1],[1,-1],[1,1]])vertices.push(...point(a,b),...n);}return this.buffer(new Float32Array(vertices));}
   mountainBuffer(){const vertices=[],rings=10,segments=20;const point=(j,i)=>{const t=j/rings,angle=i/segments*Math.PI*2,r=1-t;return[Math.cos(angle)*r*(1+.13*Math.sin(i*4.13)),Math.pow(t,.7)*(1+.12*Math.sin(i*2.1)),Math.sin(angle)*r];};for(let j=0;j<rings;j++)for(let i=0;i<segments;i++){const a=point(j,i),b=point(j,i+1),c=point(j+1,i),d=point(j+1,i+1);for(const tri of[[a,b,c],[c,b,d]]){const n=normalize(cross(tri[1].map((v,k)=>v-tri[0][k]),tri[2].map((v,k)=>v-tri[0][k])));for(const p of tri)vertices.push(...p,...n);}}return this.buffer(new Float32Array(vertices));}
   uniform(name,type,value){const g=this.gl,loc=this.locations[name];if(type==='vec')g.uniform3fv(loc,value);else g.uniform1f(loc,value);}
-  draw(batch,position,scale=[1,1,1],color=null,kind=0){const g=this.gl,m=batch.material;g.bindBuffer(g.ARRAY_BUFFER,batch.buffer);for(const[name,size,offset]of[['aPosition',3,0],['aNormal',3,12]]){const l=this.attributes[name];g.enableVertexAttribArray(l);g.vertexAttribPointer(l,size,g.FLOAT,false,24,offset);}this.uniform('uPosition','vec',position);this.uniform('uScale','vec',scale);this.uniform('uColor','vec',color||m.color||[.4,.4,.4]);this.uniform('uRough','float',m.rough==null?.7:m.rough);this.uniform('uMetal','float',m.metal||0);this.uniform('uEmission','float',m.emission||0);this.uniform('uKind','float',kind);this.uniform('uSurface','float',m.paint?1:/glass/i.test(m.name||'')?2:0);g.drawArrays(g.TRIANGLES,0,batch.count);}
+  draw(batch,position,scale=[1,1,1],color=null,kind=0){const g=this.gl,m=batch.material;g.bindBuffer(g.ARRAY_BUFFER,batch.buffer);for(const[name,size,offset]of[['aPosition',3,0],['aNormal',3,12]]){const l=this.attributes[name];g.enableVertexAttribArray(l);g.vertexAttribPointer(l,size,g.FLOAT,false,24,offset);}this.uniform('uPosition','vec',position);this.uniform('uScale','vec',scale);this.uniform('uColor','vec',color||m.color||[.4,.4,.4]);this.uniform('uRough','float',m.rough==null?.7:m.rough);this.uniform('uMetal','float',m.metal||0);this.uniform('uEmission','float',m.emission||0);this.uniform('uKind','float',kind);this.uniform('uSurface','float',m.paint?1:/glass/i.test(m.name||'')?2:0);this.uniform('uMatcapIndex','float',this.materialIndex(m,color));if(batch.indexBuffer){g.bindBuffer(g.ELEMENT_ARRAY_BUFFER,batch.indexBuffer);g.drawElements(g.TRIANGLES,batch.count,g.UNSIGNED_SHORT,0);}else g.drawArrays(g.TRIANGLES,0,batch.count);}
+  materialIndex(material,color){
+    if(material.paint){const c=color||material.color;return c[0]>.6?3:c[0]>.3?1:c[2]>c[1]*1.5?2:0;}
+    const name=material.name||'';return /glass/i.test(name)?4:/Diamond cut alloy/.test(name)?5:/Graphite aero trim/.test(name)?6:/Tire rubber/.test(name)?7:-1;
+  }
   model(name,position,color=null,scale=1){for(const b of this.models[name]||[])this.draw(b,position,[scale,scale,scale],b.material.paint?color:null);}
   antialias(){
     if(!this.aaProgram||!this.aaTexture)return;
@@ -204,6 +246,7 @@ class SceneRenderer{
     g.viewport(0,0,this.canvas.width,this.canvas.height);g.clearColor(.2,.3,.4,1);g.clear(g.COLOR_BUFFER_BIT|g.DEPTH_BUFFER_BIT);g.disable(g.DEPTH_TEST);g.useProgram(this.sky);g.bindBuffer(g.ARRAY_BUFFER,this.skyBuffer);const a=g.getAttribLocation(this.sky,'aPosition');g.enableVertexAttribArray(a);g.vertexAttribPointer(a,2,g.FLOAT,false,0,0);g.uniform1f(g.getUniformLocation(this.sky,'uAspect'),this.viewWidth/this.viewHeight);g.uniform1f(g.getUniformLocation(this.sky,'uNight'),night);g.uniform1f(g.getUniformLocation(this.sky,'uDawn'),weather.dawn);g.drawArrays(g.TRIANGLES,0,6);
     g.enable(g.DEPTH_TEST);g.depthFunc(g.LEQUAL);g.disable(g.CULL_FACE);g.useProgram(this.program);this.camera=cameraMatrix(eye,target,this.viewWidth/this.viewHeight);g.uniformMatrix4fv(g.getUniformLocation(this.program,'uCamera'),false,this.camera);this.uniform('uEye','vec',eye);this.uniform('uTravel','float',travel%252);
     this.uniform('uNight','float',night);this.uniform('uDawn','float',weather.dawn);this.uniform('uFog','float',weather.fog);this.uniform('uPlayerX','float',game.playerX*3.1);
+    if(this.materialTexture){g.activeTexture(g.TEXTURE1);g.bindTexture(g.TEXTURE_2D,this.materialTexture);g.uniform1i(this.locations.uMatcap,1);}this.uniform('uMatcapReady','float',this.materialTexture?1:0);
     this.draw(this.ground,[70,-.6,-120],[65,1,190],[.025,.18,.25],2);this.draw(this.ground,[-18,-.08,-130],[14,1,200],[.19,.20,.105]);this.draw(this.ground,[6.6,-.07,-130],[2,1,200],[.40,.33,.21]);this.draw(this.ground,[0,0,-140],[4.65,1,210],null,1);
     for(let i=0;i<11;i++)this.draw(this.mountain,[-17-i*.9,0,-25-i*26],[11+i*.6,8+i*.9,22],[.28,.245,.16]);
     for(const side of[-1,1]){this.draw(this.cube,[side*4.96,.73,-130],[.12,.24,300],[.44,.44,.39]);for(let i=0;i<48;i++){const z=i*6-travel%6-15;this.draw(this.cube,[side*4.96,.40,-z],[.10,.8,.12],[.38,.39,.37]);}}
@@ -214,8 +257,8 @@ class SceneRenderer{
     for(const car of cars){if(car.z> -5&&car.z<150)this.draw(this.ground,[car.x*3.1,.015,-car.z],[1.3,1,2.5],null,3);}
     if(!menu)this.draw(this.ground,[game.playerX*3.1,.018,0],[1.35,1,2.6],null,3);
     g.depthMask(true);g.disable(g.BLEND);
-    for(const car of cars){if(car.z< -5||car.z>180)continue;const x=car.x*3.1,z=-car.z;this.model(car.kind==='barrier'?'barrier':car.threat?'player':car.id%2?'suv':'player',[x,.035,z],car.threat?[.76,.18,.035]:car.id%2?[.48,.51,.53]:[.035,.12,.30]);}
-    if(!menu)this.model('player',[game.playerX*3.1,.035,0],[.012,.36,.41]);
+    for(const car of cars){if(car.z< -5||car.z>180)continue;const x=car.x*3.1,z=-car.z;this.model(car.kind==='barrier'?'barrier':car.threat?'player':car.id%2?'suv':'player',[x,.035,z],car.threat?[.76,.18,.035]:car.id%2?[.48,.51,.53]:[.055,.12,.37]);}
+    if(!menu)this.model(this.models.playerHero?'playerHero':'player',[game.playerX*3.1,.035,0],[.012,.36,.41]);
     this.antialias();
     return true;
   }

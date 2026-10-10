@@ -12,7 +12,19 @@
     },
     {
       "file": "公路之王/src/scene-renderer.js",
-      "sha256": "5d6a0738993505dd4917ce69047adab76c924e8593e173dfb9328f616cd1ae59"
+      "sha256": "3185fa6275c13b6c6d10c99cf990acbdad41016cbfa20c27385a536cfaff0ab3"
+    },
+    {
+      "file": "公路之王/assets/scene/meshes.json",
+      "sha256": "87567d0cbaa8185068dbeb6441fb7ae15c901af9e0b53e2fb3352fd07ab99f4c"
+    },
+    {
+      "file": "公路之王/assets/scene/meshes.bin",
+      "sha256": "957514063f82ab9b452f5ca36e2b1e23db23c678718c263c6a5375390babab61"
+    },
+    {
+      "file": "公路之王/assets/scene/vehicle-materials.jpg",
+      "sha256": "bedcdd9fd4d04a1e21b765fd7856aa535f3ac54d9753af032bb6b5cc0f3cb212"
     }
   ],
   "cases": [
@@ -186,8 +198,8 @@
     }
   ],
   "antialias": {
-    "changed": 50152,
-    "meanChannelDifference": 0.14875086722168854,
+    "changed": 55404,
+    "meanChannelDifference": 0.18567283061159143,
     "glError": 0
   }
 }

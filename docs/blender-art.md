@@ -22,7 +22,11 @@
 
 当前为 **实时 WebGL 三维场景**。`tools/blender/export_runtime_meshes.py` 将完整模型的 evaluated 网格简化并导出为 `公路之王/assets/scene/meshes.json` 和 `meshes.bin`，保留平滑法线和材质分组。运行时使用低机位跟车镜头、深度测试、道路纹理、车漆环境反射、阴影、海面和雾效，所有物体共用三维坐标。Canvas 只负责菜单、HUD 和触控界面，并合成离屏 WebGL 画布。
 
-网格采用 16 位坐标与法线量化，运行时二进制约 2.2 MB，不需要安装 Blender、访问 CDN 或加载 `.blend`。原生平台使用第二个 `tt.createCanvas()` 建立离屏 WebGL 画布，通过本地文件系统读取网格；浏览器使用同一渲染模块。PNG 保留给菜单与兼容后备画面。WebGL 加载失败会明确显示“画面加载失败 · 请重新编译”，不能把后备画面当作三维版本验收。
+网格采用 16 位坐标与法线量化，并对量化顶点无损去重、使用 Uint16 三角形索引。增加高精度主车后运行时二进制仍从约 2.2 MB 降至 1.3 MB，不需要安装 Blender、访问 CDN 或加载 `.blend`。原生平台使用第二个 `tt.createCanvas()` 建立离屏 WebGL 画布，通过本地文件系统读取网格；浏览器使用同一渲染模块。PNG 保留给菜单与兼容后备画面。WebGL 加载失败会明确显示“画面加载失败 · 请重新编译”，不能把后备画面当作三维版本验收。
+
+玩家采用 `playerHero`，完整保留 evaluated 车身车漆面、玻璃、车顶与尾灯，轮胎保留 50%；交通车辆仍采用轻量版。金属、黑饰条、日行灯与交通模型共用缓冲，避免重复加载。导出器记录 `coat`、`coatRough` 并剔除零面积面，几何与法线检查见 `art/blender/runtime-geometry.json`。
+
+`tools/blender/bake_vehicle_materials.py` 读取原始 Blender Principled 材质，将 4 色车漆、玻璃、轮圈、饰条及轮胎分别烘焙为白天和黑夜两套 MatCap，保留 Coat、面积灯反射和 AgX 色彩处理。`vehicle-materials.jpg` 为 2048×512 图集，约 175 KB；JSON 记录原材质与采样方式。使用观察空间法线采样，不重复色调映射。它是固定跟车视角下的移动端近似，不是真实时光线追踪，无法完全重现物体间反射与自阴影。材质加载失败时回退到解析着色。
 
 完整模型重建后，另执行 `blender --background --python tools/blender/export_runtime_meshes.py` 更新运行时网格。`research/blender-preview/realtime-ui-smoke.json` 和 `realtime-game-*.png` 是实际游戏浏览器验证。实时材质不是 Cycles 光线追踪，手机的性能与离屏合成兼容性尚未验证。
 
@@ -57,7 +61,7 @@
 
 ## 强度 4–5 夜间与 6–9 清晨雾景
 
-`art/blender/night-road.blend` 为新增的独立可编辑路灯场景，包含灯杆、悬臂、灯壳、暖光 LED 面板、底座与反光标。`night-road.png` 是 Blender Cycles 模型预览。运行 `tools/blender/build_night_scene.py` 可重建该模型并将 1692 个顶点追加到实时网格；重复运行会替换原路灯数据。完整运行时导出脚本也会重建夜间模型。
+`art/blender/night-road.blend` 为新增的独立可编辑路灯场景，包含灯杆、悬臂、灯壳、暖光 LED 面板、底座与反光标。`night-road.png` 是 Blender Cycles 模型预览。运行 `tools/blender/build_night_scene.py` 可重建该模型并将 1692 个顶点追加到实时网格；重复运行会替换原路灯数据。完整运行时导出脚本复用已有路灯字节，仅在路灯缺失时重建。
 
 运行时前三档保持黄昏；正常升级至第四档时，在 2.5 秒内平滑过渡至夜间。起点跟随各档持续时间和 `startTier` 开局强度计算。`startTier: 4/5` 直接黑夜开局；暂停时过渡停住，结算保留夜景，首页显示黄昏，重开按所选开局强度恢复场景。
 

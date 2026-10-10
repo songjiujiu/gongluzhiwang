@@ -25,6 +25,10 @@ mobile_verification=json.loads((root/'research/blender-preview/mobile-ui.json').
 assert mobile_verification.get('passed') is True, 'Phone-aspect UI verification must pass'
 for item in mobile_verification['inputs']:
     assert hashlib.sha256((root/item['file']).read_bytes()).hexdigest()==item['sha256'], 'Mobile rendering changed after verification'
+material_verification=json.loads((root/'research/blender-preview/material-fidelity.json').read_text(encoding='utf-8'))
+assert material_verification.get('passed') is True, 'Blender material and indexed geometry verification must pass'
+for item in material_verification['inputs']:
+    assert hashlib.sha256((root/item['file']).read_bytes()).hexdigest()==item['sha256'], 'Materials or geometry changed after verification'
 assert night_verification.get('passed') is True, 'Night scene verification must pass'
 for item in night_verification['inputs']:
     assert hashlib.sha256((root/item['file']).read_bytes()).hexdigest()==item['sha256'], 'Night scene changed after verification'
@@ -72,6 +76,10 @@ files.extend(root / p for p in (
     'tools/blender/render_reference_scene.py',
     'tools/blender/verify_model_source.py',
     'tools/blender/export_runtime_meshes.py',
+    'tools/blender/bake_vehicle_materials.py',
+    'tools/blender/render_vehicle_comparison.py',
+    'art/blender/runtime-geometry.json',
+    'tools/verify_material_fidelity.cjs',
     'art/blender/model-verification.json',
     'tools/verify_blender_preview.cjs',
     'tools/verify_realtime_preview.cjs',
@@ -103,6 +111,7 @@ report = {
     'files':names,
     'zipIntegrity':'passed',
     'platform':'Douyin native WebGL 3D scene with Blender geometry and Canvas 2D HUD',
+    'materialVerification':'Source Blender Principled/Coat day-night MatCap, indexed hero geometry, same-camera before/day/night/dawn comparison, missing JPEG and upload exception fallbacks verified; source and output hashes recorded in material-fidelity.json.',
     'verification':'74 Node tests; edge FXAA and pixel comparison, separate paint/glass shading, DPR 3 output with 2 MP scene budget, derivative and precision fallback and 2048 GPU limits verified; full-window phone rendering, capsule-safe compact HUD, DPR-aware buffer, night reflections, bottom gestures and low-precision shader fallback verified; nine configurable stages, night tiers 4–5 and dawn fog tiers 6–9, adjustable density, gradual transitions, high-speed visible obstacles and two-size WebGL dawn rendering verified; configurable starting tiers, zeroed run statistics and direct tier-four night start verified; configurable tier-four night transition, Blender streetlamp and two-size WebGL night scene verified; pulse skill removed; former skill area swipe/hold and two-size driving UI checks; including randomized merge completion, direction, warning timing and short reaction distance checks; six seeded 120-second runs of the shipped difficulty cliff (easy tutorial, hard tier two, escalating later tiers); sidebar capability, navigation failure and hot-start checks; sidebar browser UI at 390x844 and 320x568 with mocked host APIs; collision audio single playback and mute checks; extreme configured-speed browser spawning and collision checks, configurable tier durations and hazard parameters, nine difficulty tiers, persistent WebAudio engine playback and 15-second PCM continuity checks, traffic merge clearance, collision stop/recovery and WebGL rendering. See research/blender-preview and README for scope.',
     'notVerified':['Blender art version in Douyin IDE simulator','Android/iOS phone','live upload and publication','phone performance','audio listening'],
 }

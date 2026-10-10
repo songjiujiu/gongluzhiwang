@@ -6,7 +6,7 @@ const root=path.resolve(__dirname,'..'),out=path.join(root,'research/blender-pre
 const read=file=>fs.readFileSync(path.join(root,file),'utf8');
 (async()=>{
  const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',args:['--enable-unsafe-swiftshader']});
- const files=['公路之王/src/game-app.js','公路之王/src/platform.js','公路之王/src/scene-renderer.js'];
+ const files=['公路之王/src/game-app.js','公路之王/src/platform.js','公路之王/src/scene-renderer.js','公路之王/assets/scene/meshes.json','公路之王/assets/scene/meshes.bin','公路之王/assets/scene/vehicle-materials.jpg'];
  const report={passed:false,scope:'Chromium with simulated 393x852 CSS pixels, DPR 3, safe area and native capsule; not a phone performance measurement',inputs:files.map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')})),cases:[]};
  try{
   for(const variant of ['before','night','dawn','fallback-precision','no-derivatives','no-aa','low-limits']){
@@ -16,7 +16,7 @@ const read=file=>fs.readFileSync(path.join(root,file),'utf8');
     window.requestAnimationFrame=()=>1;
     if(variant==='fallback-precision'){const get=WebGLRenderingContext.prototype.getShaderPrecisionFormat;WebGLRenderingContext.prototype.getShaderPrecisionFormat=function(shader,type){if(shader===this.FRAGMENT_SHADER&&type===this.HIGH_FLOAT)return{precision:0,rangeMin:0,rangeMax:0};return get.call(this,shader,type);};}
     if(variant==='no-derivatives'){const ext=WebGLRenderingContext.prototype.getExtension;WebGLRenderingContext.prototype.getExtension=function(name){return name==='OES_standard_derivatives'?null:ext.call(this,name);};}
-    if(variant==='no-aa')WebGLRenderingContext.prototype.createTexture=()=>null;
+    if(variant==='no-aa'){const create=WebGLRenderingContext.prototype.createTexture;let calls=0;WebGLRenderingContext.prototype.createTexture=function(){return calls++===0?null:create.call(this);};}
     if(variant==='low-limits'){const get=WebGLRenderingContext.prototype.getParameter;WebGLRenderingContext.prototype.getParameter=function(name){return name===this.MAX_TEXTURE_SIZE||name===this.MAX_RENDERBUFFER_SIZE?2048:get.call(this,name);};}
    },variant);
    await page.route('**/preview/browser-platform.js',route=>route.fulfill({contentType:'application/javascript',body:read('preview/browser-platform.js').replace('top: 30, bottom: phone ? 18 : 12','top: 100, bottom: 34').replace('Math.min(window.devicePixelRatio || 1, 3)',before?'Math.min(window.devicePixelRatio || 1, 2)':'Math.min(window.devicePixelRatio || 1, 3)')}));
@@ -24,6 +24,10 @@ const read=file=>fs.readFileSync(path.join(root,file),'utf8');
    if(before)for(const name of ['game-app','scene-renderer']){
     const body=execFileSync('git',['show',`23acaee:公路之王/src/${name}.js`],{cwd:root,encoding:'utf8'});
     await page.route(`**/src/${name}.js`,route=>route.fulfill({contentType:'application/javascript',body}));
+   }
+   if(before)for(const name of ['meshes.json','meshes.bin']){
+    const body=execFileSync('git',['show',`23acaee:公路之王/assets/scene/${name}`],{cwd:root,maxBuffer:8*1024*1024});
+    await page.route(`**/assets/scene/${name}`,route=>route.fulfill({contentType:name.endsWith('.json')?'application/json':'application/octet-stream',body}));
    }
    await page.goto('http://127.0.0.1:4191/');await page.waitForFunction(()=>window.roadKingReady,null,{polling:50});
    const state=await page.evaluate(async()=>{

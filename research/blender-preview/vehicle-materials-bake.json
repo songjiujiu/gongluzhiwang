@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "generator": "Blender Cycles / source Principled materials / 32 samples",
+  "source": "art/blender/roadking-assets.blend",
+  "sourceSha256": "9642388811d36f91932d9effa22730a46b6b0a19803c671a6de8d7bd9c754f13",
+  "atlasSha256": "bedcdd9fd4d04a1e21b765fd7856aa535f3ac54d9753af032bb6b5cc0f3cb212",
+  "width": 2048,
+  "height": 512,
+  "tileSize": 256,
+  "file": "vehicle-materials.jpg",
+  "encoding": "JPEG quality 95, 4:4:4; lossless RGB inspection PNG is kept outside the game package",
+  "colorSpace": "Display-referred AgX Medium High Contrast, encoded sRGB; do not tone-map a second time",
+  "mapping": {
+    "rowOrigin": "top",
+    "textureUploadFlipY": false,
+    "normalBasis": "view = normalize(eye-world); right = normalize(cross(worldUp,view)); up = cross(view,right)",
+    "tileUv": "vec2(0.5) + vec2(dot(normal,right), -dot(normal,up)) / 2.02",
+    "atlasUv": "(vec2(column,row) + tileUv) / vec2(8,2)",
+    "equivalentFlipYTrue": "tileUv = vec2(0.5) + vec2(dot(normal,right), dot(normal,up)) / 2.02; atlasUv = vec2((column+tileUv.x)/8.0, (1.0-row+tileUv.y)/2.0)",
+    "discRadiusUv": 0.49504950495049505,
+    "edgeTreatment": "Opaque RGB with radial extension outside sphere; LINEAR sampling, CLAMP_TO_EDGE, no mipmaps",
+    "captureViewToEyeBlender": [
+      0.0,
+      -0.9707534313201904,
+      0.24007880687713623
+    ]
+  },
+  "materials": [
+    {
+      "id": "teal",
+      "column": 0,
+      "sourceMaterial": "LAGOON / multilayer turquoise lacquer",
+      "baseColor": [
+        0.012000000104308128,
+        0.36000001430511475,
+        0.4099999964237213
+      ],
+      "metallic": 0.8199999928474426,
+      "roughness": 0.1899999976158142,
+      "coatWeight": 0.6499999761581421
+    },
+    {
+      "id": "silver",
+      "column": 1,
+      "sourceMaterial": "PEARL / brushed titanium",
+      "baseColor": [
+        0.47999998927116394,
+        0.5099999904632568,
+        0.5299999713897705
+      ],
+      "metallic": 0.7799999713897705,
+      "roughness": 0.23000000417232513,
+      "coatWeight": 0.30000001192092896
+    },
+    {
+      "id": "blue",
+      "column": 2,
+      "sourceMaterial": "INDIGO / deep metallic",
+      "baseColor": [
+        0.054999999701976776,
+        0.11999999731779099,
+        0.3700000047683716
+      ],
+      "metallic": 0.6499999761581421,
+      "roughness": 0.23999999463558197,
+      "coatWeight": 0.44999998807907104
+    },
+    {
+      "id": "orange",
+      "column": 3,
+      "sourceMaterial": "EMBER / orange lacquer",
+      "baseColor": [
+        0.7599999904632568,
+        0.18000000715255737,
+        0.03500000014901161
+      ],
+      "metallic": 0.75,
+      "roughness": 0.20999999344348907,
+      "coatWeight": 0.44999998807907104
+    },
+    {
+      "id": "glass",
+      "column": 4,
+      "sourceMaterial": "Smoked panoramic glass",
+      "baseColor": [
+        0.017999999225139618,
+        0.052000001072883606,
+        0.07100000232458115
+      ],
+      "metallic": 0.3799999952316284,
+      "roughness": 0.14000000059604645,
+      "coatWeight": 0.800000011920929
+    },
+    {
+      "id": "chrome",
+      "column": 5,
+      "sourceMaterial": "Diamond cut alloy",
+      "baseColor": [
+        0.6800000071525574,
+        0.7300000190734863,
+        0.7699999809265137
+      ],
+      "metallic": 0.8799999952316284,
+      "roughness": 0.20999999344348907,
+      "coatWeight": 0.0
+    },
+    {
+      "id": "trim",
+      "column": 6,
+      "sourceMaterial": "Graphite aero trim",
+      "baseColor": [
+        0.02500000037252903,
+        0.03700000047683716,
+        0.05000000074505806
+      ],
+      "metallic": 0.20000000298023224,
+      "roughness": 0.33000001311302185,
+      "coatWeight": 0.0
+    },
+    {
+      "id": "rubber",
+      "column": 7,
+      "sourceMaterial": "Tire rubber",
+      "baseColor": [
+        0.017999999225139618,
+        0.023000000044703484,
+        0.02800000086426735
+      ],
+      "metallic": 0.0,
+      "roughness": 0.5799999833106995,
+      "coatWeight": 0.0
+    }
+  ],
+  "rows": [
+    {
+      "name": "day",
+      "row": 0,
+      "worldColour": [
+        0.48,
+        0.63,
+        0.75
+      ],
+      "worldStrength": 0.55,
+      "lights": [
+        [
+          "Golden key / upper left",
+          [
+            -4.0,
+            -5.0,
+            9.0
+          ],
+          [
+            1.0,
+            0.7799999713897705,
+            0.5400000214576721
+          ],
+          1100.0,
+          5.0
+        ],
+        [
+          "Sky fill / cool right",
+          [
+            5.0,
+            -1.0,
+            5.0
+          ],
+          [
+            0.5,
+            0.7799999713897705,
+            1.0
+          ],
+          850.0,
+          4.0
+        ],
+        [
+          "Warm rim / ahead",
+          [
+            0.0,
+            5.0,
+            7.0
+          ],
+          [
+            1.0,
+            0.8799999952316284,
+            0.699999988079071
+          ],
+          1300.0,
+          4.0
+        ]
+      ]
+    },
+    {
+      "name": "night",
+      "row": 1,
+      "worldColour": [
+        0.055,
+        0.105,
+        0.2
+      ],
+      "worldStrength": 0.4,
+      "lights": [
+        [
+          "Moon softbox / upper left",
+          [
+            -4,
+            -5,
+            9
+          ],
+          [
+            0.45,
+            0.66,
+            1
+          ],
+          660,
+          5
+        ],
+        [
+          "Cool reflection strip / right",
+          [
+            5,
+            -1,
+            5
+          ],
+          [
+            0.5,
+            0.77,
+            1
+          ],
+          470,
+          3
+        ],
+        [
+          "Warm roadside rim / ahead",
+          [
+            0,
+            5,
+            7
+          ],
+          [
+            1,
+            0.68,
+            0.34
+          ],
+          920,
+          4
+        ]
+      ]
+    }
+  ],
+  "bytes": 174670
+}
