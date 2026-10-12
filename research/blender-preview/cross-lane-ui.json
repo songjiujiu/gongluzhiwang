@@ -1,0 +1,169 @@
+{
+  "passed": true,
+  "scope": "Actual shared game core and WebGL in Chromium; not a physical phone test",
+  "inputs": [
+    {
+      "file": "公路之王/src/game-core.js",
+      "sha256": "5eaa671ba9236a2f35b5ade9546c86243bea569a7d0c5060856d4658bf5f7f1c"
+    }
+  ],
+  "cases": [
+    {
+      "spawn": {
+        "from": -1,
+        "to": 0,
+        "x": -1,
+        "z": 41.61039924557361,
+        "warning": 0.3979249554220587,
+        "signal": 1
+      },
+      "crossing": {
+        "x": 0,
+        "lane": 0,
+        "pending": false,
+        "maxStep": 0.040000000000000036,
+        "overlap": false,
+        "collisions": 0,
+        "glError": 0
+      },
+      "end": {
+        "x": 0,
+        "lane": 0,
+        "pending": false,
+        "collisions": 0,
+        "glError": 0
+      }
+    },
+    {
+      "spawn": {
+        "from": -1,
+        "to": 1,
+        "x": -1,
+        "z": 56.31666666666668,
+        "warning": 0.5441346934065223,
+        "signal": 1
+      },
+      "crossing": {
+        "x": 3.469446951953614e-16,
+        "lane": 1,
+        "pending": false,
+        "maxStep": 0.040000000000000036,
+        "overlap": false,
+        "collisions": 0,
+        "glError": 0
+      },
+      "end": {
+        "x": 1,
+        "lane": 1,
+        "pending": false,
+        "collisions": 0,
+        "glError": 0
+      }
+    },
+    {
+      "spawn": {
+        "from": 0,
+        "to": -1,
+        "x": 0,
+        "z": 39.75167175727451,
+        "warning": 0.42831309107132254,
+        "signal": -1
+      },
+      "crossing": {
+        "x": -1,
+        "lane": -1,
+        "pending": false,
+        "maxStep": 0.040000000000000036,
+        "overlap": false,
+        "collisions": 0,
+        "glError": 0
+      },
+      "end": {
+        "x": -1,
+        "lane": -1,
+        "pending": false,
+        "collisions": 0,
+        "glError": 0
+      }
+    },
+    {
+      "spawn": {
+        "from": 0,
+        "to": 1,
+        "x": 0,
+        "z": 45.267431583350614,
+        "warning": 0.4198464302811772,
+        "signal": 1
+      },
+      "crossing": {
+        "x": 1,
+        "lane": 1,
+        "pending": false,
+        "maxStep": 0.040000000000000036,
+        "overlap": false,
+        "collisions": 0,
+        "glError": 0
+      },
+      "end": {
+        "x": 1,
+        "lane": 1,
+        "pending": false,
+        "collisions": 0,
+        "glError": 0
+      }
+    },
+    {
+      "spawn": {
+        "from": 1,
+        "to": -1,
+        "x": 1,
+        "z": 55.94177992688496,
+        "warning": 0.49374158303253357,
+        "signal": -1
+      },
+      "crossing": {
+        "x": -3.469446951953614e-16,
+        "lane": -1,
+        "pending": false,
+        "maxStep": 0.040000000000000036,
+        "overlap": false,
+        "collisions": 0,
+        "glError": 0
+      },
+      "end": {
+        "x": -1,
+        "lane": -1,
+        "pending": false,
+        "collisions": 0,
+        "glError": 0
+      }
+    },
+    {
+      "spawn": {
+        "from": 1,
+        "to": 0,
+        "x": 1,
+        "z": 37.557538789897826,
+        "warning": 0.3558408515062183,
+        "signal": -1
+      },
+      "crossing": {
+        "x": 0,
+        "lane": 0,
+        "pending": false,
+        "maxStep": 0.040000000000000036,
+        "overlap": false,
+        "collisions": 0,
+        "glError": 0
+      },
+      "end": {
+        "x": 0,
+        "lane": 0,
+        "pending": false,
+        "collisions": 0,
+        "glError": 0
+      }
+    }
+  ],
+  "errors": []
+}

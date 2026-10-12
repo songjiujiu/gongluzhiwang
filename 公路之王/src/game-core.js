@@ -2,7 +2,8 @@
 const DifficultyConfig=require('./difficulty-config');
 
 // Platform-independent endless-driving rules. Distances are metres; lane/x are -1..1.
-// Each wave reserves a lane, and neighbouring waves leave time for one lane change.
+// Each wave leaves an exit at its starting and final positions. A two-lane merge
+// can cross the middle exit while still ahead; traffic reserves the swept path.
 class RoadKingCore {
   constructor(options = {}) {
     if (typeof options === 'function') options = { random: options };
@@ -238,14 +239,17 @@ class RoadKingCore {
     const intense=this.difficulty.mergeChance>0;
     const reaction=this.difficulty.reactionTime*(intense?.8+this.random()*.2:1);
     const minimum=intense?Math.max(18,closing*.55):55;
-    const z = Math.max(minimum, Math.min(138,closing * reaction), farthest + this._safeGap());
+    let z = Math.max(minimum, Math.min(138,closing * reaction), farthest + this._safeGap());
     // Defer crowded spawns instead of placing hazards outside the visible road.
     if (z > 145) return false;
     const lanes = double ? blocked : [this._pick(blocked)];
     if(intense&&double&&this.random()<.5)lanes.reverse();
-    const canChange = !barrier && safeLane !== 0 && this.random() < this.difficulty.mergeChance;
+    const canChange = !barrier && this.random() < this.difficulty.mergeChance;
+    // With a middle exit, the two blocked lanes are the outer lanes. Include
+    // this route too, but leave enough distance to cross both lanes visibly.
+    if(canChange&&safeLane===0)z=Math.max(z,closing*(this.difficulty.mergeWarningMax+2/4+.2));
     // Offset paired cars enough that either can genuinely merge without
-    // crossing its neighbour; never cross the wave's reserved exit lane.
+    // crossing its neighbour. The final position still leaves the wave's exit.
     const stagger=double&&canChange&&intense?10+this.random()*6:double&&this.difficulty.tier>=3?7:0;
     if(z+stagger>145)return false;
     const waveId = ++this.waveCount;
@@ -298,6 +302,16 @@ class RoadKingCore {
     }
     for (let index = this.traffic.length - 1; index >= 0; index--) {
       const car = this.traffic[index];
+      if (car.changePending && !car.hit && !car.escaped) {
+        // A blocked cross-road manoeuvre must not begin after its visible
+        // crossing window has passed. Keep driving straight in that case.
+        const crossing=Math.abs(car.targetLane-car.lane)>1;
+        const closing=Math.max(0,(roadSpeed(this.speed)-car.speed)/3.6*.75);
+        const timeNeeded=Math.abs(car.targetLane-car.x)/4+.1;
+        if(crossing&&car.signalDirection&&car.z<Math.max(8,closing*timeNeeded)){
+          car.changePending=false;car.signalDirection=0;car.warningTimer=0;
+        }
+      }
       if (car.changePending && !car.hit && !car.escaped) {
         const lead=car.mergeLeadSeconds||2.1;
         const warningDistance = Math.max(lead<2.1?8:36, (roadSpeed(this.speed) - car.speed) / 3.6 * 0.75 * lead);

@@ -258,7 +258,10 @@ test('visible lane choices support six-minute runs across seeds as real traffic 
       }
       for (const item of game.traffic) {
         assert.ok(Number.isFinite(item.z) && Number.isFinite(item.x), 'traffic coordinates remain finite');
-        if (!item.hit && !item.escaped) assert.ok(Math.abs(item.x - item.safeLane) >= 0.9, 'moving traffic does not cross its reserved exit');
+        if (!item.hit && !item.escaped) {
+          assert.notEqual(item.lane,item.safeLane,'the destination leaves an exit');
+          if(Math.abs(item.x-item.safeLane)<.9)assert.ok(item.z>3.5,'a cross-road vehicle clears the middle before reaching the player');
+        }
       }
     }
     assert.equal(game.mode, 'playing', `seed ${seed}: ended at ${game.elapsed}s with ${game.collisions} hits`);
